@@ -1,6 +1,5 @@
 import "./globals.css";
-import Navbar from "@/components/navbar";
-
+import Navbar from "@/src/components/Navbar";
 
 export const metadata = {
   title: "Portfolio",
@@ -11,12 +10,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <div className="w-full h-screen bg-gradient-to-b from-blue-100 to-red-100">
+        <div className="w-full h-full bg-gradient-to-b from-blue-200 to-red-50">
           <div className="h-24">
             <Navbar />
           </div>
-
-          {children}
+          <div className="h-[calc(100vh-6rem)]">
+            {children}
+          </div>
         </div>
       </body>
     </html>
