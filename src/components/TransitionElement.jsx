@@ -12,7 +12,7 @@ const TransitionElement = ({ children }) => {
     return (
         <AnimatePresence mode="wait">
 
-            <div key={pathName} className="w-screen h-screen bg-gradient-to-b from-blue-200 to-red-50">
+            <div key={pathName} className="w-screen h-screen overflow-scroll bg-gradient-to-b from-blue-200 to-red-50">
 
                 <motion.div
                     className="h-screen w-screen fixed bg-black rounded-b-[100px] z-40"
@@ -22,7 +22,7 @@ const TransitionElement = ({ children }) => {
                 />
 
                 <motion.div
-                    className="fixed m-auto top-0 right-0 left-0 bottom-0 text-white text-8xl cursor-default h-fit w-fit z-50"
+                    className="fixed m-auto top-0 right-0 left-0 bottom-0 text-white text-8xl cursor-default h-fit w-fit z-40"
                     initial={{ opacity: 1 }}
                     animate={{ opacity: 0 }}
                     exit={{ opacity: 0 }}
