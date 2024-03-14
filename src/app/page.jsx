@@ -1,30 +1,41 @@
+'use client'
+
 import Image from "next/image"
+import { motion } from "framer-motion"
 
 const page = () => {
   return (
-    <div className="h-full flex flex-col px-4 sm:px-8 md:px-12 lg:px-24">
+    <motion.div
+      className="h-full"
+      initial={{ y: '-200vh' }}
+      animate={{ y: '0%' }}
+      transition={{ duration: 1 }}
+    >
 
-      {/* Image Container */}
-      <div className="h-1/2 relative">
-        <Image src='/images/userImage.png' alt='User Image' fill className="object-contain" />
-      </div>
+      <div className="h-full flex flex-col px-4 sm:px-8 md:px-12 lg:px-24 lg:flex-row">
 
-      {/* Text Container */}
-      <div className="h-1/2 flex flex-col gap-8 justify-center items-center">
+        {/* Image Container */}
+        <div className="h-1/2 relative lg:h-full lg:w-1/2 z-20">
+          <Image src='/images/userImage.png' alt='User Image' fill className="object-contain" />
+        </div>
 
-        {/* Title */}
-        <h1 className="text-4xl font-bold md:text-6xl">Crafting Digital Experiences, Designing Tomorrow</h1>
+        {/* Text Container */}
+        <div className="h-1/2 flex flex-col gap-8 justify-center items-center lg:w-1/2 lg:h-full">
 
-        {/* Description */}
-        <p>Welcome to my digital canvas</p>
+          {/* Title */}
+          <h1 className="text-4xl font-bold md:text-6xl">Crafting Digital Experiences, Designing Tomorrow</h1>
 
-        {/* Buttons */}
-        <div className="flex gap-4">
-          <button className="p-4 rounded-lg ring-1 ring-black bg-black text-white">View my work</button>
-          <button className="p-4 rounded-lg ring-1 ring-black">Contact me</button>
+          {/* Description */}
+          <p className="md:text-xl lg:w-full">Welcome to my digital canvas</p>
+
+          {/* Buttons */}
+          <div className="flex gap-4 lg:w-full">
+            <button className="p-4 rounded-lg ring-1 ring-black bg-black text-white">View my work</button>
+            <button className="p-4 rounded-lg ring-1 ring-black">Contact me</button>
+          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
