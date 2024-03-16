@@ -343,7 +343,7 @@ export default function AboutPage() {
 
             {/* Resume Download */}
             <div className='flex pb-16 justify-center items-center'>
-              <Link href='resume.pdf'><h1 className='text-2xl font-semibold bg-gradient-to-br from-white to-transparent px-6 py-3 rounded-lg shadow-gray-950/30 shadow-lg backdrop-blur-[10px] transition-all duration-300 hover:scale-110'>Resume</h1></Link>
+              <a href='resume.pdf' download><h1 className='text-2xl font-semibold bg-gradient-to-br from-white to-transparent px-6 py-3 rounded-lg shadow-gray-950/30 shadow-lg backdrop-blur-[10px] transition-all duration-300 hover:scale-110'>Resume</h1></a>
             </div>
           </div>
 
