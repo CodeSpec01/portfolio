@@ -45,11 +45,11 @@ export default function ContactPage() {
       transition={{ duration: 1 }}
     >
 
-      <div className='min-h-full flex flex-col lg:flex-row px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48'>
+      <div className='h-auto lg:h-full flex flex-col lg:flex-row px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48'>
 
         {/* Text Container */}
-        <div className="h-1/2 lg:h-full lg:w-1/2 flex items-center justify-center text-6xl">
-          <div className='flex'>
+        <div className="h-60 lg:h-full lg:w-1/2 flex items-center justify-center text-6xl">
+          <div className='flex justify-center items-center'>
 
             <motion.div>
 
@@ -63,16 +63,16 @@ export default function ContactPage() {
         </div>
 
         {/* Form Container */}
-        <form ref={form} onSubmit={sendEmail} className='h-1/2 lg:h-full lg:w-1/2 bg-red-50 rounded-xl text-xl flex flex-col gap-8 justify-center p-24'>
+        <form ref={form} onSubmit={sendEmail} className='h-3/4 lg:h-full lg:w-1/2 bg-red-50 rounded-xl text-xl flex flex-col gap-8 justify-center p-6 sm:p-20 md:p-16'>
           <span> Dear Aviral,</span>
-          <textarea rows="6" name='user_message' className='bg-transparent border-b-2 border-b-black outline-none resize-none' placeholder='Your message' required />
+          <textarea rows="6" name='user_message' className='bg-transparent rounded-lg shadow-gray-950/30 shadow-lg backdrop-blur-[10px] border-b-2 border-b-black outline-none resize-none' placeholder='Your message' required />
 
           <span>My mail address is: </span>
-          <textarea name='user_email' className='bg-transparent border-b-2 border-b-black outline-none' placeholder='Your Email Address' required />
+          <textarea name='user_email' className='bg-transparent backdrop-blur-[10px] shadow-gray-950/30 shadow-lg rounded-lg border-b-2 border-b-black outline-none resize-none' placeholder='Your Email Address' required />
 
           <span>Regards</span>
-          <textarea name="user_name" className='bg-transparent border-b-2 border-b-black outline-none' placeholder='Your name' required />
-          <button className='bg-purple-200 rounded font-semibold text-gray-600 p-4' >Send</button>
+          <textarea name="user_name" className='bg-transparent backdrop-blur-[10px] shadow-gray-950/30 shadow-lg rounded-lg border-b-2 border-b-black outline-none resize-none' placeholder='Your name' required />
+          <button className='bg-gradient-to-br from-purple-200 to-transparent backdrop-blur-[10px] shadow-gray-950/30 shadow-lg rounded-lg font-semibold text-gray-600 p-4' >Send</button>
 
           {success && <span className='text-green-600 font-semibold'>Your message has been sent successfully!</span>}
           {error && <span className='text-red-600 font-semibold'>Something went wrong!</span>}
