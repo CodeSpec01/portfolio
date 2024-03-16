@@ -1,7 +1,8 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import emailjs from '@emailjs/browser'
 
 export default function ContactPage() {
 
@@ -9,6 +10,32 @@ export default function ContactPage() {
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(process.env.NEXT_PUBLIC_SERVICE_ID, process.env.NEXT_PUBLIC_TEMPLATE_ID, form.current, {
+        publicKey: process.env.NEXT_PUBLIC_PUBLIC_KEY,
+      })
+      .then(
+        () => {
+          setSuccess(true);
+          setTimeout(() => {
+            setSuccess(false);
+          }, 5000);
+          form.current.reset();
+        },
+        (error) => {
+          setError(true);
+          setTimeout(() => {
+            setError(false);
+          }, 5000);
+        },
+      );
+  };
 
   return (
     <motion.div
@@ -36,14 +63,15 @@ export default function ContactPage() {
         </div>
 
         {/* Form Container */}
-        <form className='h-1/2 lg:h-full lg:w-1/2 bg-red-50 rounded-xl text-xl flex flex-col gap-8 justify-center p-24 '>
+        <form ref={form} onSubmit={sendEmail} className='h-1/2 lg:h-full lg:w-1/2 bg-red-50 rounded-xl text-xl flex flex-col gap-8 justify-center p-24'>
           <span> Dear Aviral,</span>
-          <textarea rows="6" className='bg-transparent border-b-2 border-b-black outline-none resize-none' />
+          <textarea rows="6" name='user_message' className='bg-transparent border-b-2 border-b-black outline-none resize-none' placeholder='Your message' required />
 
           <span>My mail address is: </span>
-          <textarea className='bg-transparent border-b-2 border-b-black outline-none' />
+          <textarea name='user_email' className='bg-transparent border-b-2 border-b-black outline-none' placeholder='Your Email Address' required />
 
           <span>Regards</span>
+          <textarea name="user_name" className='bg-transparent border-b-2 border-b-black outline-none' placeholder='Your name' required />
           <button className='bg-purple-200 rounded font-semibold text-gray-600 p-4' >Send</button>
 
           {success && <span className='text-green-600 font-semibold'>Your message has been sent successfully!</span>}
