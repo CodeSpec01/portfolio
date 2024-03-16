@@ -27,7 +27,7 @@ const page = () => {
           <h1 className="text-4xl text-center font-bold md:text-6xl">Create the Extraordinary, <br/>Design the Tomorrow</h1>
 
           {/* Description */}
-          <p className="text-center md:text-xl lg:w-full">In a world where digital experiences shape our reality, I am passionate about crafting tomorrow's design landscape. Showcasing my collection of projects, welcome to my Digital Canv</p>
+          <p className="text-center md:text-xl lg:w-full">{`In a world where digital experiences shape our reality, I am passionate about crafting tomorrow's design landscape. Showcasing my collection of projects, welcome to my Digital Canv`}</p>
 
           {/* Buttons */}
           <div className="flex gap-4 justify-around lg:justify-center lg:gap-12 lg:w-full">
