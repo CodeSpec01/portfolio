@@ -41,7 +41,7 @@ const TransitionElement = ({ children }) => {
                     <Navbar />
                 </div>
 
-                <div className="h-[calc(100vh-6rem)]">
+                <div className="h-[calc(98vh-6rem)]">
                     {children}
                 </div>
             </div>

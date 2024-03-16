@@ -12,7 +12,7 @@ const page = () => {
       transition={{ duration: 1 }}
     >
 
-      <div className="h-full overflow-scroll flex flex-col px-4 sm:px-8 md:px-12 lg:px-24 lg:flex-row">
+      <div className="h-screen w-auto overflow-scroll flex flex-col px-4 sm:px-8 md:px-12 lg:px-24 lg:flex-row">
 
         {/* Image Container */}
         <div className="h-1/2 relative lg:h-full lg:w-1/2 z-20">
