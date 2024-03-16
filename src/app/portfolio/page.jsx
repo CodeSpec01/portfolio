@@ -19,7 +19,7 @@ const items = [
     id: 2,
     color: "from-blue-300 to-violet-300",
     title: 'Portfolio Website',
-    desc: "A website about myself. Giving a brief introduction about myself, listing all my skills, projects and experience accross various domains that I've gained over time.",
+    desc: "A website about myself. Giving a brief introduction about myself, listing all my skills, projects and experience accross various domains that I have gained over time.",
     image: 'https://i.pinimg.com/originals/e3/3f/13/e33f133caed912840026e6dda22eb8f7.jpg',
     link: 'https://aviralgaur.vercel.app/',
     github: 'https://github.com/CodeSpec01/portfolio',
