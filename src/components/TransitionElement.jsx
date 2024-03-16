@@ -4,10 +4,19 @@ import { AnimatePresence } from "framer-motion"
 import { motion } from "framer-motion"
 import Navbar from "./Navbar"
 import { usePathname } from "next/navigation"
+import { useEffect } from "react"
 
 const TransitionElement = ({ children }) => {
 
     const pathName = usePathname()
+    useEffect(() => {
+        setTimeout(() => {
+            const element = document.getElementById('pathText')
+            element.style.zIndex = 0;
+
+        }, 1500);
+
+    }, [])
 
     return (
         <AnimatePresence mode="wait">
@@ -23,9 +32,9 @@ const TransitionElement = ({ children }) => {
 
                 <motion.div
                     className="fixed m-auto top-0 right-0 left-0 bottom-0 text-white text-8xl cursor-default h-fit w-fit z-40"
+                    id="pathText"
                     initial={{ opacity: 1 }}
-                    animate={{ opacity: 0, zIndex: 0 }}
-                    exit={{ opacity: 0 }}
+                    animate={{ opacity: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}
                 >
                     {pathName.substring(1) ? pathName.substring(1) : "Home"}
