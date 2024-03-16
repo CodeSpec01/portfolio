@@ -47,11 +47,6 @@ export default function AboutPage() {
             {/* Biography Quote */}
             <span className='italic'>Not a great programmer, Just a good programmer with great habits</span>
 
-            {/* Biography Sign */}
-            <div className='self-end'>
-              <Image src={'/images/signature.svg'} height={100} width={100} />
-            </div>
-
             {/* Biography Scroll */}
             <Link href={'#skill'}>
 
