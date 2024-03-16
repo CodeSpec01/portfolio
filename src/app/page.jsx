@@ -17,17 +17,17 @@ const page = () => {
 
         {/* Image Container */}
         <div className="h-1/2 relative lg:h-full lg:w-1/2 z-20">
-          <Image src='/images/userImage.png' alt='User Image' fill className="object-contain" />
+          <Image src='/images/digitalArt.png' alt='User Image' fill className="object-contain" />
         </div>
 
         {/* Text Container */}
         <div className="h-1/2 flex flex-col gap-8 justify-between items-center lg:justify-center lg:gap-12 lg:w-1/2 lg:h-full">
 
           {/* Title */}
-          <h1 className="text-4xl text-center font-bold md:text-6xl">Crafting Digital Experiences, Designing Tomorrow</h1>
+          <h1 className="text-4xl text-center font-bold md:text-6xl">Create the Extraordinary, <br/>Design the Tomorrow</h1>
 
           {/* Description */}
-          <p className="text-center md:text-xl lg:w-full">Welcome to my digital canvas</p>
+          <p className="text-center md:text-xl lg:w-full">In a world where digital experiences shape our reality, I am passionate about crafting tomorrow's design landscape. Showcasing my collection of projects, welcome to my Digital Canv</p>
 
           {/* Buttons */}
           <div className="flex gap-4 justify-around lg:justify-center lg:gap-12 lg:w-full">

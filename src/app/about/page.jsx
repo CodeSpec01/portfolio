@@ -29,19 +29,23 @@ export default function AboutPage() {
       <div className='h-full overflow-scroll lg:flex scroll-smooth' ref={containerRef}>
 
         {/* Text Container */}
-        <div className='p-4 flex flex-col gap-24 sm:p-8 md:p-12 md:gap-32 lg:gap-48 lg:pr-0 lg:p-24 lg:w-2/3 xl:p-48 xl:pr-0 xl:gap-64 xl:w-1/2'>
+        <div className='p-4 flex flex-col gap-24 sm:p-8 md:p-12 md:gap-32 lg:gap-48 lg:pr-0 lg:p-24 lg:w-2/3 xl:p-48 xl:pt-8 xl:pr-0 xl:gap-64 xl:w-1/2'>
+
 
           {/* Biography Container */}
           <div className='flex flex-col gap-12 justify-center' ref={skillRef}>
 
-            {/* Biography Title */}
-            <h1 className='font-bold text-2xl'>BIOGRAPHY</h1>
+            <div>
+              <Image src='/images/userImage.png' className='rounded-full' height={100} width={100} />
+              {/* Biography Title */}
+              <h1 className='font-bold text-2xl'>BIOGRAPHY</h1>
+            </div>
 
             {/* Biography Description */}
-            <p className='text-lg'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat architecto, dolorum ratione enim nulla explicabo veritatis magni, hic, voluptatibus dolor nostrum quis magnam nisi. Autem voluptatum harum quidem perspiciatis cumque, facere hic?</p>
+            <p className='text-lg'>Hi, my name is Aviral Gaur and I am a full stack developer that specializes in Next JS, ReactJS, Javascript and the MERN stack.<br /><br />I have been practicing Web Development and Data Structures for past 1 year. Learning new technologies is the way to refresh for me.<br /><br />I am currently a college undergraduate student pursuing Electronics and Communication Engineering with specialization in Internet of Things (IOT).</p>
 
             {/* Biography Quote */}
-            <span className='italic'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt consequuntur assumenda voluptatibus!</span>
+            <span className='italic'>Not a great programmer, Just a good programmer with great habits</span>
 
             {/* Biography Sign */}
             <div className='self-end'>
@@ -93,11 +97,13 @@ export default function AboutPage() {
               <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">Node.js</div>
               <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">Express.js</div>
               <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">Framer Motion</div>
+              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">GitHub</div>
               <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">C++</div>
               <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">Python</div>
-              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">HTML5</div>
-              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">CSS3</div>
+              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">HTML</div>
+              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">CSS</div>
               <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">TailwindCSS</div>
+              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">Photoshop</div>
             </motion.div>
 
             {/* Skill Scroll SVG */}
@@ -145,13 +151,13 @@ export default function AboutPage() {
                 <div className='w-3/5'>
 
                   {/* Job Title */}
-                  <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">Member Technical Department</div>
+                  <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">Member Astronomy Department</div>
 
                   {/* Job Description */}
-                  <div className="p-3 text-sm italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam optio eveniet voluptatem incidunt perferendis vel. Quasi amet deleniti dolores?</div>
+                  <div className="p-3 text-sm italic">Doing research in astronomy topics, publishing blogs on various astronomy and physics related topics.</div>
 
                   {/* Job Date */}
-                  <div className="p-3 text-red-400 text-sm font-semibold">2023-Present</div>
+                  <div className="p-3 text-red-400 text-sm font-semibold">Sep 2023 - Present</div>
 
                   {/* Job Company */}
                   <div className="p-1 rounded bg-white text-sm font-semibold w-fit">Nakshatra</div>
@@ -205,10 +211,10 @@ export default function AboutPage() {
                   <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">Member</div>
 
                   {/* Job Description */}
-                  <div className="p-3 text-sm italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam optio eveniet voluptatem incidunt perferendis vel. Quasi amet deleniti dolores?</div>
+                  <div className="p-3 text-sm italic">Learning new programming concepts, creating connections with different people having. same domain of interest.</div>
 
                   {/* Job Date */}
-                  <div className="p-3 text-red-400 text-sm font-semibold">2023-Present</div>
+                  <div className="p-3 text-red-400 text-sm font-semibold">Sep 2023-Present</div>
 
                   {/* Job Company */}
                   <div className="p-1 rounded bg-white text-sm font-semibold w-fit">Devcomm</div>
@@ -226,13 +232,91 @@ export default function AboutPage() {
                   <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">Member Technical Department</div>
 
                   {/* Job Description */}
-                  <div className="p-3 text-sm italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam optio eveniet voluptatem incidunt perferendis vel. Quasi amet deleniti dolores?</div>
+                  <div className="p-3 text-sm italic">Worked in a team creating desgins and different parts of the official website for an event. Gained experience of working on a big project in a team.</div>
 
                   {/* Job Date */}
-                  <div className="p-3 text-red-400 text-sm font-semibold">2023-Present</div>
+                  <div className="p-3 text-red-400 text-sm font-semibold">Dec 2023 - Jan 2024</div>
 
                   {/* Job Company */}
                   <div className="p-1 rounded bg-white text-sm font-semibold w-fit">Space Con | Nakshatra</div>
+
+                </div>
+
+                {/* Center */}
+                <div className="w-1/8">
+
+                  {/* Line */}
+                  <div className="w-1 h-full bg-gray-600 rounded relative">
+
+                    {/* Circle */}
+                    <div className="absolute w-5 h-5 rounded-full ring-4 ring-red-400 bg-white -left-2">
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                {/* Right */}
+                <div className="w-3/5"></div>
+              </motion.div>
+
+              {/* Experience List Item 4 */}
+              <motion.div className='flex gap-3' initial={{ y: '300%' }} animate={isExperienceRefInView ? { y: 0 } : {}} transition={{ delay: 0.6 }} >
+
+                {/* Left */}
+                <div className='w-3/5'></div>
+
+                {/* Center */}
+                <div className="w-1/8">
+
+                  {/* Line */}
+                  <div className="w-1 h-full bg-gray-600 rounded relative">
+
+                    {/* Circle */}
+                    <div className="absolute w-5 h-5 rounded-full ring-4 ring-red-400 bg-white -left-2">
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                {/* Right */}
+                <div className="w-3/5">
+
+                  {/* Job Title */}
+                  <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">Member Technical Department</div>
+
+                  {/* Job Description */}
+                  <div className="p-3 text-sm italic">Working as a member in a team on various official Web Development projects including the official website for the society.</div>
+
+                  {/* Job Date */}
+                  <div className="p-3 text-red-400 text-sm font-semibold">Jan 2023-Present</div>
+
+                  {/* Job Company */}
+                  <div className="p-1 rounded bg-white text-sm font-semibold w-fit">Nakshatra</div>
+                </div>
+
+              </motion.div>
+
+              {/* Experience List Item 5*/}
+              <motion.div className='flex gap-3' initial={{ y: '300%' }} animate={isExperienceRefInView ? { y: 0 } : {}} transition={{ delay: 0.6 }} >
+
+                {/* Left */}
+                <div className='w-3/5'>
+
+                  {/* Job Title */}
+                  <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">Member Event Management Department</div>
+
+                  {/* Job Description */}
+                  <div className="p-3 text-sm italic">Led a team ideating, conducting and managing various events and official fests under Moksha Innovision 2024. Gained experience of managing a team.</div>
+
+                  {/* Job Date */}
+                  <div className="p-3 text-red-400 text-sm font-semibold">Feb 2024 - Mar 2024</div>
+
+                  {/* Job Company */}
+                  <div className="p-1 rounded bg-white text-sm font-semibold w-fit">Moksha Innovision</div>
 
                 </div>
 
