@@ -97,9 +97,9 @@ const Navbar = () => {
       </div>
 
       {/* Logo */}
-      <Link href='/' className="text-sm bg-black rounded-md p-1 font-semibold flex justify-center items-center md:hidden lg:flex">
-        <span className='text-white mr-1'>Aviral</span>
-        <span className='w-10 h-8 bg-white text-black flex items-center justify-center rounded'>Gaur</span>
+      <Link href='/' className="text-sm bg-black rounded-md p-1 px-2 font-semibold flex justify-center items-center md:hidden lg:flex">
+        <span className='text-white pr-2'>Aviral</span>
+        <span className='w-12 h-8 bg-white text-black flex items-center justify-center rounded '>Gaur</span>
       </Link>
 
       {/* Personal Links list */}

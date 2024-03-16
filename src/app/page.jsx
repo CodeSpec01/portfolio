@@ -39,7 +39,7 @@ const page = () => {
         </div>
       </div>
 
-      <div className="h-2 lg:hidden pt-8"></div>
+      <div className="h-2 lg:hidden pt-5"></div>
     </motion.div>
   )
 }

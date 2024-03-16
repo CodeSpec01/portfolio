@@ -12,7 +12,7 @@ export default function AboutPage() {
   const { scrollYProgress } = useScroll({ container: containerRef })
 
   const skillRef = useRef();
-  const isSkillRefInView = useInView(skillRef)
+  const isSkillRefInView = useInView(skillRef, {margin: '2000px'})
 
   const experienceRef = useRef();
   const isExperienceRefInView = useInView(experienceRef)
@@ -84,7 +84,7 @@ export default function AboutPage() {
             <motion.h1 className='text-2xl font-bold' initial={{ x: '-1000px' }} animate={isSkillRefInView ? { x: 0 } : {}} transition={{ delay: 0.2 }} id='skill'>SKILLS</motion.h1>
 
             {/* Skill List */}
-            <motion.div className='flex gap-4 flex-wrap' initial={{ x: '-1000px' }} animate={isSkillRefInView ? { x: 0 } : {}} transition={{ delay: 0.6 }} >
+            <motion.div className='flex gap-4 flex-wrap' initial={{ x: '1500px', display: 'none' }} animate={isSkillRefInView ? { x: 0, display: 'flex' } : {}} transition={{ delay: 0.6 }} >
 
               <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">Next.js</div>
               <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">React.js</div>
@@ -130,7 +130,7 @@ export default function AboutPage() {
           </div>
 
           {/* Experience Container */}
-          <div className='flex flex-col gap-12 justify-center pb-48' ref={experienceRef}>
+          <div className='flex flex-col gap-12 justify-center' ref={experienceRef}>
 
             {/* Experience Title */}
             <motion.h1 className='font-bold text-2xl' initial={{ x: '-1000px' }} animate={isExperienceRefInView ? { x: 0 } : {}} transition={{ delay: 0.2 }} id='experience'>EXPERIENCE</motion.h1>
@@ -139,10 +139,10 @@ export default function AboutPage() {
             <div className='h-fit w-fit'>
 
               {/* Experience List Item 1 */}
-              <motion.div className='flex justify-between' initial={{ x: '-1000px' }} animate={isExperienceRefInView ? { x: 0 } : {}} transition={{ delay: 0.6 }} >
+              <motion.div className='flex gap-3' initial={{ y: '300%' }} animate={isExperienceRefInView ? { y: 0 } : {}} transition={{ delay: 0.6 }} >
 
                 {/* Left */}
-                <div className='w-1/3'>
+                <div className='w-3/5'>
 
                   {/* Job Title */}
                   <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">Member Technical Department</div>
@@ -174,14 +174,14 @@ export default function AboutPage() {
                 </div>
 
                 {/* Right */}
-                <div className="w-1/3"></div>
+                <div className="w-3/5"></div>
               </motion.div>
 
               {/* Experience List Item 2 */}
-              <motion.div className='flex justify-between' initial={{ x: '-1000px' }} animate={isExperienceRefInView ? { x: 0 } : {}} transition={{ delay: 0.6 }} >
+              <motion.div className='flex gap-3' initial={{ y: '300%' }} animate={isExperienceRefInView ? { y: 0 } : {}} transition={{ delay: 0.6 }} >
 
                 {/* Left */}
-                <div className='w-1/3'></div>
+                <div className='w-3/5'></div>
 
                 {/* Center */}
                 <div className="w-1/8">
@@ -199,7 +199,7 @@ export default function AboutPage() {
                 </div>
 
                 {/* Right */}
-                <div className="w-1/3">
+                <div className="w-3/5">
 
                   {/* Job Title */}
                   <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">Member</div>
@@ -217,10 +217,10 @@ export default function AboutPage() {
               </motion.div>
 
               {/* Experience List Item 3*/}
-              <motion.div className='flex justify-between' initial={{ x: '-1000px' }} animate={isExperienceRefInView ? { x: 0 } : {}} transition={{ delay: 0.6 }} >
+              <motion.div className='flex gap-3' initial={{ y: '300%' }} animate={isExperienceRefInView ? { y: 0 } : {}} transition={{ delay: 0.6 }} >
 
                 {/* Left */}
-                <div className='w-1/3'>
+                <div className='w-3/5'>
 
                   {/* Job Title */}
                   <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">Member Technical Department</div>
@@ -252,12 +252,17 @@ export default function AboutPage() {
                 </div>
 
                 {/* Right */}
-                <div className="w-1/3"></div>
+                <div className="w-3/5"></div>
               </motion.div>
 
             </div>
 
+            {/* Resume Download */}
+            <div className='flex pb-16 justify-center items-center'>
+              <Link href='/resume.pdf'><h1 className='text-2xl font-semibold bg-gradient-to-br from-white to-transparent px-6 py-3 rounded-lg shadow-gray-950/30 shadow-lg backdrop-blur-[10px] transition-all duration-300 hover:scale-110'>Resume</h1></Link>
+            </div>
           </div>
+
 
         </div>
 
