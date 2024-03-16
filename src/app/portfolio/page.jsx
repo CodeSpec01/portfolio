@@ -53,9 +53,13 @@ export default function PortfolioPage() {
 
         <div className='h-[600vh] relative scroll-smooth' ref={ref}>
 
-          <div className="w-full h-[calc(100vh-6rem)] flex justify-center items-center text-8xl text-center" >
+          <div className="w-full h-[calc(100vh-6rem)] flex justify-center items-center text-8xl text-center scroll-smooth" >
             MY WORK
-            <Link href={'#projectList'}>
+          </div>
+
+          <div className='absolute translate-x-[47vw] translate-y-[-30vh] scroll-smooth'>
+
+            <Link href={'#projectList'} className='scroll-smooth'>
 
               <motion.svg
                 viewBox="0 0 24 24"
@@ -82,14 +86,14 @@ export default function PortfolioPage() {
             </Link>
           </div>
 
-          <div className='sticky top-0 flex h-screen gap-4 items-center overflow-hidden'>
-            <motion.div style={{ translateX: x }} className="flex" id='projectList'>
+          <div className='sticky top-0 flex h-screen gap-4 items-center scroll-smooth overflow-hidden'>
+            <motion.div style={{ translateX: x }} className="flex scroll-smooth" id='projectList'>
 
               {items.map(item => (
 
                 <div className={`h-screen w-screen flex items-center justify-center bg-gradient-to-r ${item.color}`} key={item.id}>
 
-                  <div className="flex flex-col gap-8 text-white">
+                  <div className="flex flex-col gap-8 text-white justify-center items-center bg-gradient-to-br from-white-opacity-10 via-transparent px-6 py-3 rounded-lg shadow-gray-950/30 shadow-lg backdrop-blur-[10px]">
 
                     <h1 className="text-xl font-bold md:text-4xl lg:text-6xl xl:text-8xl">{item.title}</h1>
 
@@ -99,9 +103,12 @@ export default function PortfolioPage() {
 
                     <p className='w-80 md:w-96 lg:w-[500px] lg:text-lg xl:w-[600px]'>{item.desc}</p>
 
-                    <div className='flex justify-end'>
-                      <Link href={item.link} className='p-2 text-sm md:p-4 md:text-md lg:p-8 lg:text-lg bg-white text-gray-600 font-semibold m-4 rounded' >
-                        See Demo
+                    <div className='flex justify-between'>
+                      <Link href={item.github} className='p-2 text-sm md:p-4 md:text-md lg:p-8 lg:text-lg bg-gradient-to-br from-white via-transparent shadow-gray-950/30 shadow-md backdrop-blur-[10px] text-gray-600 font-semibold m-4 rounded transition-all duration-300 hover:scale-110' >
+                        GitHub Link
+                      </Link>
+                      <Link href={item.link} className='p-2 text-sm md:p-4 md:text-md lg:p-8 lg:text-lg bg-gradient-to-br from-white via-transparent shadow-gray-950/30 shadow-md backdrop-blur-[10px] text-gray-600 font-semibold m-4 rounded transition-all duration-300 hover:scale-110' >
+                        Project Link
                       </Link>
                     </div>
 
