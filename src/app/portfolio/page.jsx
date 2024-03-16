@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -36,10 +36,10 @@ const items = [
 ]
 
 export default function PortfolioPage() {
-
+  
   const ref = useRef();
-  const { scrollYProgress } = useScroll({ target: ref });
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]);
+  const { scrollYProgress } = useScroll();
+  const x = useTransform(scrollYProgress, [0, 0.75], ["0%", "-65%"]);
 
   return (
     <motion.div
@@ -48,18 +48,18 @@ export default function PortfolioPage() {
       animate={{ y: '0%' }}
       transition={{ duration: 1 }}
     >
-      <div className="scroll-smooth">
+      <div className="">
 
 
-        <div className='h-[600vh] relative scroll-smooth' ref={ref}>
+        <div className='h-[600vh] relative' ref={ref}>
 
-          <div className="w-full h-[calc(100vh-6rem)] flex justify-center items-center text-8xl text-center scroll-smooth" >
+          <div className="w-full h-[calc(100vh-6rem)] flex justify-center items-center text-8xl text-center " >
             MY WORK
           </div>
 
-          <div className='absolute translate-x-[47vw] translate-y-[-30vh] scroll-smooth'>
+          <div className='absolute translate-x-[47vw] translate-y-[-30vh] '>
 
-            <Link href={'#projectList'} className='scroll-smooth'>
+            <Link href={'#projectList'} className=''>
 
               <motion.svg
                 viewBox="0 0 24 24"
@@ -86,14 +86,14 @@ export default function PortfolioPage() {
             </Link>
           </div>
 
-          <div className='sticky top-0 flex h-screen gap-4 items-center scroll-smooth overflow-hidden'>
-            <motion.div style={{ translateX: x }} className="flex scroll-smooth" id='projectList'>
+          <div className='sticky top-0 flex h-screen gap-4 items-center overflow-hidden'>
+            <motion.div style={{ x }} className="flex" id='projectList'>
 
               {items.map(item => (
 
                 <div className={`h-screen w-screen flex items-center justify-center bg-gradient-to-r ${item.color}`} key={item.id}>
 
-                  <div className="flex flex-col gap-8 text-white justify-center items-center bg-gradient-to-br from-white-opacity-10 via-transparent px-6 py-3 rounded-lg shadow-gray-950/30 shadow-lg backdrop-blur-[10px]">
+                  <div className="flex flex-col gap-8 text-white justify-center items-center bg-gradient-to-br from-white-opacity-10 via-transparent px-2 lg:px-6 py-3 rounded-lg shadow-gray-950/30 shadow-lg backdrop-blur-[10px]">
 
                     <h1 className="text-xl font-bold md:text-4xl lg:text-6xl xl:text-8xl">{item.title}</h1>
 

@@ -12,7 +12,7 @@ export default function AboutPage() {
   const { scrollYProgress } = useScroll({ container: containerRef })
 
   const skillRef = useRef();
-  const isSkillRefInView = useInView(skillRef, {margin: '2000px'})
+  const isSkillRefInView = useInView(skillRef)
 
   const experienceRef = useRef();
   const isExperienceRefInView = useInView(experienceRef)
