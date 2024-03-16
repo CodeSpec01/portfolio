@@ -36,7 +36,7 @@ export default function AboutPage() {
           <div className='flex flex-col gap-12 justify-center' ref={skillRef}>
 
             <div>
-              <Image src='/images/userImage.png' className='rounded-full' height={100} width={100} />
+              <Image src='/images/userImage.png' className='rounded-full' height={100} width={100} alt='User Image'/>
               {/* Biography Title */}
               <h1 className='font-bold text-2xl'>BIOGRAPHY</h1>
             </div>
