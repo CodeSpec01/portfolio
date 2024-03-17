@@ -26,7 +26,7 @@ export default function AboutPage() {
     >
 
       {/* Container */}
-      <div className='h-full overflow-scroll lg:flex scroll-smooth' ref={containerRef}>
+      <div className='h-full overflow-scroll lg:flex scroll-smooth pb-10' ref={containerRef}>
 
         {/* Text Container */}
         <div className='p-4 flex flex-col gap-24 sm:p-8 md:p-12 md:gap-32 lg:gap-48 lg:pr-0 lg:p-24 lg:w-2/3 xl:p-48 xl:pt-8 xl:pr-0 xl:gap-64 xl:w-1/2'>
@@ -36,7 +36,7 @@ export default function AboutPage() {
           <div className='flex flex-col gap-12 justify-center' ref={skillRef}>
 
             <div>
-              <Image src='/images/userImage.png' className='rounded-full' height={100} width={100} alt='User Image'/>
+              <Image src='/images/userImage.png' className='rounded-full' height={100} width={100} alt='User Image' />
               {/* Biography Title */}
               <h1 className='font-bold text-2xl'>BIOGRAPHY</h1>
             </div>
@@ -336,6 +336,7 @@ export default function AboutPage() {
 
             </div>
 
+            <div className='text-white/0 relative -left-96'>Found a Secret :D</div>
           </div>
 
 
