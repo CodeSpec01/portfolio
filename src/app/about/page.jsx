@@ -87,11 +87,15 @@ export default function AboutPage() {
 
               <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">Next.js</div>
               <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">React.js</div>
+              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">TypeScript</div>
               <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">JavaScript</div>
               <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">MongoDB</div>
               <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">Node.js</div>
               <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">Express.js</div>
               <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">Framer Motion</div>
+              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">ShadCN UI</div>
+              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">Stream IO</div>
+              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">Clerk</div>
               <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">GitHub</div>
               <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">C++</div>
               <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:text-black hover:bg-white">Python</div>
