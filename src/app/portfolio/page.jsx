@@ -8,7 +8,7 @@ import '@/src/app/globals.css'
 const items = [
   {
     id: 1,
-    color: "from-red-50 to-red-300",
+    color: "from-blue-50 to-red-300",
     title: "CamConnect",
     desc: "A website for seamless video calling and meetings. Includes various features such as instant & schedule meeting, meeting recordings, personal meeting room and more.",
     image: "/images/camconnect.png",
