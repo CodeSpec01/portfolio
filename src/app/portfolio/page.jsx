@@ -8,6 +8,15 @@ import '@/src/app/globals.css'
 const items = [
   {
     id: 1,
+    color: "from-red-50 to-red-300",
+    title: "CamConnect",
+    desc: "A website for seamless video calling and meetings. Includes various features such as instant & schedule meeting, meeting recordings, personal meeting room and more.",
+    image: "/images/camconnect.png",
+    link: "https://camconnect.vercel.app/",
+    github: "https://github.com/CodeSpec01/CamConnect.git",
+  },
+  {
+    id: 2,
     color: "from-red-300 to-blue-300",
     title: 'PromptNexus',
     desc: "A website to discover and share AI Prompts. Includes various features such as Google OAuth2 secure login, profile system, search by tags and users, access to edit prompts, delete account information at any time and more.",
@@ -16,14 +25,14 @@ const items = [
     github: 'https://github.com/CodeSpec01/promptnexus',
   },
   {
-    id: 2,
+    id: 3,
     color: "from-blue-300 to-violet-300",
     title: 'Portfolio Website',
     desc: "A website about myself. Giving a brief introduction about myself, listing all my skills, projects and experience accross various domains that I have gained over time.",
     image: '/images/portfolio.png',
     link: 'https://aviralgaur.vercel.app/',
     github: 'https://github.com/CodeSpec01/portfolio',
-  },
+  }
 ]
 
 export default function PortfolioPage() {
