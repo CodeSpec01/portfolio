@@ -24,3 +24,35 @@ export const notFoundMetadata = {
     description: "The page you are looking for does not exist. Explore other sections of portfolio.",
 }
 
+
+export const navbarItems = [
+    {
+        label: "About",
+        bgColor: "hsl(271,100%,10%)",
+        textColor: "#fff",
+        links: [
+            { label: "About Me", href: "/about", ariaLabel: "About Me" },
+            { label: "My Projects", href: "/projects", ariaLabel: "My Projects" }
+        ]
+    },
+    {
+        label: "Others",
+        bgColor: "hsl(271,100%,20%)",
+        textColor: "#fff",
+        links: [
+            { label: "Other Projects", href: "/otherprojects", ariaLabel: "Other Projects" },
+            { label: "Journey to the Website", href: "/journey", ariaLabel: "Journey to the Website" }
+        ]
+    },
+    {
+        label: "Socials",
+        bgColor: "hsl(271,100%,30%)",
+        textColor: "#fff",
+        links: [
+            { label: "Email", href: "mailto:online.codespec@gmail.com", ariaLabel: "Email us" },
+            { label: "Github", href: "https://github.com/codespec01", ariaLabel: "Github" },
+            { label: "Leetcode", href: "https://leetcode.com/codespec", ariaLabel: "LeetCode" },
+            { label: "LinkedIn", href: "https://www.linkedin.com/in/aviral-gaur-423b9b1b7/", ariaLabel: "LinkedIn" }
+        ]
+    }
+];

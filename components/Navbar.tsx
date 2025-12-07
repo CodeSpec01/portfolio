@@ -18,7 +18,7 @@ export type CardNavItem = {
 };
 
 export interface CardNavProps {
-  logo: string;
+  logo?: string;
   logoAlt?: string;
   items: CardNavItem[];
   className?: string;
@@ -85,13 +85,14 @@ const Navbar: React.FC<CardNavProps> = ({
     const navEl = navRef.current;
     if (!navEl) return null;
 
-    gsap.set(navEl, { height: 60, overflow: 'hidden' });
+    // gsap.set(navEl, { height: 60, width: '100%', overflow: 'hidden' });
     gsap.set(cardsRef.current, { y: 50, opacity: 0 });
 
     const tl = gsap.timeline({ paused: true });
 
     tl.to(navEl, {
       height: calculateHeight,
+      width: '90vw',
       duration: 0.4,
       ease
     });
@@ -158,16 +159,26 @@ const Navbar: React.FC<CardNavProps> = ({
 
   return (
     <div
-      className={`card-nav-container absolute left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] z-99 top-[1.2em] md:top-[2em] ${className}`}
+      className={`card-nav-container absolute right-[5vw] z-99 top-[1.2em] md:top-[2em] ${className}`}
     >
       <nav
         ref={navRef}
-        className={`card-nav ${isExpanded ? 'open' : ''} block h-[60px] p-0 rounded-xl shadow-md relative overflow-hidden will-change-[height]`}
+        className={`card-nav ${isExpanded ? 'open' : ''} block h-[60px] p-0 rounded-xl shadow-md relative overflow-hidden will-change-[height,width]`}
         style={{ backgroundColor: baseColor }}
       >
-        <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between p-2 pl-[1.1rem] z-2">
+        <div className="card-nav-top relative inset-x-0 top-0 h-[60px] flex items-center justify-end gap-5 p-2 pl-[1.1rem] z-2">
+
+          <button
+            type="button"
+            className="relative cursor-target card-nav-cta-button border-0 rounded-[calc(0.75rem-0.2rem)] px-4 items-center justify-center h-full font-medium cursor-pointer transition-colors duration-300 hover:opacity-80"
+            style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
+            aria-label="Search"
+          >
+            <IoSearch size={20} />
+          </button>
+
           <div
-            className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-full flex flex-col items-center justify-center cursor-pointer gap-1.5 order-2 md:order-0`}
+            className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-full flex flex-col items-center justify-center cursor-pointer gap-1.5 pr-4 order-2 md:order-0`}
             onClick={toggleMenu}
             role="button"
             aria-label={isExpanded ? 'Close menu' : 'Open menu'}
@@ -186,18 +197,10 @@ const Navbar: React.FC<CardNavProps> = ({
             />
           </div>
 
-          <div className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-0">
+          {/* <div className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-0">
             <img src={logo} alt={logoAlt} className="logo h-7" />
-          </div>
+          </div> */}
 
-          <button
-            type="button"
-            className="card-nav-cta-button hidden md:inline-flex border-0 rounded-[calc(0.75rem-0.2rem)] px-4 items-center justify-center h-full font-medium cursor-pointer transition-colors duration-300 hover:opacity-80"
-            style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
-            aria-label="Search"
-          >
-            <IoSearch size={20} />
-          </button>
         </div>
 
         <div
@@ -220,7 +223,7 @@ const Navbar: React.FC<CardNavProps> = ({
                 {item.links?.map((lnk, i) => (
                   <a
                     key={`${lnk.label}-${i}`}
-                    className="nav-card-link inline-flex items-center gap-1.5 no-underline cursor-pointer transition-opacity duration-300 hover:opacity-75 text-[15px] md:text-[16px]"
+                    className="cursor-target nav-card-link inline-flex items-center gap-1.5 no-underline cursor-pointer transition-opacity duration-300 hover:opacity-75 text-[15px] md:text-[16px]"
                     href={lnk.href}
                     aria-label={lnk.ariaLabel}
                   >
