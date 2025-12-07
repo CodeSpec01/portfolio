@@ -14,7 +14,6 @@ const HeroSpotlight = () => {
                 backgroundColor: '#08000f'
             }}
             onMouseMove={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
                 const x = e.clientX;
                 const y = e.clientY;
                 const el = revealImgRef.current;
@@ -26,8 +25,8 @@ const HeroSpotlight = () => {
             onMouseLeave={() => {
                 const el = revealImgRef.current;
                 if (el) {
-                    el.style.setProperty('--mx', '-9999px');
-                    el.style.setProperty('--my', '-9999px');
+                    el.style.setProperty('--mx', '1000%');
+                    el.style.setProperty('--my', '1000%');
                 }
             }}
         >
@@ -45,6 +44,9 @@ const HeroSpotlight = () => {
                     mixBlendMode: 'lighten',
                     opacity: 0.3,
                     pointerEvents: 'none',
+                    // @ts-ignore
+                    '--mx': '1000%',
+                    '--my': '1000%',
                     WebkitMaskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0%, rgba(255,255,255,1) 1%, rgba(255,255,255,1) 3%, rgba(255,255,255,1) 5%, rgba(255,255,255,1) 10%)',
                     maskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 60px, rgba(255,255,255,0.6) 120px, rgba(255,255,255,0.25) 180px, rgba(255,255,255,0) 50%)',
                     WebkitMaskRepeat: 'no-repeat',
