@@ -3,6 +3,13 @@
 import HeroSpotlight from "@/components/HeroSpotlight";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import Navbar from "@/components/Navbar";
+import { homeMetadata } from "@/constants/constants";
+import { Metadata } from "next";
+
+export const metadata: Metadata = homeMetadata;
+
+
 
 export default function Home() {
   const textWhiteRef = useRef<HTMLDivElement>(null);
@@ -52,6 +59,8 @@ export default function Home() {
         </div>
       </div>
       <img ref={imageRef} src="/home/aviral.png" alt="Aviral" className="relative top-[20%] pointer-events-none h-[80%] mx-auto" />
+      
+
     </main>
   );
 }
