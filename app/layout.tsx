@@ -1,5 +1,10 @@
 import TargetCursor from "@/components/TargetCursor";
 import "./globals.css";
+import localFont from 'next/font/local'
+ 
+const customFont = localFont({
+  src: './custom-font.ttf',
+})
 
 export default function RootLayout({
   children,
@@ -8,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={customFont.className}>
         <TargetCursor
           spinDuration={2}
           hideDefaultCursor={true}
