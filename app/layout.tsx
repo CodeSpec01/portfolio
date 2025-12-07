@@ -1,3 +1,4 @@
+import TargetCursor from "@/components/TargetCursor";
 import "./globals.css";
 
 export default function RootLayout({
@@ -8,6 +9,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <TargetCursor
+          spinDuration={2}
+          hideDefaultCursor={true}
+          parallaxOn={true}
+        />
         {children}
       </body>
     </html>
