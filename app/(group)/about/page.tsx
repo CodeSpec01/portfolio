@@ -1,14 +1,13 @@
-import { aboutMetadata } from '@/constants/constants';
-import { Metadata } from 'next';
+import { aboutMetadata } from "@/constants/constants";
+import { Metadata } from "next";
 
-
-export const metadata: Metadata = aboutMetadata;
-
+export const metadata : Metadata = aboutMetadata;
 
 const page = () => {
+
   return (
-    <div className='text-center'>page</div>
-  )
+    <div>page</div>
+  );
 }
 
 export default page
