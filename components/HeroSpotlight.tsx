@@ -7,11 +7,11 @@ const HeroSpotlight = () => {
     const revealImgRef = useRef<HTMLImageElement>(null);
     return (
         <div
-            className='h-screen'
+            className='h-screen w-full absolute top-0 left-0'
             style={{
-                position: 'relative',
+                position: 'absolute',
                 overflow: 'hidden',
-                backgroundColor: '#08000f'
+                backgroundColor: '#08000f',
             }}
             onMouseMove={(e) => {
                 const x = e.clientX;
@@ -40,7 +40,6 @@ const HeroSpotlight = () => {
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    zIndex: 5,
                     mixBlendMode: 'lighten',
                     opacity: 0.3,
                     pointerEvents: 'none',
@@ -48,7 +47,7 @@ const HeroSpotlight = () => {
                     '--mx': '1000%',
                     '--my': '1000%',
                     WebkitMaskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0%, rgba(255,255,255,1) 1%, rgba(255,255,255,1) 3%, rgba(255,255,255,1) 5%, rgba(255,255,255,1) 10%)',
-                    maskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 60px, rgba(255,255,255,0.6) 120px, rgba(255,255,255,0.25) 180px, rgba(255,255,255,0) 50%)',
+                    maskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 60px, rgba(255,255,255,0.6) 120px, rgba(255,255,255,0.5) 180px, rgba(255,255,255,0) 50%)',
                     WebkitMaskRepeat: 'no-repeat',
                     maskRepeat: 'no-repeat'
                 }}
