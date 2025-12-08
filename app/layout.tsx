@@ -8,7 +8,7 @@ const customFont = localFont({
   src: './custom-font.ttf',
 })
 
-export default function RootLayout({
+export default function RootLayout({  
   children,
 }: Readonly<{
   children: React.ReactNode;
