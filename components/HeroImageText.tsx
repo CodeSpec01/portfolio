@@ -5,7 +5,9 @@ import gsap from "gsap";
 import RotatingText from "./Rotatingtext";
 import ContactUsButton from "./ContactUsButton";
 import { Tooltip } from "./TooltipCard";
-import { heroImageTooltipContent } from "@/constants/constants";
+import { heroImageTooltipContent, rotatingTexts } from "@/constants/constants";
+import { emblemaOne, novaRound } from "@/app/layout";
+import CircularText from "./CircularText";
 
 const HeroImageText = () => {
   const textWhiteRef = useRef<HTMLDivElement>(null);
@@ -49,36 +51,32 @@ const HeroImageText = () => {
   }, []);
   return (
     <div className="relative w-full h-full flex justify-center pointer-events-none">
-      <div className="absolute pointer-events-none w-full h-full text-[14vw] leading-[90%] flex flex-col justify-center items-center font-bold">
-        <div className="relative w-full flex flex-col items-center justify-center top-[10vh]">
-          <div ref={textWhiteRef} className="">
+      <CircularText text="HIRE ME · HIRE ME · HIRE ME · HIRE ME · HIRE ME · HIRE ME ·" className="-top-[100px] -left-[100px]"  />
+      <div className="absolute pointer-events-none w-full h-full text-[12vw] tracking-[0.5vw] leading-[105%] flex flex-col justify-center items-center font-bold">
+        <div className={"relative w-full flex flex-col items-center justify-center top-[10vh] "}>
+          <div ref={textWhiteRef} className={emblemaOne.className}>
             <p
-              style={{
-                textShadow: "0 0 5px #fed333, 0 0 10px #fed333, 0 0 20px #fff",
-              }}
             >
               AVIRAL GAUR
             </p>
           </div>
-          <div ref={outlineTextsRef} className="text-transparent">
+          <div ref={outlineTextsRef} className={emblemaOne.className}>
             <p
-              className="opacity-50"
-              style={{ WebkitTextStroke: "3px rgba(132,0,255, 0.5)" }}
+              className="opacity-50 text-[#28004d]"
             >
               AVIRAL GAUR
             </p>
             <p
-              className="opacity-30"
-              style={{ WebkitTextStroke: "3px rgba(132,0,255, 0.3)" }}
+              className="opacity-30 text-[#1a0033]"
             >
               AVIRAL GAUR
             </p>
           </div>
-          <div ref={rotatingTextRef} className="text-[4vw] flex w-[80%] justify-between items-center relative -top-[10%]">
-            <ContactUsButton className="relative pointer-events-auto z-50 cursor-pointer cursor-target" />
+          <div ref={rotatingTextRef} className={"text-[4vw] flex w-[90%] justify-between items-center relative -top-[10%] tracking-tight"}>
+            <ContactUsButton className="relative pointer-events-auto z-50 cursor-pointer cursor-target scale-75" />
             <RotatingText
-              texts={["Web Developer", "UI/UX Designer", "Tech Enthusiast", "cool"]}
-              mainClassName="text-[3vw]  mr-2 mb-4 text-white/90 font-bold"
+              texts={rotatingTexts}
+              mainClassName="text-[2vw] mb-4 text-white/90 font-bold"
               staggerFrom={"last"}
               initial={{ y: "-20%" }}
               animate={{ y: 0 }}

@@ -13,7 +13,8 @@ export const Tooltip = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [mouse, setMouse] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const [height, setHeight] = useState(0);
+  // keep a constant tooltip height (20px) to avoid vertical jitter
+  const [height] = useState(20);
   const [position, setPosition] = useState<{ x: number; y: number }>({
     x: 0,
     y: 0,
@@ -22,9 +23,8 @@ export const Tooltip = ({
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isVisible && contentRef.current) {
-      setHeight(contentRef.current.scrollHeight);
-    }
+    // no-op: tooltip height is fixed to prevent dynamic resizing jitter
+    // left in place in case future logic needs to update the size
   }, [isVisible, content]);
 
   const calculatePosition = (mouseX: number, mouseY: number) => {
@@ -37,9 +37,12 @@ export const Tooltip = ({
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
-    // Get tooltip dimensions
-    const tooltipWidth = 240; // min-w-[15rem] = 240px
-    const tooltipHeight = tooltip.scrollHeight;
+    // Compute tooltip width dynamically from the content element, clamped to a sensible range
+    const minWidth = 120; // px
+    const maxWidth = 320; // px
+    const measuredWidth = tooltip.offsetWidth || 0;
+    const tooltipWidth = Math.min(Math.max(measuredWidth, minWidth), maxWidth);
+    const tooltipHeight = 20; // fixed height (px)
 
     // Calculate absolute position relative to viewport
     const absoluteX = containerRect.left + mouseX;
@@ -55,7 +58,7 @@ export const Tooltip = ({
 
     // Check if tooltip goes beyond left edge
     if (absoluteX + finalX < 0) {
-      finalX = -containerRect.left + 12;
+      finalX = Math.max(-containerRect.left + 12, 6);
     }
 
     // Check if tooltip goes beyond bottom edge
@@ -135,13 +138,13 @@ export const Tooltip = ({
     }
   };
 
-  // Update position when tooltip becomes visible or content changes
+  // Update position when tooltip becomes visible or mouse moves
   useEffect(() => {
-    if (isVisible && contentRef.current) {
+    if (isVisible) {
       const newPosition = calculatePosition(mouse.x, mouse.y);
       setPosition(newPosition);
     }
-  }, [isVisible, height, mouse.x, mouse.y]);
+  }, [isVisible, mouse.x, mouse.y]);
 
   return (
     <div
@@ -159,15 +162,11 @@ export const Tooltip = ({
         {isVisible && (
           <motion.div
             key={String(isVisible)}
-            initial={{ height: 0, opacity: 1 }}
-            animate={{ height, opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{
-              type: "spring",
-              stiffness: 200,
-              damping: 20,
-            }}
-            className="pointer-events-none absolute z-50 overflow-hidden rounded-md border border-transparent shadow-sm ring-1 shadow-black/5 ring-black/5 bg-[rgba(132,0,255,0.5)] dark:shadow-white/10 dark:ring-white/5"
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.18 }}
+            className="pointer-events-none absolute z-50 overflow-hidden rounded-md border border-transparent shadow-sm ring-1 shadow-black/5 ring-black/5 bg-[rgba(132,0,255,0.5)] flex dark:shadow-white/10 dark:ring-white/5 w-auto max-w-xs h-5"
             style={{
               top: position.y,
               left: position.x,
@@ -175,7 +174,7 @@ export const Tooltip = ({
           >
             <div
               ref={contentRef}
-              className="p-1 text-sm text-[#FFE820] text-[1vw] "
+              className="h-full flex items-center justify-center px-3 text-sm text-[#FFE820] whitespace-nowrap"
             >
               {content}
             </div>

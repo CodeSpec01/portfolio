@@ -1,12 +1,20 @@
 import TargetCursor from "@/components/TargetCursor";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import localFont from 'next/font/local'
 import { navbarItems } from "@/constants/constants";
+import { Emblema_One, Nova_Round } from "next/font/google";
 
-const customFont = localFont({
-  src: './custom-font.ttf',
-})
+export const emblemaOne = Emblema_One({
+  // subsets: ['latin'],
+  weight: ['400'],
+  display: 'swap',
+});
+
+export const novaRound = Nova_Round({
+  // subsets: ['latin'],
+  weight: ['400'],
+  display: 'swap',
+});
 
 export default function RootLayout({  
   children,
@@ -15,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={customFont.className}>
+      <body className={novaRound.className}>
         <TargetCursor
           spinDuration={2}
           hideDefaultCursor={true}

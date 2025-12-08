@@ -59,3 +59,12 @@ export const navbarItems = [
 ];
 
 export const heroImageTooltipContent = "I am a Web Developer and problem solver";
+
+export const rotatingTexts = [
+    "Web Developer",
+    "UI/UX Designer",
+    "Tech Enthusiast",
+    "Freelancer",
+    "Problem Solver",
+    "Engineering Mindset"
+];
