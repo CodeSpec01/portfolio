@@ -3,3 +3,7 @@
 :root{
     background-color: rgb(132,0,255);
 }
+:root{
+    color: #ffe380;
+    --foreground-yellow-dark: #fed333;
+}

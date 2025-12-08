@@ -9,7 +9,7 @@ export default function Home() {
   
 
   return (
-    <main className="h-screen overflow-hidden relative">
+    <main className="h-screen overflow-hidden relative flex justify-center">
       <HeroSpotlight />
       <HeroImageText />
     </main>

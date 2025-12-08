@@ -28,17 +28,18 @@ export const notFoundMetadata = {
 export const navbarItems = [
     {
         label: "About",
-        bgColor: "hsl(271,100%,10%)",
-        textColor: "#fff",
+        bgColor: "hsl(271,100%,20%)",
+        textColor: "#FFE380",
         links: [
+            { label: "Home", href: "/", ariaLabel: "Home" },
             { label: "About Me", href: "/about", ariaLabel: "About Me" },
             { label: "My Projects", href: "/projects", ariaLabel: "My Projects" }
         ]
     },
     {
         label: "Others",
-        bgColor: "hsl(271,100%,20%)",
-        textColor: "#fff",
+        bgColor: "hsl(271,100%,30%)",
+        textColor: "#FFE380",
         links: [
             { label: "Other Projects", href: "/otherprojects", ariaLabel: "Other Projects" },
             { label: "Journey to the Website", href: "/journey", ariaLabel: "Journey to the Website" }
@@ -46,8 +47,8 @@ export const navbarItems = [
     },
     {
         label: "Socials",
-        bgColor: "hsl(271,100%,30%)",
-        textColor: "#fff",
+        bgColor: "hsl(271,100%,35%)",
+        textColor: "#FFE380",
         links: [
             { label: "Email", href: "mailto:online.codespec@gmail.com", ariaLabel: "Email us" },
             { label: "Github", href: "https://github.com/codespec01", ariaLabel: "Github" },
@@ -56,3 +57,5 @@ export const navbarItems = [
         ]
     }
 ];
+
+export const heroImageTooltipContent = "I am a Web Developer and problem solver";

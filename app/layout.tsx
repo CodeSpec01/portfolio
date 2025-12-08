@@ -23,10 +23,10 @@ export default function RootLayout({
         />
         <Navbar
           items={navbarItems}
-          baseColor="rgba(26,26,26,0.5)"
+          baseColor="rgba(132,0,255,0.1)"
           menuColor="#fff"
-          buttonBgColor="#333"
-          buttonTextColor="#fff"
+          buttonBgColor="rgba(132,0,255,0.4)"
+          // buttonTextColor="#fff"
           ease="circ.out"
           className="backdrop-blur-md"
         />
