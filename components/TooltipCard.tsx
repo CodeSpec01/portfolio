@@ -166,7 +166,7 @@ export const Tooltip = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.18 }}
-            className="pointer-events-none absolute z-50 overflow-hidden rounded-md border border-transparent shadow-sm ring-1 shadow-black/5 ring-black/5 bg-[rgba(132,0,255,0.5)] flex dark:shadow-white/10 dark:ring-white/5 w-auto max-w-xs h-5"
+            className="pointer-events-none absolute z-40 overflow-hidden rounded-md border border-transparent shadow-sm ring-1 shadow-black/5 ring-black/5 bg-[rgba(132,0,255,0.5)] flex dark:shadow-white/10 dark:ring-white/5 w-auto max-w-xs h-5"
             style={{
               top: position.y,
               left: position.x,

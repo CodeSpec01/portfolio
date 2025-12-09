@@ -3,6 +3,7 @@ import React, { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { GoArrowUpRight } from 'react-icons/go';
 import { IoSearch } from 'react-icons/io5';
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalTrigger } from './AnimatedModal';
 
 type CardNavLink = {
   label: string;
@@ -158,86 +159,99 @@ const Navbar: React.FC<CardNavProps> = ({
   };
 
   return (
-    <div
-      className={`card-nav-container absolute right-[5vw] z-99 top-[1.2em] md:top-[2em] ${className}`}
-    >
-      <nav
-        ref={navRef}
-        className={`card-nav ${isExpanded ? 'open' : ''} block h-[60px] p-0 rounded-xl shadow-md relative overflow-hidden will-change-[height,width]`}
-        style={{ backgroundColor: baseColor }}
-      >
-        <div className="card-nav-top relative inset-x-0 top-0 h-[60px] flex items-center justify-end gap-5 p-2 pl-[1.1rem] z-2">
-
-          <button
-            type="button"
-            className="relative cursor-target card-nav-cta-button border-0 rounded-[calc(0.75rem-0.2rem)] px-4 items-center justify-center h-full font-medium cursor-pointer transition-colors duration-300 hover:opacity-80"
-            style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
-            aria-label="Search"
-          >
-            <IoSearch size={20} />
-          </button>
-
-          <button onClick={toggleMenu}>
-
-
-            <div
-              className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-full flex flex-col items-center justify-center cursor-pointer gap-1.5 pr-4 order-2 md:order-0`}
-              
-              role="button"
-              aria-label={isExpanded ? 'Close menu' : 'Open menu'}
-              tabIndex={0}
-              style={{ color: menuColor || '#000' }}
-            >
-              <div
-                className={`hamburger-line w-[30px] h-0.5 bg-current transition-[transform,opacity,margin] duration-300 ease-linear origin-[50%_50%] ${isHamburgerOpen ? 'translate-y-1 rotate-45' : ''
-                  } group-hover:opacity-75`}
-              />
-              <div
-                className={`hamburger-line w-[30px] h-0.5 bg-current transition-[transform,opacity,margin] duration-300 ease-linear origin-[50%_50%] ${isHamburgerOpen ? '-translate-y-1 -rotate-45' : ''
-                  } group-hover:opacity-75`}
-              />
-            </div>
-          </button>
-
-          {/* <div className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-0">
-            <img src={logo} alt={logoAlt} className="logo h-7" />
-            </div> */}
-
-        </div>
+    <div className='absolute h-full w-full'>
+      <Modal>
 
         <div
-          className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-2 flex flex-col items-stretch gap-2 justify-start z-1 ${isExpanded ? 'visible pointer-events-auto' : 'invisible pointer-events-none'
-            } md:flex-row md:items-end md:gap-3`}
-          aria-hidden={!isExpanded}
+          className={`card-nav-container absolute right-[5vw] z-99 top-[1.2em] md:top-[2em] ${className}`}
         >
-          {(items || []).slice(0, 3).map((item, idx) => (
-            <div
-              key={`${item.label}-${idx}`}
-              className="nav-card select-none relative flex flex-col gap-2 p-[12px_16px] rounded-[calc(0.75rem-0.2rem)] min-w-0 flex-[1_1_auto] h-auto min-h-[60px] md:h-full md:min-h-0 md:flex-[1_1_0%]"
-              ref={setCardRef(idx)}
-              style={{ backgroundColor: item.bgColor, color: item.textColor }}
-            >
-              <div className="nav-card-label font-normal tracking-[-0.5px] text-[18px] md:text-[22px]">
-                {item.label}
-              </div>
-              <div className="nav-card-links mt-auto flex flex-col gap-0.5">
-                {item.links?.map((lnk, i) => (
-                  <a
-                    key={`${lnk.label}-${i}`}
-                    className="cursor-target nav-card-link inline-flex items-center gap-1.5 no-underline cursor-pointer transition-opacity duration-300 hover:opacity-75 text-[15px] md:text-[16px]"
-                    href={lnk.href}
-                    aria-label={lnk.ariaLabel}
-                  >
-                    <GoArrowUpRight className="nav-card-link-icon shrink-0" aria-hidden="true" />
-                    {lnk.label}
-                  </a>
-                ))}
-              </div>
+          {/* For Semantic Tag ------------------------------------------------------------------------------------- */}
+          <nav
+            ref={navRef}
+            className={`card-nav ${isExpanded ? 'open' : ''} block h-[60px] p-0 rounded-xl shadow-md relative overflow-hidden will-change-[height,width]`}
+            style={{ backgroundColor: baseColor }}
+          >
+            {/* Nav Menu Items Group ----------------------------------------------------------------------------- */}
+            <div className="card-nav-top relative inset-x-0 top-0 h-[60px] flex items-center justify-end gap-5 p-2 pl-[1.1rem] z-2">
+
+              {/* Search Modal Trigger ----------------------------------------------------------------------------- */}
+              <ModalTrigger className='relative cursor-target card-nav-cta-button border-0 rounded-[calc(0.75rem-0.2rem)] px-4 items-center justify-center h-full font-medium cursor-pointer transition-colors duration-300 hover:opacity-80' ariaLabel='Search' style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}>
+                <IoSearch size={20} />
+              </ModalTrigger>
+
+              {/* Hamburger menu trigger ----------------------------------------------------------------------------- */}
+              <button onClick={toggleMenu}>
+                <div
+                  className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-full flex flex-col items-center justify-center cursor-pointer gap-1.5 pr-4 order-2 md:order-0`}
+
+                  role="button"
+                  aria-label={isExpanded ? 'Close menu' : 'Open menu'}
+                  tabIndex={0}
+                  style={{ color: menuColor || '#000' }}
+                >
+                  <div
+                    className={`hamburger-line w-[30px] h-0.5 bg-current transition-[transform,opacity,margin] duration-300 ease-linear origin-[50%_50%] ${isHamburgerOpen ? 'translate-y-1 rotate-45' : ''
+                      } group-hover:opacity-75`}
+                  />
+                  <div
+                    className={`hamburger-line w-[30px] h-0.5 bg-current transition-[transform,opacity,margin] duration-300 ease-linear origin-[50%_50%] ${isHamburgerOpen ? '-translate-y-1 -rotate-45' : ''
+                      } group-hover:opacity-75`}
+                  />
+                </div>
+              </button>
             </div>
-          ))}
+
+            {/* Hamburger hidden menu -------------------------------------------------------------------------------- */}
+            <div
+              className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-2 flex flex-col items-stretch gap-2 justify-start z-1 ${isExpanded ? 'visible pointer-events-auto' : 'invisible pointer-events-none'
+                } md:flex-row md:items-end md:gap-3`}
+              aria-hidden={!isExpanded}
+            >
+              {(items || []).slice(0, 3).map((item, idx) => (
+                <div
+                  key={`${item.label}-${idx}`}
+                  className="nav-card select-none relative flex flex-col gap-2 p-[12px_16px] rounded-[calc(0.75rem-0.2rem)] min-w-0 flex-[1_1_auto] h-auto min-h-[60px] md:h-full md:min-h-0 md:flex-[1_1_0%]"
+                  ref={setCardRef(idx)}
+                  style={{ backgroundColor: item.bgColor, color: item.textColor }}
+                >
+                  <div className="nav-card-label font-normal tracking-[-0.5px] text-[18px] md:text-[22px]">
+                    {item.label}
+                  </div>
+                  <div className="nav-card-links mt-auto flex flex-col gap-0.5">
+                    {item.links?.map((lnk, i) => (
+                      <a
+                        key={`${lnk.label}-${i}`}
+                        className="cursor-target nav-card-link inline-flex items-center gap-1.5 no-underline cursor-pointer transition-opacity duration-300 hover:opacity-75 text-[15px] md:text-[16px]"
+                        href={lnk.href}
+                        aria-label={lnk.ariaLabel}
+                      >
+                        <GoArrowUpRight className="nav-card-link-icon shrink-0" aria-hidden="true" />
+                        {lnk.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </nav>
         </div>
-      </nav>
-    </div>
+
+        {/* Search Modal ------------------------------------------------------------------------------------------ */}
+        <ModalBody>
+          <ModalContent >
+            Hello
+          </ModalContent>
+          <ModalFooter className="gap-4">
+            <button className="cursor-target px-2 py-1 bg-gray-200 text-black dark:bg-black dark:border-black dark:text-white border border-gray-300 rounded-md text-sm w-28">
+              Cancel
+            </button>
+            <button className="cursor-target bg-black text-white dark:bg-white dark:text-black text-sm px-2 py-1 rounded-md border border-black w-28">
+              Book Now
+            </button>
+          </ModalFooter>
+        </ModalBody>
+      </Modal>
+    </div >
   );
 };
 

@@ -28,7 +28,7 @@ const HeroSpotlight = () => {
                 position: 'absolute',
                 overflow: 'hidden',
                 backgroundColor: '#08000f',
-                zIndex: 0 // Ensures this stays behind your content
+                zIndex: -50 // Ensures this stays behind your content
             }}
         >
             {/* LAYER 1: Ambient Background (Always visible, dim) */}
