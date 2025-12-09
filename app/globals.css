@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root{
-    background-color: #8400ff;
+    background-color: #000;
 }
 :root{
     color: #ffe380;
@@ -11,4 +11,20 @@
 
 button{
     cursor: pointer !important;
+}
+
+@theme inline {
+  --animate-shiny-text: shiny-text 8s infinite;
+
+  @keyframes shiny-text {
+    0%,
+    90%,
+    100% {
+      background-position: calc(-100% - var(--shiny-width)) 0;
+    }
+    30%,
+    60% {
+      background-position: calc(100% + var(--shiny-width)) 0;
+    }
+  }
 }
