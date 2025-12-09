@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useAnimation, useMotionValue, MotionValue, Transition } from 'motion/react';
+import { radius } from '@/constants/constants';
 
 interface CircularTextProps {
   text: string;
@@ -93,8 +94,8 @@ const CircularText: React.FC<CircularTextProps> = ({
 
   return (
     <motion.div
-      className={`absolute rounded-full w-[200px] h-[200px] font-black text-white text-center cursor-pointer flex items-center justify-center ${className}`}
-      style={{ rotate: rotation }}
+      className={`absolute rounded-full font-black text-white text-center cursor-pointer flex items-center justify-center ${className}`}
+      style={{ rotate: rotation, width: radius, height: radius }}
       initial={{ rotate: 0 }}
       animate={controls}
       onUpdate={(latest) => {
@@ -116,7 +117,7 @@ const CircularText: React.FC<CircularTextProps> = ({
         return (
           <span
             key={i}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl transition-all duration-500 ease-[cubic-bezier(0,0,0,1)]"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl transition-all duration-500 ease-[cubic-bezier(0,0,0,1)] "
             style={{ 
                 transform, 
                 WebkitTransform: transform 

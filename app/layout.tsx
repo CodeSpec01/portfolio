@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={novaRound.className}>
+      <body >
         <TargetCursor
           spinDuration={2}
           hideDefaultCursor={true}

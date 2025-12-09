@@ -68,3 +68,6 @@ export const rotatingTexts = [
     "Problem Solver",
     "Engineering Mindset"
 ];
+
+export const circularTexts = "OPEN TO WORK · OPEN TO WORK · OPEN TO WORK · OPEN TO WORK · OPEN TO WORK · OPEN TO WORK ·";
+export const radius = "175px";

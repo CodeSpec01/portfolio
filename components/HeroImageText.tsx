@@ -5,7 +5,7 @@ import gsap from "gsap";
 import RotatingText from "./Rotatingtext";
 import ContactUsButton from "./ContactUsButton";
 import { Tooltip } from "./TooltipCard";
-import { heroImageTooltipContent, rotatingTexts } from "@/constants/constants";
+import { circularTexts, heroImageTooltipContent, rotatingTexts } from "@/constants/constants";
 import { emblemaOne, novaRound } from "@/app/layout";
 import CircularText from "./CircularText";
 
@@ -51,7 +51,7 @@ const HeroImageText = () => {
   }, []);
   return (
     <div className="relative w-full h-full flex justify-center pointer-events-none">
-      <CircularText text="HIRE ME · HIRE ME · HIRE ME · HIRE ME · HIRE ME · HIRE ME ·" className="-top-[100px] -left-[100px]"  />
+      <CircularText text={circularTexts} className="-top-[100px] -left-[100px] z-50 bg-yellow-300"  />
       <div className="absolute pointer-events-none w-full h-full text-[12vw] tracking-[0.5vw] leading-[105%] flex flex-col justify-center items-center font-bold">
         <div className={"relative w-full flex flex-col items-center justify-center top-[10vh] "}>
           <div ref={textWhiteRef} className={emblemaOne.className}>
