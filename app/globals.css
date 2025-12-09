@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 :root{
-    background-color: rgb(132,0,255);
+    background-color: #8400ff;
 }
 :root{
     color: #ffe380;
     --foreground-yellow-dark: #fed333;
+    font-family: sans-serif;
 }
