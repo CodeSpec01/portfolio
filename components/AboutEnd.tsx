@@ -3,9 +3,9 @@ import CalendarHeatmap from './CalendarHeatmap'
 
 function AboutEnd() {
   return (
-    <div className='w-full bg-red-400  flex flex-col justify-center items-center py-[5vh] text-xl font-bold '>
+    <div className='w-full   flex flex-col justify-center items-center py-[5vh] text-xl font-bold '>
       <h1>Explore & Experiment</h1>
-      <div className='w-full p-[5vh] bg-amber-300'>
+      <div className='w-full p-[5vh] '>
         <h2>LeetCode HeatMap</h2>
         <CalendarHeatmap />
       </div>

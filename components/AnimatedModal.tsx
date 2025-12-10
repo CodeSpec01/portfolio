@@ -43,13 +43,43 @@ export const ModalTrigger = ({
     className,
     ariaLabel,
     style,
+    keyboardShortcut,
 }: {
     children: ReactNode;
     className?: string;
     ariaLabel?: string;
     style?: React.CSSProperties;
+    keyboardShortcut?: boolean;
 }) => {
     const { setOpen } = useModal();
+
+    // Adding ctrl/cmd + K shortcut to open the modal
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
+
+                event.preventDefault();
+                setOpen(true);
+            }
+
+            if (event.key == 'Escape') {
+
+                event.preventDefault();
+                setOpen(false);
+            }
+        };
+
+        // Attach the listener
+        if (keyboardShortcut) {
+            document.addEventListener('keydown', handleKeyDown);
+        }
+
+        // Cleanup the listener when component unmounts
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, []);
+
     return (
         <button
             onClick={() => setOpen(true)}

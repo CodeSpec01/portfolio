@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { GoArrowUpRight } from 'react-icons/go';
 import { IoSearch } from 'react-icons/io5';
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalTrigger } from './AnimatedModal';
+import { MdKeyboardCommandKey } from 'react-icons/md';
 
 type CardNavLink = {
   label: string;
@@ -175,8 +176,9 @@ const Navbar: React.FC<CardNavProps> = ({
             <div className="card-nav-top relative inset-x-0 top-0 h-[60px] flex items-center justify-end gap-5 p-2 pl-[1.1rem] z-2">
 
               {/* Search Modal Trigger ----------------------------------------------------------------------------- */}
-              <ModalTrigger className='relative cursor-target card-nav-cta-button border-0 rounded-[calc(0.75rem-0.2rem)] px-4 items-center justify-center h-full font-medium cursor-pointer transition-colors duration-300 hover:opacity-80' ariaLabel='Search' style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}>
-                <IoSearch size={20} />
+              <ModalTrigger keyboardShortcut={true} className='flex relative cursor-target card-nav-cta-button border-0 rounded-[calc(0.75rem-0.2rem)] px-4 items-center justify-center h-full font-medium cursor-pointer transition-colors duration-300 hover:opacity-80' ariaLabel='Search' style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}>
+                <MdKeyboardCommandKey size={20} />
+                <span> + K</span>
               </ModalTrigger>
 
               {/* Hamburger menu trigger ----------------------------------------------------------------------------- */}

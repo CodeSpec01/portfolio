@@ -50,6 +50,7 @@ const HeroImageText = () => {
       );
     }
   }, []);
+  
   return (
     <Modal>
       <div className="relative w-full h-full flex justify-center pointer-events-none">
