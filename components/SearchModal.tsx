@@ -16,7 +16,7 @@ import { FaMicrochip } from 'react-icons/fa6';
 
 export default function SearchModal() {
     return (
-        <div className="flex items-center justify-center p-4 font-sans bg-transparent">
+        <div className="flex items-center justify-center p-4 bg-transparent">
             <CoderProfileCard />
         </div>
     );
@@ -98,7 +98,7 @@ const CoderProfileCard = () => {
             </div>
 
             <div className="w-full">
-                <div className="relative flex items-center justify-center font-sans w-full px-4 py-8">
+                <div className="relative flex items-center justify-center w-full px-4 py-8">
 
                     {/* Search Modal */}
                     <div className="w-full max-w-2xl mx-auto p-4 space-y-6">

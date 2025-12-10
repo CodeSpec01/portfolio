@@ -6,7 +6,7 @@
 :root{
     color: #ffe380;
     --foreground-yellow-dark: #fed333;
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
 }
 
 button, a{

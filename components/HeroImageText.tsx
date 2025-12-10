@@ -9,6 +9,7 @@ import { circularTexts, heroImageTooltipContent, rotatingTexts } from "@/constan
 import { emblemaOne } from "@/app/layout";
 import CircularText from "./CircularText";
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalTrigger } from "./AnimatedModal";
+import ContactModal from "./ContactModal";
 
 const HeroImageText = () => {
   const textWhiteRef = useRef<HTMLDivElement>(null);
@@ -105,7 +106,8 @@ const HeroImageText = () => {
         </Tooltip>
       </div>
       <ModalBody>
-        <ModalContent >
+        <ContactModal></ContactModal>
+        {/* <ModalContent >
           Hello
         </ModalContent>
         <ModalFooter className="gap-4">
@@ -115,7 +117,7 @@ const HeroImageText = () => {
           <button className="cursor-target bg-black text-white dark:bg-white dark:text-black text-sm px-2 py-1 rounded-md border border-black w-28">
             Book Now
           </button>
-        </ModalFooter>
+        </ModalFooter> */}
       </ModalBody>
     </Modal>
   );
