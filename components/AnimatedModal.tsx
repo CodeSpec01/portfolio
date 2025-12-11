@@ -56,7 +56,7 @@ export const ModalTrigger = ({
     // Adding ctrl/cmd + K shortcut to open the modal
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
-            if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
+            if (keyboardShortcut && (event.metaKey || event.ctrlKey) && event.key === 'k') {
 
                 event.preventDefault();
                 setOpen(true);
@@ -70,9 +70,7 @@ export const ModalTrigger = ({
         };
 
         // Attach the listener
-        if (keyboardShortcut) {
-            document.addEventListener('keydown', handleKeyDown);
-        }
+        document.addEventListener('keydown', handleKeyDown);
 
         // Cleanup the listener when component unmounts
         return () => {
@@ -141,7 +139,7 @@ export const ModalBody = ({
 
                     <motion.div
                         ref={modalRef}
-                        className={`min-h-[50%] max-h-[90%] md:max-w-[40%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-99 flex flex-col flex-1 overflow-hidden ${className}`}
+                        className={`min-h-[50%] max-h-[90%] md:max-w-[40%] md:rounded-2xl relative z-99 flex flex-col flex-1 overflow-hidden ${className}`}
                         initial={{
                             opacity: 0,
                             scale: 0.5,
@@ -165,7 +163,6 @@ export const ModalBody = ({
                             damping: 15,
                         }}
                     >
-                        <CloseIcon />
                         {children}
                     </motion.div>
                 </motion.div>

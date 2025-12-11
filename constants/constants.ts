@@ -1,3 +1,10 @@
+// Search Items List is in SearchModal.tsx and cannot be exported from here due to React component issues.
+export const LeetCodeLink = "https://leetcode.com/codespec";
+export const GithubLink = "https://github.com/codespec01";
+export const LinkedInLink = "https://www.linkedin.com/in/aviral-gaur-423b9b1b7/";
+export const GmailLink = "mailto:online.codespec@gmail.com";
+
+
 // Metadata for dynamic titles and descriptions
 export const homeMetadata = {
   title: "Aviral Gaur | Developer, Freelancer & Engineer",

@@ -5,6 +5,7 @@ import { GoArrowUpRight } from 'react-icons/go';
 import { IoSearch } from 'react-icons/io5';
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalTrigger } from './AnimatedModal';
 import { MdKeyboardCommandKey } from 'react-icons/md';
+import SearchModal from './SearchModal';
 
 type CardNavLink = {
   label: string;
@@ -182,7 +183,7 @@ const Navbar: React.FC<CardNavProps> = ({
               </ModalTrigger>
 
               {/* Hamburger menu trigger ----------------------------------------------------------------------------- */}
-              <button onClick={toggleMenu}>
+              <button onClick={toggleMenu} type='button'>
                 <div
                   className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-full flex flex-col items-center justify-center cursor-pointer gap-1.5 pr-4 order-2 md:order-0`}
 
@@ -240,17 +241,7 @@ const Navbar: React.FC<CardNavProps> = ({
 
         {/* Search Modal ------------------------------------------------------------------------------------------ */}
         <ModalBody>
-          <ModalContent >
-            Hello
-          </ModalContent>
-          <ModalFooter className="gap-4">
-            <button className="cursor-target px-2 py-1 bg-gray-200 text-black dark:bg-black dark:border-black dark:text-white border border-gray-300 rounded-md text-sm w-28">
-              Cancel
-            </button>
-            <button className="cursor-target bg-black text-white dark:bg-white dark:text-black text-sm px-2 py-1 rounded-md border border-black w-28">
-              Book Now
-            </button>
-          </ModalFooter>
+            <SearchModal />
         </ModalBody>
       </Modal>
     </div >
