@@ -141,3 +141,74 @@ export const bentoElement = [
     label: "Protection",
   },
 ];
+
+export const projectData = [
+  {
+    title: "AWPS",
+    description:
+      "loremipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com",
+    tags: ["next.js", "TypeScript", "MongoDB"],
+    imageUrl: "/Projects/awps.png",
+    color: "bg-indigo-900",
+    website: "#",
+    github: "#",
+    // NEW FIELDS
+    highlightColor: "#818cf8", // Indigo-400
+    features: [
+        "Real-time data synchronization with MongoDB.",
+        "Secure user authentication and role-based access.",
+        "Responsive dashboard design for mobile and desktop."
+    ],
+  },
+  {
+    title: "AWPS",
+    description:
+      "loremipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com",
+    tags: ["next.js", "TypeScript", "MongoDB"],
+    imageUrl: "/Projects/PioneersSheets.png",
+    color: "bg-red-900",
+    website: "#",
+    github: "#",
+    // NEW FIELDS
+    highlightColor: "#f87171", // Red-400
+    features: [
+        "Automated spreadsheet parsing and data extraction.",
+        "High-performance rendering for large datasets.",
+        "Custom formula support with TypeScript logic."
+    ],
+  },
+  {
+    title: "AWPS",
+    description:
+      "loremipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com",
+    tags: ["next.js", "TypeScript", "MongoDB"],
+    imageUrl: "/Projects/spotify.png",
+    color: "bg-green-900",
+    website: "#",
+    github: "#",
+    // NEW FIELDS
+    highlightColor: "#4ade80", // Green-400
+    features: [
+        "Seamless audio streaming integration.",
+        "Smart playlist generation using algorithmic recommendations.",
+        "Background playback support with persistent state."
+    ],
+  },
+  {
+    title: "AWPS",
+    description:
+      "loremipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com",
+    tags: ["next.js", "TypeScript", "MongoDB"],
+    imageUrl: "/Projects/spacecon.jpg",
+    color: "bg-yellow-900",
+    website: "#",
+    github: "#",
+    // NEW FIELDS
+    highlightColor: "#facc15", // Yellow-400
+    features: [
+        "Immersive 3D space visualization using Three.js.",
+        "Interactive timeline of space exploration history.",
+        "Educational quizzes with instant feedback loops."
+    ],
+  },
+];
