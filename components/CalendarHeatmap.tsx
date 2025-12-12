@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState, useEffect } from 'react';
 import Loader from './Loader';
+import { SiLeetcode } from 'react-icons/si';
 
 // --- Configuration ---
 const THEME = {
@@ -156,12 +157,14 @@ export default function CalendarHeatmap() {
         </div>
       )}
 
-      {/* Error Overlay */}
+      {/* Error State */}
       {error && !loading && (
-        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#1a1a1a]/80 backdrop-blur-md rounded-xl p-4 text-center">
-          <div className="text-red-400 font-bold text-lg mb-2">Something went wrong while fetching data</div>
+        <div className="absolute inset-0 z-30 bg-zinc-900/90 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center">
+          <SiLeetcode className="text-gray-600 text-4xl mb-4" />
+          <p className="text-gray-400 text-sm mb-4">Could not load Leetcode Calendar data.</p>
         </div>
       )}
+
 
       {/* Header Stats */}
       <div className={`flex flex-col sm:flex-row sm:items-end justify-between mb-8 ${(loading || error) ? 'opacity-50' : ''}`}>

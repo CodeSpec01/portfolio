@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import Loader from "./Loader";
+import { SiLeetcode } from "react-icons/si";
 
 // === Types ===
 interface Contest {
@@ -191,10 +192,11 @@ export default function ContestRatingChart() {
         </div>
       )}
 
-      {/* Error Overlay */}
+      {/* Error State */}
       {error && !loading && (
-        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/80 backdrop-blur-md rounded-3xl p-4 text-center">
-          <div className="text-red-400 font-bold text-lg mb-2">Something went wrong while fetching data</div>
+        <div className="absolute inset-0 z-30 bg-zinc-900/90 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center">
+          <SiLeetcode className="text-gray-600 text-4xl mb-4" />
+          <p className="text-gray-400 text-sm mb-4">Could not load Leetcode Contest data.</p>
         </div>
       )}
 
