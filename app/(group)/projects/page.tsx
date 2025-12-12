@@ -1,27 +1,92 @@
+"use client";
+import React, { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
 import { AuroraText } from "@/components/AuroraText";
 import ProjectScroll from "@/components/ProjectScroll";
-import { projectsMetadata } from "@/constants/constants";
-import { Metadata } from "next";
 
-export const metadata: Metadata = projectsMetadata;
+const ProjectsPage = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
 
-const page = () => {
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // 1. Reveal the Header Text
+      gsap.from(".hero-text-reveal", {
+        y: 100,
+        opacity: 0,
+        rotateX: -20, // subtle 3D tilt
+        duration: 1.2,
+        stagger: 0.1,
+        ease: "power4.out",
+      });
+
+      // 2. Reveal the Project Scroll component
+      gsap.from(".project-section", {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        delay: 0.5,
+        ease: "power2.out",
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="">
-      <img
-        src="/Projects/bg.png"
-        className="fixed object-cover -z-50 w-full h-screen"
-        alt="bg"
-      />
-      <div className=" w-full px-[2vw] py-[5vw]">
-        <h1 className="text-[5vw] font-bold ml-10">
-          Curated <span className="text-amber-300"><AuroraText colors = {["#581c87", "#7c3aed", "#a855f7", "#e9d5ff"]}> Work </AuroraText></span>{" "}
-        </h1>
-        <h2 className="text-[3vw] ml-16 font-bold font-serif">Projects</h2>
-        <ProjectScroll />
+    <main
+      ref={containerRef}
+      className="relative min-h-screen w-full bg-[#030014] text-slate-200 selection:bg-yellow-400 selection:text-purple-900"
+    >
+      {/* --- DYNAMIC BACKGROUND --- */}
+      {/* 1. Noise Texture */}
+      <div className="fixed inset-0 z-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+
+      {/* 2. Gradient Orbs (Replaces the static bg.png) */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-purple-900/20 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[20%] left-[-10%] w-[500px] h-[500px] bg-indigo-900/20 rounded-full blur-[100px]" />
       </div>
-    </div>
+
+      {/* --- CONTENT --- */}
+      <div className="relative z-10 w-full px-6 md:px-12 pt-24 pb-12">
+        
+        {/* Header Section */}
+        <header className="mb-20 pl-4 md:pl-10 border-l-2 border-white/10">
+          <div className="">
+            <h2 className="hero-text-reveal text-sm md:text-base font-mono text-yellow-400 mb-2 tracking-widest uppercase">
+              // Selected Archives
+            </h2>
+          </div>
+          
+          <div className="">
+            <h1 className="hero-text-reveal text-6xl md:text-8xl lg:text-[7vw] font-bold leading-[0.9] tracking-tighter text-white">
+              Curated <br className="md:hidden" />
+              {/* Aurora Text Wrapper */}
+              <span className="inline-block relative z-10">
+                 <AuroraText colors={["#FFD700", "#A855F7", "#FBBF24"]}>
+                   Work
+                 </AuroraText>
+              </span>
+            </h1>
+          </div>
+          
+          <div className="mt-4">
+            <p className="hero-text-reveal text-slate-500 max-w-xl text-lg md:text-xl leading-relaxed">
+              A collection of technical experiments, full-stack applications, and design systems.
+            </p>
+          </div>
+        </header>
+
+        {/* Project Scroll Component */}
+        <section className="project-section relative w-full">
+           {/* Decorative Top Line */}
+           <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-12"></div>
+           
+           <ProjectScroll />
+        </section>
+      </div>
+    </main>
   );
 };
 
-export default page;
+export default ProjectsPage;

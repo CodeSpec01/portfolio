@@ -24,6 +24,12 @@ export const othersMetadata = {
     "Discover additional projects, interests, and miscellaneous work by Aviral Gaur.",
 };
 
+export const journeyMetadata = {
+  title: "Journey to this Website | Aviral Gaur",
+  description:
+    "Discover additional projects, interests, and miscellaneous work by Aviral Gaur.",
+};
+
 export const projectsMetadata = {
   title: "Projects | Aviral Gaur",
   description:

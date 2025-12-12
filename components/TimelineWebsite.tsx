@@ -1,11 +1,11 @@
 import {  TimelineUI } from "./TimelineUI";
 
-export function Timeline() {
+export function TimelineWebsite() {
   const data = [
     {
       title: "2024",
       content: (
-        <div key={3}>
+        <div>
           <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
             Built and launched Aceternity UI and Aceternity UI Pro from scratch
           </p>
@@ -45,7 +45,7 @@ export function Timeline() {
     {
       title: "Early 2023",
       content: (
-        <div key={1}>
+        <div>
           <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
             I usually run out of copy, but when I see content this big, I try to
             integrate lorem ipsum.
@@ -90,7 +90,7 @@ export function Timeline() {
     {
       title: "Changelog",
       content: (
-        <div key={2}>
+        <div>
           <p className="mb-4 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
             Deployed 5 new components on Aceternity today
           </p>
