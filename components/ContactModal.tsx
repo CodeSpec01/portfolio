@@ -65,13 +65,13 @@ const CoderProfileCard = () => {
     };
 
     return (
-        <div className="max-w-2xl w-full mx-auto bg-linear-to-r from-[#000000a0] to-[#0a0d37] border-zinc-300 dark:border-[#1b2c68a0] relative rounded-lg border shadow-lg">
+        <div className="max-w-2xl w-full mx-auto bg-linear-to-r from-[#000000a0] to-[#0a0d37] border-[#1b2c68a0] relative rounded-2xl border shadow-lg">
             <div className="flex flex-row">
-                <div className="h-0.5 w-full bg-linear-to-r from-transparent via-pink-500 to-violet-600"></div>
+                <div className="h-0.5 w-full bg-linear-to-r from-transparent via-yellow-500 to-violet-600"></div>
                 <div className="h-0.5 w-full bg-linear-to-r from-violet-600 to-transparent"></div>
             </div>
 
-            <div className="px-4 lg:px-8 py-5 flex justify-between items-center bg-linear-to-r from-[#000000a0] to-[#0a0d37] rounded-lg">
+            <div className="px-4 lg:px-8 py-5 flex justify-between items-center bg-linear-to-r from-[#000000a0] to-[#0a0d37] rounded-2xl">
                 <div className="flex flex-row space-x-2">
                     <button type="button" className="h-3 w-3 rounded-full bg-red-500" onClick={() => setOpen(false)}></button>
                     <div className="h-3 w-3 rounded-full bg-orange-400"></div>
@@ -97,7 +97,7 @@ const CoderProfileCard = () => {
                             </div>
                             <div className="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-2 overflow-hidden">
                                 <div
-                                    className="signin-progress bg-linear-to-l from-transparent via-pink-500 to-violet-600 h-2 rounded-full transition-all duration-500 ease-out"
+                                    className="signin-progress bg-linear-to-l from-transparent via-yellow-500 to-violet-600 h-2 rounded-full transition-all duration-500 ease-out"
                                     style={{ width: `${(step / 3) * 100}%` }}
                                 />
                             </div>

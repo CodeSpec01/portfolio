@@ -1,6 +1,6 @@
 import TargetCursor from "@/components/TargetCursor";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/NewNavbar";
 import { navbarItems } from "@/constants/constants";
 import { Emblema_One, Nova_Round } from "next/font/google";
 
@@ -31,11 +31,6 @@ export default function RootLayout({
         />
         <Navbar
           items={navbarItems}
-          baseColor="rgba(132,0,255,0.1)"
-          menuColor="#fff"
-          buttonBgColor="rgba(132,0,255,0.4)"
-          // buttonTextColor="#fff"
-          ease="circ.out"
           className="backdrop-blur-md"
         />
         {children}

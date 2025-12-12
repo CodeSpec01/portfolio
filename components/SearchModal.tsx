@@ -78,13 +78,13 @@ const CoderProfileCard = () => {
     );
 
     return (
-        <div className="max-w-2xl w-full mx-auto bg-linear-to-r from-[#000000a0] to-[#0a0d37] border-zinc-300 dark:border-[#1b2c68a0] relative rounded-lg border shadow-lg">
+        <div className="max-w-2xl w-full mx-auto bg-linear-to-r from-[#000000a0] to-[#0a0d37] border-[#1b2c68a0] relative rounded-2xl border shadow-lg">
             <div className="flex flex-row">
-                <div className="h-0.5 w-full bg-linear-to-r from-transparent via-pink-500 to-violet-600"></div>
+                <div className="h-0.5 w-full bg-linear-to-r from-transparent via-yellow-500 to-violet-600"></div>
                 <div className="h-0.5 w-full bg-linear-to-r from-violet-600 to-transparent"></div>
             </div>
 
-            <div className="px-4 lg:px-8 py-5 flex justify-between items-center bg-linear-to-r from-[#000000a0] to-[#0a0d37] rounded-lg">
+            <div className="px-4 lg:px-8 py-5 flex justify-between items-center bg-linear-to-r from-[#000000a0] to-[#0a0d37] rounded-2xl">
                 <div className="flex flex-row space-x-2">
                     <button type="button" className="h-3 w-3 rounded-full bg-red-500" onClick={() => setOpen(false)}></button>
                     <div className="h-3 w-3 rounded-full bg-orange-400"></div>
@@ -102,7 +102,7 @@ const CoderProfileCard = () => {
                     <div className="w-full max-w-2xl mx-auto p-4 space-y-6">
 
                         {/* Search Input with Enhanced Gradient Border and Glow */}
-                        <div className="cursor-target relative p-px rounded-2xl bg-linear-to-r from-orange-500 via-purple-600 to-pink-600 shadow-lg shadow-purple-500/20 dark:shadow-purple-600/30 transition-shadow duration-300 hover:shadow-purple-500/40 dark:hover:shadow-purple-600/50 focus-within:shadow-purple-500/40 dark:focus-within:shadow-purple-600/50">
+                        <div className="cursor-target relative p-px rounded-2xl bg-linear-to-r from-orange-500 via-purple-600 to-yellow-600 shadow-lg shadow-purple-500/20 dark:shadow-purple-600/30 transition-shadow duration-300 hover:shadow-purple-500/40 dark:hover:shadow-purple-600/50 focus-within:shadow-purple-500/40 dark:focus-within:shadow-purple-600/50">
                             <div className="flex items-center w-full px-4 py-2 bg-white/80 dark:bg-gray-900/90 rounded-[15px]">
                                 <FaSearch className="w-5 h-5 text-gray-500 dark:text-gray-400 shrink-0" />
                                 <input
