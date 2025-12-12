@@ -1,3 +1,4 @@
+import Hero from "@/components/HeroImageText";
 import HeroImageText from "@/components/HeroImageText";
 import HeroSpotlight from "@/components/HeroSpotlight";
 import { homeMetadata } from "@/constants/constants";
@@ -12,6 +13,7 @@ export default function Home() {
     <main className="h-screen overflow-hidden relative flex justify-center">
       <HeroImageText />
       <HeroSpotlight />
+      {/* <Hero /> */}
     </main>
   );
 }
