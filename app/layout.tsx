@@ -29,10 +29,10 @@ export default function RootLayout({
           hideDefaultCursor={true}
           parallaxOn={true}
         />
-        <Navbar
+        {/* <Navbar
           items={navbarItems}
           className="backdrop-blur-md"
-        />
+        /> */}
         {children}
       </body>
     </html>

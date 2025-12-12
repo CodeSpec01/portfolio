@@ -1,26 +1,34 @@
+import { BsArrowRight } from "react-icons/bs";
 import { MdConnectWithoutContact } from "react-icons/md";
 
 const ContactUsButton = ({ className }: { className?: string }) => {
     return (
-        <div
-            className={`group text-slate-950 transition-all flex items-center justify-center whitespace-nowrap rounded-lg hover:rotate-3 will-change-transform duration-300 shadow-lg hover:shadow-xl h-14 text-lg pl-20 pr-6 bg-[rgba(132,0,255,0.5)] shadow-yellow-400/30 hover:shadow-yellow-400/30 ${className}`}
+        <button 
+            className={`
+                group relative flex items-center justify-center gap-3 
+                px-8 py-4 
+                bg-[#FACC15] hover:bg-[#EAB308] 
+                text-black 
+                rounded-full 
+                transition-all duration-300 ease-out 
+                hover:scale-105 active:scale-95 
+                shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:shadow-[0_0_30px_rgba(250,204,21,0.5)]
+                ${className}
+            `}
         >
-            <div
-                className="absolute left-0 top-0 mt-1 ml-1 bg-[#ffe380] text-slate-950 p-[0.35rem] bottom-1 group-hover:w-[calc(100%-0.5rem)] transition-all rounded-md duration-300 h-12 w-12 flex items-center justify-center"
-            >
-                <MdConnectWithoutContact size={'45px'} />
+            {/* Primary Icon */}
+            <MdConnectWithoutContact size={22} className="opacity-80 group-hover:opacity-100 transition-opacity" />
+            
+            {/* Text */}
+            <span className="font-sans font-semibold text-sm tracking-widest uppercase">
+                Connect with me
+            </span>
+
+            {/* Subtle Directional Hint on Hover */}
+            <div className="w-0 overflow-hidden group-hover:w-5 transition-all duration-300 ease-out">
+                 <BsArrowRight size={18} />
             </div>
-
-            <div className="text-[2vw] text-[#FFE380]">Connect with me</div>
-
-            <div
-                className="bg-[#ffe380] absolute flex rounded-full animate-ping opacity-75 h-5 w-5 -top-2 -right-2"
-            ></div>
-            <div
-                className="bg-[#fed333] absolute flex rounded-full scale-[90%] h-5 w-5 -top-2 -right-2"
-            ></div>
-        </div>
-
+        </button>
     )
 }
 

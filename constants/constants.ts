@@ -113,7 +113,7 @@ export const rotatingTexts = [
 
 // sun at corner in hero page
 export const circularTexts =
-  "OPEN TO WORK · OPEN TO WORK · OPEN TO WORK · OPEN TO WORK · OPEN TO WORK · OPEN TO WORK ·";
+  "OPEN TO WORK · OPEN TO WORK · OPEN TO WORK · OPEN TO WORK · OPEN TO WORK ·";
 export const radius = "175px";
 
 export const bentoElement = [
