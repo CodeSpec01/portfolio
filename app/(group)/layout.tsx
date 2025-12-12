@@ -1,3 +1,5 @@
+import Footer from "@/components/Footer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -7,7 +9,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {children}
-        <footer className="bg-red-500">This is a footer</footer>
+        <footer><Footer/></footer>
       </body>
     </html>
   );
