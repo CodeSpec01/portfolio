@@ -1,6 +1,5 @@
 "use client";
 import {
-  useMotionValueEvent,
   useScroll,
   useTransform,
   motion,
@@ -37,11 +36,11 @@ export const TimelineUI = ({ data }: { data: TimelineEntry[] }) => {
       className="w-full md:px-10"
       ref={containerRef}
     >
-      <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
-        <h2 className="text-lg font-bold md:text-4xl mb-4  dark: max-w-4xl">
+      <div className="pt-20 px-4 md:px-8 lg:px-10">
+        <h1 className="text-5xl md:text-7xl font-bold pb-4 max-w-4xl bg-linear-to-b from-white via-slate-200 to-slate-600 bg-clip-text text-transparent">
           Changelog from my journey
-        </h2>
-        <p className="text-[#8400ff] font-bold text-sm md:text-base max-w-sm">
+        </h1>
+        <p className="text-[#FFE380] font-bold text-md md:text-lg max-w-sm">
           Growing through challenges, building through curiosity, and moving forward with purpose.
         </p>
       </div>

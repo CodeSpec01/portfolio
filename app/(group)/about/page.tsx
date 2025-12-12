@@ -6,6 +6,7 @@ import AboutEnd from "@/components/AboutEnd";
 import Aboutstart from "@/components/Aboutstart";
 import MagicBento from "@/components/BentoGrid";
 import { TimelineAbout } from "@/components/TimelineAbout";
+import { AuroraText } from "@/components/AuroraText";
 
 // Register ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
@@ -47,7 +48,7 @@ const AboutPage = () => {
     >
       {/* --- BACKGROUND LAYERS --- */}
       {/* 1. Grainy Texture for "Film/Retro" feel */}
-      <div className="fixed inset-0 z-0 opacity-[0.04] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+      <div className="fixed inset-0 z-0 opacity-[0.04] pointer-events-none bg-[url(/globals/noise.svg)]"></div>
 
       {/* 2. Deep Purple Gradient Mesh */}
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -72,9 +73,16 @@ const AboutPage = () => {
             </div>
 
             {/* Gradient Title */}
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter bg-linear-to-b from-white via-slate-200 to-slate-600 bg-clip-text text-transparent">
-              Skills & Stack
-            </h1>
+            <div className="flex text-5xl md:text-7xl font-bold tracking-tighter bg-linear-to-b from-white via-slate-200 to-slate-600 bg-clip-text text-transparent">
+              <h1>
+                Skills &
+              </h1>
+              <h1>
+                <AuroraText colors={["#FFD700", "#A855F7", "#FBBF24"]}>
+                  &nbsp;Stacks
+                </AuroraText>
+              </h1>
+            </div>
 
             {/* Glow behind the title */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-purple-500/30 blur-[60px] -z-10"></div>
@@ -94,14 +102,18 @@ const AboutPage = () => {
         <section className="reveal-section relative">
           {/* Divider Line */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-linear-to-b from-transparent via-purple-500/50 to-transparent"></div>
-          <div className="pt-24">
+          <div className="pt-12">
             <TimelineAbout />
           </div>
         </section>
 
         {/* 4. Footer/End Section */}
-        <section className="reveal-section">
-          <AboutEnd />
+        <section className="reveal-section relative">
+          {/* Divider Line */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-linear-to-b from-transparent via-purple-500/50 to-transparent"></div>
+          <div className="pt-12">
+            <AboutEnd />
+          </div>
         </section>
 
       </div>

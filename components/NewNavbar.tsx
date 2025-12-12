@@ -164,9 +164,10 @@ const Navbar: React.FC<CardNavProps> = ({
             <div
               className={`
                 absolute inset-0 top-[70px] px-3 pb-3
-                flex flex-col md:flex-row gap-3
+                flex flex-col md:flex-row gap-3 overflow-y-scroll
                 ${isExpanded ? 'visible pointer-events-auto' : 'invisible pointer-events-none'}
               `}
+              style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(100, 100, 100, 0.5) transparent' }}
             >
               {(items || []).slice(0, 3).map((item, idx) => (
                 <div
@@ -180,8 +181,7 @@ const Navbar: React.FC<CardNavProps> = ({
                     hover:border-white/10 hover:bg-white/12
                     transition-all duration-300 group
                     min-h-40
-                  "
-                >
+                  ">
                   <div>
                     <h3 className="text-xl font-medium text-white tracking-tight mb-4">
                       {item.label}

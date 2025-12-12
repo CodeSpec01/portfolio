@@ -181,7 +181,7 @@ export default function CalendarHeatmap() {
       </div>
 
       {/* HEATMAP SCROLL CONTAINER */}
-      <div className={`w-full overflow-x-auto pb-4 scrollbar-hide ${(loading || error) ? 'opacity-50' : ''}`}>
+      <div className={`w-full pb-4 scrollbar-hide ${(loading || error) ? 'opacity-50' : ''}`}>
         <div className="flex min-w-max gap-[3px]">
           {/* Y-Axis Labels */}
           <div className={`flex flex-col gap-[3px] text-[10px] ${THEME.text} mt-5 mr-2 leading-2.5`}>
@@ -253,7 +253,7 @@ function HeatmapCell({ day }: { day: DayData }) {
       <div
         className={`w-2.5 h-2.5 rounded-xs ${THEME.levels[day.level]} border border-transparent hover:border-gray-400`}
       />
-      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-center z-50 pointer-events-none">
+      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-center z-40 pointer-events-none">
         <div className={`${THEME.tooltipBg} p-2 rounded text-xs shadow-xl border border-gray-600 whitespace-nowrap z-50`}>
           <div className="text-gray-300 font-bold mb-1 text-center">
             {day.count} submissions

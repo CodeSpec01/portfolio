@@ -39,7 +39,7 @@ const ProjectsPage = () => {
     >
       {/* --- DYNAMIC BACKGROUND --- */}
       {/* 1. Noise Texture */}
-      <div className="fixed inset-0 z-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+      <div className="fixed inset-0 z-0 opacity-[0.03] pointer-events-none bg-[url(/globals/noise.svg)]"></div>
 
       {/* 2. Gradient Orbs (Replaces the static bg.png) */}
       <div className="fixed inset-0 z-0 pointer-events-none">

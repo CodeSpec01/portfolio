@@ -7,9 +7,9 @@ function Aboutstart() {
     <div className="w-screen flex  p-[5%]">
       <div className="w-1/2 text-[2vw]">
         <h1 className="text-[1vw] text-gray-400 font-bold pt-[10%]">More About me</h1>
-        <p className={`leading-10 text-[3vw]  ${emblemaOne.className}`}>
+        <h1 className={`bg-linear-to-b from-white via-slate-200 to-slate-600 bg-clip-text text-transparent leading-10 text-[3vw]  ${emblemaOne.className}`}>
           I am Aviral
-        </p>
+        </h1>
         <p className="leading-10 text-[2vw]">
           A creative{" "}
           <span className="text-[#8400FF] font-extrabold">Engineer</span>
@@ -30,17 +30,17 @@ function Aboutstart() {
           <TooltipAbout content="Using structured thinking to analyze problems and design efficient solutions.">
             <span className="text-amber-500 font-bold"> Problem-Solving </span>
           </TooltipAbout>
-          . Balancing {}
+          . Balancing { }
           <TooltipAbout content="Mastering core ECE concepts through advanced technical preparation for competitive exams.">
             <span className="text-amber-500 font-bold"> GATE Preparation </span>
           </TooltipAbout>
           , college, and fitness, he continuously builds strong technical skills
           through projects, coding, and disciplined learning. Focused,
-          ambitious, and growth-oriented, he aims to excel in {}
+          ambitious, and growth-oriented, he aims to excel in { }
           <TooltipAbout content="Applying engineering principles to develop reliable and efficient systems.">
             <span className="text-amber-500 font-bold"> Engineering </span>
           </TooltipAbout>
-          {} and high-impact {}
+          { } and high-impact { }
           <TooltipAbout content="Roles focused on innovation, development, and solving real-world problems with technology.">
             <span className="text-amber-500 font-bold"> Technology Roles </span>
           </TooltipAbout>
@@ -52,7 +52,7 @@ function Aboutstart() {
           <CardSwap
             cardDistance={60}
             verticalDistance={70}
-            delay={5000} 
+            delay={5000}
             pauseOnHover={false}
           >
             <Card>
@@ -67,7 +67,7 @@ function Aboutstart() {
             <Card>
               <img src="/about/spotify.png" alt="" className="h-full w-full object-cover rounde rounded-lg" />
             </Card>
-            
+
           </CardSwap>
         </div>
       </div>
