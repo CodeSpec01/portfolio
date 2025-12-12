@@ -219,3 +219,5 @@ export const projectData = [
     ],
   },
 ];
+
+export const leetcodeUsername = "CodeSpec"

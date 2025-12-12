@@ -1,8 +1,6 @@
-import { emblemaOne } from "@/app/layout";
 import AboutEnd from "@/components/AboutEnd";
 import Aboutstart from "@/components/Aboutstart";
 import MagicBento from "@/components/BentoGrid";
-import { ShinyButton } from "@/components/ShinyButton";
 import { Timeline } from "@/components/Timeline";
 import { aboutMetadata } from "@/constants/constants";
 import { Metadata } from "next";

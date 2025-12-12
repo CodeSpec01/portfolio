@@ -14,7 +14,7 @@ function Aboutstart() {
           A creative{" "}
           <span className="text-[#8400FF] font-extrabold">Engineer</span>
         </p>
-        <p className="text-xl w-[95%] py-[5%]">
+        <div className="text-xl w-[95%] py-[5%]">
           Manav Jaiswal is a driven ECE student passionate about
           <TooltipAbout content="Working with logic circuits, systems, and hardware design fundamentals.">
             <span className="text-amber-500 font-bold">
@@ -45,7 +45,7 @@ function Aboutstart() {
             <span className="text-amber-500 font-bold"> Technology Roles </span>
           </TooltipAbout>
           .
-        </p>
+        </div>
       </div>
       <div className="w-1/2 overflow-y-hidden  ">
         <div style={{ height: "600px", position: "relative" }}>
