@@ -1,8 +1,8 @@
 import TargetCursor from "@/components/TargetCursor";
 import "./globals.css";
 import Navbar from "@/components/NewNavbar";
-import { navbarItems } from "@/constants/constants";
 import { Emblema_One, Nova_Round } from "next/font/google";
+import { navbarItems } from "@/constants/constants";
 
 export const emblemaOne = Emblema_One({
   // subsets: ['latin'],
@@ -16,7 +16,7 @@ export const novaRound = Nova_Round({
   display: 'swap',
 });
 
-export default function RootLayout({  
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

@@ -33,26 +33,9 @@ const Navbar: React.FC<CardNavProps> = ({
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  // Ref for the Search Button to trigger it programmatically
-  const searchButtonRef = useRef<HTMLButtonElement>(null);
-
   const navRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
-
-  // --- CMD+K Logic ---
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Check for CMD+K (Mac) or CTRL+K (Windows)
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault(); // Prevent browser address bar focus
-        searchButtonRef.current?.click(); // Simulates a click on the modal trigger
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
 
   // --- Dynamic Height Calculation ---
   const calculateHeight = () => {
@@ -151,7 +134,7 @@ const Navbar: React.FC<CardNavProps> = ({
 
             <div className="relative z-20 flex items-center justify-between h-16 px-2 pl-3 w-full">
 
-              <div ref={searchButtonRef as any}>
+              <div>
                 <ModalTrigger
                   className=' cursor-target
                     group flex items-center gap-2 px-3 py-2 rounded-xl
@@ -199,19 +182,16 @@ const Navbar: React.FC<CardNavProps> = ({
                     min-h-40
                   "
                 >
-                  <div className="absolute inset-0 bg-linear-to-tr from-indigo-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-
                   <div>
                     <h3 className="text-xl font-medium text-white tracking-tight mb-4">
                       {item.label}
                     </h3>
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 ">
                       {item.links?.map((lnk, i) => (
                         <a
                           key={`${lnk.label}-${i}`}
                           href={lnk.href}
-                          className="cursor-target
-                              flex items-center gap-2 text-sm  hover:translate-x-1 
+                          className="cursor-target w-full flex items-center gap-2 text-sm hover:translate-x-1 
                               transition-all duration-200
                             "
                         >
