@@ -1,9 +1,7 @@
-import { emblemaOne } from "@/app/layout";
 import AboutEnd from "@/components/AboutEnd";
 import Aboutstart from "@/components/Aboutstart";
 import MagicBento from "@/components/BentoGrid";
-import { ShinyButton } from "@/components/ShinyButton";
-import { Timeline } from "@/components/Timeline";
+import {TimelineAbout } from "@/components/TimelineAbout";
 import { aboutMetadata } from "@/constants/constants";
 import { Metadata } from "next";
 
@@ -27,7 +25,7 @@ const page = () => {
         </div>
       </div>
       <div>
-        <Timeline />
+        <TimelineAbout />
       </div>
       <AboutEnd/>
     </div>

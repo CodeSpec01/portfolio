@@ -1,6 +1,6 @@
 import {  TimelineUI } from "./TimelineUI";
 
-export function Timeline() {
+export function TimelineAbout() {
   const data = [
     {
       title: "2024",
