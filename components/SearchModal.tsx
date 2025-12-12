@@ -73,8 +73,6 @@ const CoderProfileCard = () => {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, []);
 
-    const handleClear = () => setItems([]);
-
     const filteredItems = items.filter(item =>
         item.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -131,12 +129,6 @@ const CoderProfileCard = () => {
                             <div className="px-2 space-y-4">
                                 <div className="flex items-center justify-between">
                                     <h2 className="text-xs font-semibold tracking-wider text-gray-500 dark:text-gray-400 uppercase">Navigation</h2>
-                                    <button
-                                        onClick={handleClear}
-                                        className="px-3 py-1 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-200 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700/50 hover:text-black dark:hover:text-white"
-                                    >
-                                        Clear all
-                                    </button>
                                 </div>
 
                                 <ul className="space-y-2 max-h-[300px] overflow-y-auto overflow-x-hidden"  style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(100, 100, 100, 0.5) transparent' }}>
