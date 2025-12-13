@@ -11,10 +11,10 @@ export default function JourneyCard() {
   return (
     <Link
       href={'/journey'}
-      className="group relative block h-full w-[95%] mx-auto cursor-pointer"
+      className="group relative block h-full w-[95%] mx-auto cursor-target"
     >
       {/* 1. Outer Glow/Border Effect */}
-      <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" />
+      <div className="absolute -inset-0.5 rounded-2xl bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500" />
       
       {/* 2. Main Container */}
       <div className="relative h-full w-full overflow-hidden rounded-2xl bg-[#050505] p-6 shadow-2xl">
@@ -108,7 +108,7 @@ export default function JourneyCard() {
             The Roadmap
           </div>
           
-          <h2 className="mt-2 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-neutral-500">
+          <h2 className="mt-2 text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-white via-neutral-200 to-neutral-500">
             How we got here
           </h2>
           

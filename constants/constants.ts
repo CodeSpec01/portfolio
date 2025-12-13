@@ -1,8 +1,16 @@
-import { BsGithub } from "react-icons/bs";
-import { FaCameraRetro, FaCode, FaMicrochip } from "react-icons/fa";
+import { AiOutlineApi } from "react-icons/ai";
+import { BiLogoTailwindCss } from "react-icons/bi";
+import { BsGithub, BsUiRadiosGrid } from "react-icons/bs";
+import { CgFramer } from "react-icons/cg";
+import { FaCameraRetro, FaCloudflare, FaCode, FaDocker, FaFigma, FaGitAlt, FaGithub, FaMarkdown, FaMicrochip, FaNodeJs, FaPython, FaReact, FaUserCheck } from "react-icons/fa";
+import { FaGolang } from "react-icons/fa6";
 import { GiCheckeredFlag, GiCrown, GiCube, GiKatana, GiSnitchQuidditchBall, GiSoccerBall, GiSteeringWheel } from "react-icons/gi";
+import { GrMysql } from "react-icons/gr";
 import { IoLogoLinkedin } from "react-icons/io5";
-import { SiGmail, SiLeetcode } from "react-icons/si";
+import { PiLetterCircleVFill } from "react-icons/pi";
+import { RiFirebaseFill, RiNextjsFill } from "react-icons/ri";
+import { SiAdobephotoshop, SiAmazondynamodb, SiArduino, SiCanva, SiCsswizardry, SiEspressif, SiExpress, SiFirebase, SiGmail, SiJavascript, SiJsonwebtokens, SiLeetcode, SiLtspice, SiMongodb, SiNetlify, SiNextui, SiPostman, SiShadcnui, SiThreedotjs, SiTypescript, SiVercel, SiVite } from "react-icons/si";
+import { TbBrandCpp, TbCircleLetterMFilled } from "react-icons/tb";
 
 // Search Items List is in SearchModal.tsx and cannot be exported from here due to React component issues.
 export const LeetCodeLink = "https://leetcode.com/codespec";
@@ -440,3 +448,191 @@ export const ARTIFACTS_DATA = [
     color: "text-purple-400"
   },
 ];
+
+export const resumeLink = "/home/aviral.png"
+
+export const BACKENDSKILLS = [
+  {
+    Icon: FaNodeJs,
+    label: "NodeJs",
+  },
+  {
+    Icon: SiExpress,
+    label: "ExpressJs",
+  },
+  {
+    Icon: SiJsonwebtokens,
+    label: "JWT",
+  },
+  {
+    Icon: FaUserCheck,
+    label: "Authentication",
+  },
+  {
+    Icon: AiOutlineApi,
+    label: "REST APIs",
+  },
+  {
+    Icon: SiPostman,
+    label: "Postman",
+  },
+  {
+    Icon: FaGitAlt,
+    label: "Git",
+  },
+]
+
+export const FRONTENDSKILLS = [
+  {
+    Icon: RiNextjsFill,
+    label: "NextJs",
+  },
+  {
+    Icon: FaReact,
+    label: "ReactJs",
+  },
+  {
+    Icon: SiVite,
+    label: "Vite",
+  },
+  {
+    Icon: BiLogoTailwindCss,
+    label: "TailwindCSS",
+  },
+  {
+    Icon: BsUiRadiosGrid,
+    label: "GSAP",
+  },
+  {
+    Icon: CgFramer,
+    label: "Framer Motion",
+  },
+  {
+    Icon: SiThreedotjs,
+    label: "ThreeJs",
+  },
+  {
+    Icon: SiCsswizardry,
+    label: "CSS",
+  },
+  {
+    Icon: SiNextui,
+    label: "NextUI",
+  },
+  {
+    Icon: SiShadcnui,
+    label: "ShadCN UI",
+  },
+]
+
+export const OTHERSKILLS = [
+  {
+    Icon: SiAdobephotoshop,
+    label: "PhotoShop",
+  },
+  {
+    Icon: FaFigma,
+    label: "Figma",
+  },
+  {
+    Icon: SiCanva,
+    label: "Canva",
+  },
+  {
+    Icon: SiArduino,
+    label: "Arduino",
+  },
+  {
+    Icon: SiEspressif,
+    label: "ESP",
+  },
+  {
+    Icon: SiLtspice,
+    label: "LTSpice",
+  },
+]
+
+export const DATABASES = [
+  {
+    Icon: SiMongodb,
+    label: "MongoDB",
+  },
+  {
+    Icon: SiAmazondynamodb,
+    label: "DynamoDB",
+  },
+  {
+    Icon: RiFirebaseFill,
+    label: "FireStore",
+  },
+  {
+    Icon: GrMysql,
+    label: "SQL",
+  },
+]
+
+export const LANGUAGES = [
+  {
+    Icon: SiTypescript,
+    label: "Typescript",
+  },
+  {
+    Icon: SiJavascript,
+    label: "Javascript",
+  },
+  {
+    Icon: TbBrandCpp,
+    label: "C++",
+  },
+  {
+    Icon: FaPython,
+    label: "Python",
+  },
+  {
+    Icon: FaGolang,
+    label: "Go",
+  },
+  {
+    Icon: FaMarkdown,
+    label: "Markdown",
+  },
+  {
+    Icon: PiLetterCircleVFill,
+    label: "Verilog",
+  },
+  {
+    Icon: TbCircleLetterMFilled,
+    label: "Matlab",
+  },
+]
+
+export const SERVICES = [
+  {
+    Icon: SiTypescript,
+    label: "AWS",
+  },
+  {
+    Icon: SiFirebase,
+    label: "Firebase",
+  },
+  {
+    Icon: FaCloudflare,
+    label: "Cloudflare",
+  },
+  {
+    Icon: SiVercel,
+    label: "Vercel",
+  },
+  {
+    Icon: FaGithub,
+    label: "Github",
+  },
+  {
+    Icon: FaDocker,
+    label: "Docker",
+  },
+  {
+    Icon: SiNetlify,
+    label: "Netlify",
+  },
+]

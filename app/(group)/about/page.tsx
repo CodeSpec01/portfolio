@@ -89,12 +89,7 @@ const AboutPage = () => {
           </div>
 
           <div className="w-full mx-auto relative group">
-            {/* Glow behind the Bento Grid */}
-            <div className="absolute -inset-1 bg-linear-to-r from-purple-600 to-blue-600 rounded-xl  opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-
-            <div className="relative bg-[#0a0a0a]/50 backdrop-blur-sm rounded-xl p-4 md:p-8 border border-white/5">
-              <MagicBento glowColor="132, 0, 255" />
-            </div>
+            <MagicBento />
           </div>
         </section>
 

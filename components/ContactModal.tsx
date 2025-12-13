@@ -32,7 +32,6 @@ const CoderProfileCard = () => {
     // Step 1: Request the Code
     const requestVerification = async () => {
         setLoading(true);
-        console.log("email from frontend ", email);
         const res = await fetch('/api/verify-email', {
             method: 'POST',
             body: JSON.stringify({ email }),
