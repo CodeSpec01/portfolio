@@ -85,7 +85,7 @@ const CoderProfileCard = () => {
             <div className="w-full max-h-[60vh] overflow-y-scroll" style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(100, 100, 100, 0.5) transparent' }}>
 
                 <div className="w-full flex items-center justify-center  overflow-x-hidden">
-                    <div className="w-full max-w-md space-y-4">
+                    <div className="w-full max-w-md space-y-4 px-2  ">
                         <div className="text-center">
                             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mt-4">Send a Message</h2>
                         </div>

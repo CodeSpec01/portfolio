@@ -1,3 +1,6 @@
+import { FaCameraRetro, FaCode, FaMicrochip } from "react-icons/fa";
+import { GiCheckeredFlag, GiCrown, GiCube, GiKatana, GiSnitchQuidditchBall, GiSoccerBall, GiSteeringWheel } from "react-icons/gi";
+
 // Search Items List is in SearchModal.tsx and cannot be exported from here due to React component issues.
 export const LeetCodeLink = "https://leetcode.com/codespec";
 export const GithubLink = "https://github.com/codespec01";
@@ -114,8 +117,6 @@ export const rotatingTexts = [
 // sun at corner in hero page
 export const circularTexts =
   "OPEN TO WORK · OPEN TO WORK · OPEN TO WORK · OPEN TO WORK · OPEN TO WORK ·";
-export const radius = "175px";
-
 export const bentoElement = [
   {
     color: "#060010",
@@ -168,9 +169,9 @@ export const projectData = [
     // NEW FIELDS
     highlightColor: "#818cf8", // Indigo-400
     features: [
-        "Real-time data synchronization with MongoDB.",
-        "Secure user authentication and role-based access.",
-        "Responsive dashboard design for mobile and desktop."
+      "Real-time data synchronization with MongoDB.",
+      "Secure user authentication and role-based access.",
+      "Responsive dashboard design for mobile and desktop."
     ],
   },
   {
@@ -185,9 +186,9 @@ export const projectData = [
     // NEW FIELDS
     highlightColor: "#f87171", // Red-400
     features: [
-        "Automated spreadsheet parsing and data extraction.",
-        "High-performance rendering for large datasets.",
-        "Custom formula support with TypeScript logic."
+      "Automated spreadsheet parsing and data extraction.",
+      "High-performance rendering for large datasets.",
+      "Custom formula support with TypeScript logic."
     ],
   },
   {
@@ -202,9 +203,9 @@ export const projectData = [
     // NEW FIELDS
     highlightColor: "#4ade80", // Green-400
     features: [
-        "Seamless audio streaming integration.",
-        "Smart playlist generation using algorithmic recommendations.",
-        "Background playback support with persistent state."
+      "Seamless audio streaming integration.",
+      "Smart playlist generation using algorithmic recommendations.",
+      "Background playback support with persistent state."
     ],
   },
   {
@@ -219,11 +220,198 @@ export const projectData = [
     // NEW FIELDS
     highlightColor: "#facc15", // Yellow-400
     features: [
-        "Immersive 3D space visualization using Three.js.",
-        "Interactive timeline of space exploration history.",
-        "Educational quizzes with instant feedback loops."
+      "Immersive 3D space visualization using Three.js.",
+      "Interactive timeline of space exploration history.",
+      "Educational quizzes with instant feedback loops."
     ],
   },
 ];
 
 export const leetcodeUsername = "CodeSpec"
+
+export const SORTING_SCENARIOS = [
+  {
+    lines: ["Quick mind, steady hands.", "You learn fast and think deeper than most.", "Questions matter more to you than applause."],
+    resultText: "Best place to grow? Ravenclaw.",
+    houseKey: "RAVENCLAW"
+  },
+  {
+    lines: ["Ambition burns, but it’s controlled.", "You plan before you strike.", "Greatness calls — if you stay sharp."],
+    resultText: "Hmm… Slytherin.",
+    houseKey: "SLYTHERIN"
+  },
+  {
+    lines: ["Brave heart, even when unsure.", "You step forward when others hesitate.", "Fear doesn’t stop you — it follows you."],
+    resultText: "Gryffindor!",
+    houseKey: "GRYFFINDOR"
+  },
+  {
+    lines: ["Loyal to your people.", "You endure without complaint.", "Quiet strength, steady soul."],
+    resultText: "Hufflepuff!",
+    houseKey: "HUFFLEPUFF"
+  },
+  {
+    lines: ["Mind full of patterns and logic.", "You crave understanding, not shortcuts.", "Knowledge excites you more than victory."],
+    resultText: "Ravenclaw!",
+    houseKey: "RAVENCLAW"
+  },
+  {
+    lines: ["Sharp instincts, sharper intent.", "You know what you want.", "You’d rather rule than follow."],
+    resultText: "Careful now… Slytherin.",
+    houseKey: "SLYTHERIN"
+  },
+  {
+    lines: ["Bold choices, loud courage.", "You leap before the doubt settles.", "Risk doesn’t scare you — boredom does."],
+    resultText: "Gryffindor!",
+    houseKey: "GRYFFINDOR"
+  },
+  {
+    lines: ["Kind heart, patient mind.", "You build people, not trophies.", "Trust comes easily to you."],
+    resultText: "Hufflepuff!",
+    houseKey: "HUFFLEPUFF"
+  },
+  {
+    lines: ["You think while others rush.", "Ideas stack neatly in your head.", "Wisdom before words — always."],
+    resultText: "Ravenclaw!",
+    houseKey: "RAVENCLAW"
+  },
+  {
+    lines: ["Fire in your chest.", "Refusal to back down.", "You’d fight for what’s right — alone if needed."],
+    resultText: "Gryffindor!",
+    houseKey: "GRYFFINDOR"
+  }
+];
+
+export type HouseTheme = {
+  name: string;
+  hex: string;
+  primary: string;
+  secondary: string;
+  particleColor: string;
+  bgGradient: string;
+  stroke: string;
+};
+
+export const THEMES: Record<string, HouseTheme> = {
+  DEFAULT: {
+    name: "DEFAULT",
+    hex: "#ffffff",
+    primary: "from-white/90 to-white/10",
+    secondary: "text-[#EAB308] border-white/10 bg-white/5",
+    particleColor: "255, 255, 255",
+    bgGradient: "from-purple-900/20 to-transparent",
+    stroke: "rgba(255, 255, 255, 0.15)",
+  },
+  GRYFFINDOR: {
+    name: "GRYFFINDOR",
+    hex: "#eeba30",
+    primary: "from-[#740001] via-[#d3a625] to-[#eeba30]",
+    secondary: "text-[#eeba30] border-[#eeba30]/40 bg-[#740001]/40",
+    particleColor: "116, 0, 1",
+    bgGradient: "from-[#740001]/50 via-[#380b10]/30 to-transparent",
+    stroke: "rgba(238, 186, 48, 0.9)",
+  },
+  SLYTHERIN: {
+    name: "SLYTHERIN",
+    hex: "#2a6636",
+    primary: "from-[#1A472A] via-[#2a6636] to-[#aaaaaa]",
+    secondary: "text-[#aaaaaa] border-[#aaaaaa]/40 bg-[#1A472A]/40",
+    particleColor: "26, 71, 42",
+    bgGradient: "from-[#1A472A]/50 via-[#041f0b]/30 to-transparent",
+    stroke: "rgba(170, 170, 170, 0.9)",
+  },
+  RAVENCLAW: {
+    name: "RAVENCLAW",
+    hex: "#4fa3d1",
+    primary: "from-[#0E1A40] via-[#222f5b] to-[#946b2d]",
+    secondary: "text-[#946b2d] border-[#946b2d]/40 bg-[#0E1A40]/40",
+    particleColor: "14, 26, 64",
+    bgGradient: "from-[#0E1A40]/50 via-[#070f2e]/30 to-transparent",
+    stroke: "rgba(148, 107, 45, 0.9)",
+  },
+  HUFFLEPUFF: {
+    name: "HUFFLEPUFF",
+    hex: "#ecb939",
+    primary: "from-[#ecb939] via-[#f0c75e] to-[#372e29]",
+    secondary: "text-[#372e29] border-[#372e29]/30 bg-[#ecb939]/40",
+    particleColor: "236, 185, 57",
+    bgGradient: "from-[#ecb939]/40 via-[#b38b27]/20 to-transparent",
+    stroke: "rgba(55, 46, 41, 0.9)",
+  },
+};
+
+export const ARTIFACTS_DATA = [
+  // --- LEFT SIDE ---
+  {
+    id: "coding",
+    Icon: FaCode,
+    text: "<HELLO WORLD />",
+    style: { top: '15%', left: '8%' },
+    color: "text-cyan-400"
+  },
+  {
+    id: "football",
+    Icon: GiSoccerBall,
+    text: "VISCA EL BARÇA",
+    style: { top: '30%', left: '12%' },
+    color: "text-blue-500"
+  },
+  {
+    id: "cars",
+    Icon: GiSteeringWheel,
+    text: "PURE SPEED",
+    style: { top: '45%', left: '6%' },
+    color: "text-red-500"
+  },
+  {
+    id: "cube",
+    Icon: GiCube,
+    text: "CREATIVE MODE",
+    style: { top: '60%', left: '10%' },
+    color: "text-emerald-500"
+  },
+  {
+    id: "crown",
+    Icon: GiCrown,
+    text: "TECHNOBLADE NEVER DIES",
+    style: { top: '75%', left: '7%' },
+    color: "text-yellow-400"
+  },
+
+  // --- RIGHT SIDE ---
+  {
+    id: "photo",
+    Icon: FaCameraRetro,
+    text: "CAPTURE MOMENTS",
+    style: { top: '18%', right: '8%' },
+    color: "text-pink-400"
+  },
+  {
+    id: "hp",
+    Icon: GiSnitchQuidditchBall,
+    text: "I OPEN AT THE CLOSE",
+    style: { top: '33%', right: '12%' },
+    color: "text-amber-300"
+  },
+  {
+    id: "gadgets",
+    Icon: FaMicrochip,
+    text: "NEXT GEN TECH",
+    style: { top: '48%', right: '6%' },
+    color: "text-teal-400"
+  },
+  {
+    id: "katana",
+    Icon: GiKatana,
+    text: "HESITATION IS DEFEAT",
+    style: { top: '63%', right: '10%' },
+    color: "text-red-600"
+  },
+  {
+    id: "flag",
+    Icon: GiCheckeredFlag,
+    text: "BOX BOX BOX",
+    style: { top: '78%', right: '8%' },
+    color: "text-purple-400"
+  },
+];

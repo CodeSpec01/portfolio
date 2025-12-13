@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useAnimation, useMotionValue, MotionValue, Transition } from 'motion/react';
-import { radius } from '@/constants/constants';
 
 interface CircularTextProps {
   text: string;
@@ -30,7 +29,7 @@ const getTransition = (duration: number, from: number) => ({
 const CircularText: React.FC<CircularTextProps> = ({
   text,
   spinDuration = 20,
-  onHover = 'speedUp',
+  onHover = '',
   className = ''
 }) => {
   const letters = Array.from(text);
@@ -94,8 +93,8 @@ const CircularText: React.FC<CircularTextProps> = ({
 
   return (
     <motion.div
-      className={`absolute rounded-full font-black text-white text-center cursor-pointer flex items-center justify-center ${className}`}
-      style={{ rotate: rotation, width: radius, height: radius }}
+      className={`h-[10vw] w-[10vw] absolute rounded-full font-black text-white text-center cursor-pointer flex items-center justify-center ${className}`}
+      style={{ rotate: rotation }}
       initial={{ rotate: 0 }}
       animate={controls}
       onUpdate={(latest) => {

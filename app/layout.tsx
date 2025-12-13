@@ -1,6 +1,6 @@
 import TargetCursor from "@/components/TargetCursor";
 import "./globals.css";
-import Navbar from "@/components/NewNavbar";
+import Navbar from "@/components/Navbar";
 import { Emblema_One, Nova_Round } from "next/font/google";
 import { navbarItems } from "@/constants/constants";
 
