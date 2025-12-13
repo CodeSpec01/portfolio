@@ -1,929 +1,290 @@
-'use client'
+'use client';
 
-import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { gsap } from 'gsap';
-import { ShinyButton } from './ShinyButton';
+import React, { useRef } from 'react';
+import { motion, useMotionTemplate, useMotionValue, useSpring } from 'framer-motion';
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
-export interface BentoCardProps {
-  color?: string;
-  title?: string;
-  description?: string;
-  label?: string;
-  textAutoHide?: boolean;
-  disableAnimations?: boolean;
-  data?: { url: string; description: string }[];
+// --- Icons ---
+import { 
+  FiDatabase, FiServer, FiTerminal, FiGlobe, FiCode, FiCpu 
+} from 'react-icons/fi';
+import { 
+  SiReact, SiNextdotjs, SiTailwindcss, SiTypescript, SiJavascript, 
+  SiPostgresql, SiMongodb, SiDocker, SiKubernetes, 
+  SiGit, SiFigma, SiPython, SiRust, SiGo, SiGraphql 
+} from 'react-icons/si';
+import { BsAmazon } from 'react-icons/bs';
+
+// --- Utility ---
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
 }
 
-export interface BentoProps {
-  textAutoHide?: boolean;
-  enableStars?: boolean;
-  enableSpotlight?: boolean;
-  enableBorderGlow?: boolean;
-  disableAnimations?: boolean;
-  spotlightRadius?: number;
-  particleCount?: number;
-  enableTilt?: boolean;
-  glowColor?: string;
-  clickEffect?: boolean;
-  enableMagnetism?: boolean;
-}
-
-const DEFAULT_PARTICLE_COUNT = 12;
-const DEFAULT_SPOTLIGHT_RADIUS = 300;
-const DEFAULT_GLOW_COLOR = '132, 0, 255';
-const MOBILE_BREAKPOINT = 768;
-
-const cardData: BentoCardProps[] = [
-  {
-    color: '#060010',
-    label: 'Data Base',
-    data: [
-      { url: '/globals/linkedin.svg', description: 'User Analytics' },
-      { url: '/globals/linkedin.svg', description: 'Sales Data' },
-      { url: '/globals/linkedin.svg', description: 'Traffic Analysis' },
-    ]
-  },
-  {
-    color: '#060010',
-    label: 'Services',
-    data: [
-      { url: '/globals/linkedin.svg', description: 'Service One' },
-      { url: '/globals/linkedin.svg', description: 'Service Two' },
-      { url: '/globals/linkedin.svg', description: 'Service Three' },
-    ]
-  },
-  {
-    color: '#060010',
-    label: 'Backend',
-    data: [
-      { url: '/globals/linkedin.svg', description: 'API Development' },
-      { url: '/globals/linkedin.svg', description: 'Database Management' },
-      { url: '/globals/linkedin.svg', description: 'Server Maintenance' },
-      { url: '/globals/linkedin.svg', description: 'API Development' },
-      { url: '/globals/linkedin.svg', description: 'Database Management' },
-      { url: '/globals/linkedin.svg', description: 'Server Maintenance' },
-      { url: '/globals/linkedin.svg', description: 'API Development' },
-      { url: '/globals/linkedin.svg', description: 'Database Management' },
-      { url: '/globals/linkedin.svg', description: 'Server Maintenance' },
-      { url: '/globals/linkedin.svg', description: 'API Development' },
-      { url: '/globals/linkedin.svg', description: 'Database Management' },
-      { url: '/globals/linkedin.svg', description: 'Server Maintenance' },
-      { url: '/globals/linkedin.svg', description: 'API Development' },
-      { url: '/globals/linkedin.svg', description: 'Database Management' },
-      { url: '/globals/linkedin.svg', description: 'Server Maintenance' },
-      { url: '/globals/linkedin.svg', description: 'API Development' },
-      { url: '/globals/linkedin.svg', description: 'Database Management' },
-      { url: '/globals/linkedin.svg', description: 'Server Maintenance' },
-      { url: '/globals/linkedin.svg', description: 'API Development' },
-      { url: '/globals/linkedin.svg', description: 'Database Management' },
-      { url: '/globals/linkedin.svg', description: 'Server Maintenance' },
-    ]
-  },
-  {
-    color: '#060010',
-    label: 'Frontend',
-    data: [
-      { url: '/globals/linkedin.svg', description: 'UI Development' },
-      { url: '/globals/linkedin.svg', description: 'UX Design' },
-      { url: '/globals/linkedin.svg', description: 'Performance Optimization' },
-      { url: '/globals/linkedin.svg', description: 'UI Development' },
-      { url: '/globals/linkedin.svg', description: 'UX Design' },
-      { url: '/globals/linkedin.svg', description: 'Performance Optimization' },
-      { url: '/globals/linkedin.svg', description: 'UI Development' },
-      { url: '/globals/linkedin.svg', description: 'UX Design' },
-      { url: '/globals/linkedin.svg', description: 'Performance Optimization' },
-      { url: '/globals/linkedin.svg', description: 'UI Development' },
-      { url: '/globals/linkedin.svg', description: 'UX Design' },
-      { url: '/globals/linkedin.svg', description: 'Performance Optimization' },
-      { url: '/globals/linkedin.svg', description: 'UI Development' },
-      { url: '/globals/linkedin.svg', description: 'UX Design' },
-      { url: '/globals/linkedin.svg', description: 'Performance Optimization' },
-      { url: '/globals/linkedin.svg', description: 'UI Development' },
-      { url: '/globals/linkedin.svg', description: 'UX Design' },
-      { url: '/globals/linkedin.svg', description: 'Performance Optimization' },
-      { url: '/globals/linkedin.svg', description: 'UI Development' },
-      { url: '/globals/linkedin.svg', description: 'UX Design' },
-      { url: '/globals/linkedin.svg', description: 'Performance Optimization' },
-      { url: '/globals/linkedin.svg', description: 'UI Development' },
-      { url: '/globals/linkedin.svg', description: 'UX Design' },
-      { url: '/globals/linkedin.svg', description: 'Performance Optimization' },
-      { url: '/globals/linkedin.svg', description: 'UI Development' },
-      { url: '/globals/linkedin.svg', description: 'UX Design' },
-      { url: '/globals/linkedin.svg', description: 'Performance Optimization' },
-    ]
-  },
-  {
-    color: '#060010',
-    label: 'Dev Ops',
-    data: [
-      { url: '/globals/linkedin.svg', description: 'CI/CD' },
-      { url: '/globals/linkedin.svg', description: 'Monitoring' },
-      { url: '/globals/linkedin.svg', description: 'Infrastructure as Code' },
-    ]
-  },
-  {
-    color: '#060010',
-    label: 'Other Skills',
-    data: [
-      { url: '/globals/linkedin.svg', description: 'Skill One' },
-      { url: '/globals/linkedin.svg', description: 'Skill Two' },
-      { url: '/globals/linkedin.svg', description: 'Skill Three' },
-      { url: '/globals/linkedin.svg', description: 'Skill Three' },
-      { url: '/globals/linkedin.svg', description: 'Skill Three' },
-      { url: '/globals/linkedin.svg', description: 'Skill Three' },
-    ]
-  }
+// --- Data: Your Skill Arsenal ---
+const TECH_STACK = [
+  { name: 'React', icon: SiReact, color: 'text-cyan-400' },
+  { name: 'Next.js', icon: SiNextdotjs, color: 'text-white' },
+  { name: 'TypeScript', icon: SiTypescript, color: 'text-blue-400' },
+  { name: 'Tailwind', icon: SiTailwindcss, color: 'text-cyan-300' },
+  { name: 'Node.js', icon: SiJavascript, color: 'text-green-400' },
+  { name: 'Postgres', icon: SiPostgresql, color: 'text-blue-300' },
+  { name: 'AWS', icon: BsAmazon, color: 'text-orange-400' },
+  { name: 'Docker', icon: SiDocker, color: 'text-blue-500' },
 ];
 
-const createParticleElement = (x: number, y: number, color: string = DEFAULT_GLOW_COLOR): HTMLDivElement => {
-  const el = document.createElement('div');
-  el.className = 'particle';
-  el.style.cssText = `
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: rgba(${color}, 1);
-    box-shadow: 0 0 6px rgba(${color}, 0.6);
-    pointer-events: none;
-    z-index: 100;
-    left: ${x}px;
-    top: ${y}px;
-  `;
-  return el;
-};
+const SKILL_MARQUEE = [
+  { name: 'Python', icon: SiPython },
+  { name: 'Rust', icon: SiRust },
+  { name: 'Go', icon: SiGo },
+  { name: 'GraphQL', icon: SiGraphql },
+  { name: 'Figma', icon: SiFigma },
+  { name: 'Git', icon: SiGit },
+  { name: 'Mongo', icon: SiMongodb },
+  { name: 'K8s', icon: SiKubernetes },
+];
 
-const calculateSpotlightValues = (radius: number) => ({
-  proximity: radius * 0.5,
-  fadeDistance: radius * 0.75
-});
+// --- Components ---
 
-const updateCardGlowProperties = (card: HTMLElement, mouseX: number, mouseY: number, glow: number, radius: number) => {
-  const rect = card.getBoundingClientRect();
-  const relativeX = ((mouseX - rect.left) / rect.width) * 100;
-  const relativeY = ((mouseY - rect.top) / rect.height) * 100;
+const CardSpotlight = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  card.style.setProperty('--glow-x', `${relativeX}%`);
-  card.style.setProperty('--glow-y', `${relativeY}%`);
-  card.style.setProperty('--glow-intensity', glow.toString());
-  card.style.setProperty('--glow-radius', `${radius}px`);
-};
-
-const ParticleCard: React.FC<{
-  children: React.ReactNode;
-  className?: string;
-  disableAnimations?: boolean;
-  style?: React.CSSProperties;
-  particleCount?: number;
-  glowColor?: string;
-  enableTilt?: boolean;
-  clickEffect?: boolean;
-  enableMagnetism?: boolean;
-}> = ({
-  children,
-  className = '',
-  disableAnimations = false,
-  style,
-  particleCount = DEFAULT_PARTICLE_COUNT,
-  glowColor = DEFAULT_GLOW_COLOR,
-  enableTilt = true,
-  clickEffect = false,
-  enableMagnetism = false
-}) => {
-    const cardRef = useRef<HTMLDivElement>(null);
-    const particlesRef = useRef<HTMLDivElement[]>([]);
-    const timeoutsRef = useRef<number[]>([]);
-    const isHoveredRef = useRef(false);
-    const memoizedParticles = useRef<HTMLDivElement[]>([]);
-    const particlesInitialized = useRef(false);
-    const magnetismAnimationRef = useRef<gsap.core.Tween | null>(null);
-
-    const initializeParticles = useCallback(() => {
-      if (particlesInitialized.current || !cardRef.current) return;
-
-      const { width, height } = cardRef.current.getBoundingClientRect();
-      // const { width, height } = {width: 0, height: 0};
-      memoizedParticles.current = Array.from({ length: particleCount }, () =>
-        createParticleElement(Math.random() * width, Math.random() * height, glowColor)
-      );
-      particlesInitialized.current = true;
-    }, [particleCount, glowColor]);
-
-    const clearAllParticles = useCallback(() => {
-      timeoutsRef.current.forEach(clearTimeout);
-      timeoutsRef.current = [];
-      magnetismAnimationRef.current?.kill();
-
-      particlesRef.current.forEach(particle => {
-        gsap.to(particle, {
-          scale: 0,
-          opacity: 0,
-          duration: 0.3,
-          ease: 'back.in(1.7)',
-          onComplete: () => {
-            particle.parentNode?.removeChild(particle);
-          }
-        });
-      });
-      particlesRef.current = [];
-    }, []);
-
-    const animateParticles = useCallback(() => {
-      if (!cardRef.current || !isHoveredRef.current) return;
-
-      if (!particlesInitialized.current) {
-        initializeParticles();
-      }
-
-      memoizedParticles.current.forEach((particle, index) => {
-        const timeoutId = setTimeout(() => {
-          if (!isHoveredRef.current || !cardRef.current) return;
-
-          const clone = particle.cloneNode(true) as HTMLDivElement;
-          cardRef.current.appendChild(clone);
-          particlesRef.current.push(clone);
-
-          gsap.fromTo(clone, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: 'back.out(1.7)' });
-
-          gsap.to(clone, {
-            x: (Math.random() - 0.5) * 100,
-            y: (Math.random() - 0.5) * 100,
-            rotation: Math.random() * 360,
-            duration: 2 + Math.random() * 2,
-            ease: 'none',
-            repeat: -1,
-            yoyo: true
-          });
-
-          gsap.to(clone, {
-            opacity: 0.3,
-            duration: 1.5,
-            ease: 'power2.inOut',
-            repeat: -1,
-            yoyo: true
-          });
-        }, index * 100);
-        // @ts-ignore
-        timeoutsRef.current.push(timeoutId);
-      });
-    }, [initializeParticles]);
-
-    useEffect(() => {
-      if (disableAnimations || !cardRef.current) return;
-
-      const element = cardRef.current;
-
-      const handleMouseEnter = () => {
-        isHoveredRef.current = true;
-        animateParticles();
-
-        if (enableTilt) {
-          gsap.to(element, {
-            rotateX: 5,
-            rotateY: 5,
-            duration: 0.3,
-            ease: 'power2.out',
-            transformPerspective: 1000
-          });
-        }
-      };
-
-      const handleMouseLeave = () => {
-        isHoveredRef.current = false;
-        clearAllParticles();
-
-        if (enableTilt) {
-          gsap.to(element, {
-            rotateX: 0,
-            rotateY: 0,
-            duration: 0.3,
-            ease: 'power2.out'
-          });
-        }
-
-        if (enableMagnetism) {
-          gsap.to(element, {
-            x: 0,
-            y: 0,
-            duration: 0.3,
-            ease: 'power2.out'
-          });
-        }
-      };
-
-      const handleMouseMove = (e: MouseEvent) => {
-        if (!enableTilt && !enableMagnetism) return;
-
-        const rect = element.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        if (enableTilt) {
-          const rotateX = ((y - centerY) / centerY) * -10;
-          const rotateY = ((x - centerX) / centerX) * 10;
-
-          gsap.to(element, {
-            rotateX,
-            rotateY,
-            duration: 0.1,
-            ease: 'power2.out',
-            transformPerspective: 1000
-          });
-        }
-
-        if (enableMagnetism) {
-          const magnetX = (x - centerX) * 0.05;
-          const magnetY = (y - centerY) * 0.05;
-
-          magnetismAnimationRef.current = gsap.to(element, {
-            x: magnetX,
-            y: magnetY,
-            duration: 0.3,
-            ease: 'power2.out'
-          });
-        }
-      };
-
-      const handleClick = (e: MouseEvent) => {
-        if (!clickEffect) return;
-
-        const rect = element.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        const maxDistance = Math.max(
-          Math.hypot(x, y),
-          Math.hypot(x - rect.width, y),
-          Math.hypot(x, y - rect.height),
-          Math.hypot(x - rect.width, y - rect.height)
-        );
-
-        const ripple = document.createElement('div');
-        ripple.style.cssText = `
-        position: absolute;
-        width: ${maxDistance * 2}px;
-        height: ${maxDistance * 2}px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(${glowColor}, 0.4) 0%, rgba(${glowColor}, 0.2) 30%, transparent 70%);
-        left: ${x - maxDistance}px;
-        top: ${y - maxDistance}px;
-        pointer-events: none;
-        z-index: 1000;
-      `;
-
-        element.appendChild(ripple);
-
-        gsap.fromTo(
-          ripple,
-          {
-            scale: 0,
-            opacity: 1
-          },
-          {
-            scale: 1,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power2.out',
-            onComplete: () => ripple.remove()
-          }
-        );
-      };
-
-      element.addEventListener('mouseenter', handleMouseEnter);
-      element.addEventListener('mouseleave', handleMouseLeave);
-      element.addEventListener('mousemove', handleMouseMove);
-      element.addEventListener('click', handleClick);
-
-      return () => {
-        isHoveredRef.current = false;
-        element.removeEventListener('mouseenter', handleMouseEnter);
-        element.removeEventListener('mouseleave', handleMouseLeave);
-        element.removeEventListener('mousemove', handleMouseMove);
-        element.removeEventListener('click', handleClick);
-        clearAllParticles();
-      };
-    }, [animateParticles, clearAllParticles, disableAnimations, enableTilt, enableMagnetism, clickEffect, glowColor]);
-
-    return (
-      <div
-        ref={cardRef}
-        className={`${className} relative overflow-hidden`}
-        style={{ ...style, position: 'relative', overflow: 'hidden' }}
-      >
-        {children}
-      </div>
-    );
-  };
-
-const GlobalSpotlight: React.FC<{
-  gridRef: React.RefObject<HTMLDivElement | null>;
-  disableAnimations?: boolean;
-  enabled?: boolean;
-  spotlightRadius?: number;
-  glowColor?: string;
-}> = ({
-  gridRef,
-  disableAnimations = false,
-  enabled = true,
-  spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS,
-  glowColor = DEFAULT_GLOW_COLOR
-}) => {
-    const spotlightRef = useRef<HTMLDivElement | null>(null);
-    const isInsideSection = useRef(false);
-
-    useEffect(() => {
-      if (disableAnimations || !gridRef?.current || !enabled) return;
-
-      const spotlight = document.createElement('div');
-      spotlight.className = 'global-spotlight';
-      spotlight.style.cssText = `
-      position: fixed;
-      width: 800px;
-      height: 800px;
-      border-radius: 50%;
-      pointer-events: none;
-      background: radial-gradient(circle,
-        rgba(${glowColor}, 0.15) 0%,
-        rgba(${glowColor}, 0.08) 15%,
-        rgba(${glowColor}, 0.04) 25%,
-        rgba(${glowColor}, 0.02) 40%,
-        rgba(${glowColor}, 0.01) 65%,
-        transparent 70%
-      );
-      z-index: 200;
-      opacity: 0;
-      transform: translate(-50%, -50%);
-      mix-blend-mode: screen;
-    `;
-      document.body.appendChild(spotlight);
-      spotlightRef.current = spotlight;
-
-      const handleMouseMove = (e: MouseEvent) => {
-        if (!spotlightRef.current || !gridRef.current) return;
-
-        const section = gridRef.current.closest('.bento-section');
-        const rect = section?.getBoundingClientRect();
-        const mouseInside =
-          rect && e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
-
-        isInsideSection.current = mouseInside || false;
-        const cards = gridRef.current.querySelectorAll('.card');
-
-        if (!mouseInside) {
-          gsap.to(spotlightRef.current, {
-            opacity: 0,
-            duration: 0.3,
-            ease: 'power2.out'
-          });
-          cards.forEach(card => {
-            (card as HTMLElement).style.setProperty('--glow-intensity', '0');
-          });
-          return;
-        }
-
-        const { proximity, fadeDistance } = calculateSpotlightValues(spotlightRadius);
-        let minDistance = Infinity;
-
-        cards.forEach(card => {
-          const cardElement = card as HTMLElement;
-          const cardRect = cardElement.getBoundingClientRect();
-          const centerX = cardRect.left + cardRect.width / 2;
-          const centerY = cardRect.top + cardRect.height / 2;
-          const distance =
-            Math.hypot(e.clientX - centerX, e.clientY - centerY) - Math.max(cardRect.width, cardRect.height) / 2;
-          const effectiveDistance = Math.max(0, distance);
-
-          minDistance = Math.min(minDistance, effectiveDistance);
-
-          let glowIntensity = 0;
-          if (effectiveDistance <= proximity) {
-            glowIntensity = 1;
-          } else if (effectiveDistance <= fadeDistance) {
-            glowIntensity = (fadeDistance - effectiveDistance) / (fadeDistance - proximity);
-          }
-
-          updateCardGlowProperties(cardElement, e.clientX, e.clientY, glowIntensity, spotlightRadius);
-        });
-
-        gsap.to(spotlightRef.current, {
-          left: e.clientX,
-          top: e.clientY,
-          duration: 0.1,
-          ease: 'power2.out'
-        });
-
-        const targetOpacity =
-          minDistance <= proximity
-            ? 0.8
-            : minDistance <= fadeDistance
-              ? ((fadeDistance - minDistance) / (fadeDistance - proximity)) * 0.8
-              : 0;
-
-        gsap.to(spotlightRef.current, {
-          opacity: targetOpacity,
-          duration: targetOpacity > 0 ? 0.2 : 0.5,
-          ease: 'power2.out'
-        });
-      };
-
-      const handleMouseLeave = () => {
-        isInsideSection.current = false;
-        gridRef.current?.querySelectorAll('.card').forEach(card => {
-          (card as HTMLElement).style.setProperty('--glow-intensity', '0');
-        });
-        if (spotlightRef.current) {
-          gsap.to(spotlightRef.current, {
-            opacity: 0,
-            duration: 0.3,
-            ease: 'power2.out'
-          });
-        }
-      };
-
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseleave', handleMouseLeave);
-
-      return () => {
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseleave', handleMouseLeave);
-        spotlightRef.current?.parentNode?.removeChild(spotlightRef.current);
-      };
-    }, [gridRef, disableAnimations, enabled, spotlightRadius, glowColor]);
-
-    return null;
-  };
-
-const BentoCardGrid: React.FC<{
-  children: React.ReactNode;
-  gridRef?: React.RefObject<HTMLDivElement | null>;
-}> = ({ children, gridRef }) => (
-  <div
-    className="bento-section grid gap-2 p-3  select-none relative"
-    style={{ fontSize: 'clamp(1rem, 0.9rem + 0.5vw, 1.5rem)' }}
-    ref={gridRef}
-  >
-    {children}
-  </div>
-);
-
-const useMobileDetection = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= MOBILE_BREAKPOINT);
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  return isMobile;
-};
-
-const MagicBento: React.FC<BentoProps> = ({
-  textAutoHide = true,
-  enableStars = false,
-  enableSpotlight = true,
-  enableBorderGlow = true,
-  disableAnimations = false,
-  spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS,
-  particleCount = DEFAULT_PARTICLE_COUNT,
-  enableTilt = false,
-  glowColor = DEFAULT_GLOW_COLOR,
-  clickEffect = false,
-  enableMagnetism = false
-}) => {
-  const gridRef = useRef<HTMLDivElement>(null);
-  const isMobile = useMobileDetection();
-  const shouldDisableAnimations = disableAnimations || isMobile;
+  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
 
   return (
-    <>
-      <style>
-        {`
-          .bento-section {
-            --glow-x: 50%;
-            --glow-y: 50%;
-            --glow-intensity: 0;
-            --glow-radius: 200px;
-            --glow-color: ${glowColor};
-            --border-color: #392e4e;
-            --background-dark: #060010;
-            --white: hsl(0, 0%, 100%);
-            --purple-primary: rgba(132, 0, 255, 1);
-            --purple-glow: rgba(132, 0, 255, 0.2);
-            --purple-border: rgba(132, 0, 255, 0.8);
-          }
-          
-          .card-responsive {
-            grid-template-columns: 1fr;
-            width: 90%;
-            margin: 0 auto;
-            padding: 0.5rem;
-          }
-          
-          @media (min-width: 600px) {
-            .card-responsive {
-              grid-template-columns: repeat(2, 1fr);
-            }
-          }
-          
-          @media (min-width: 1024px) {
-            .card-responsive {
-              grid-template-columns: repeat(4, 1fr);
-            }
-            
-            .card-responsive .card:nth-child(3) {
-              grid-column: span 2;
-              grid-row: span 2;
-            }
-            
-            .card-responsive .card:nth-child(4) {
-              grid-column: 1 / span 2;
-              grid-row: 2 / span 2;
-            }
-
-            
-          }
-          
-          .card--border-glow::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            padding: 6px;
-            background: radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),
-                rgba(${glowColor}, calc(var(--glow-intensity) * 0.8)) 0%,
-                rgba(${glowColor}, calc(var(--glow-intensity) * 0.4)) 30%,
-                transparent 60%);
-            border-radius: inherit;
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask-composite: exclude;
-            pointer-events: none;
-            opacity: 1;
-            transition: opacity 0.3s ease;
-            z-index: 1;
-          }
-          
-          .card--border-glow:hover::after {
-            opacity: 1;
-          }
-          
-          .card--border-glow:hover {
-            box-shadow: 0 4px 20px rgba(46, 24, 78, 0.4), 0 0 30px rgba(${glowColor}, 0.2);
-          }
-          
-          .particle::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: rgba(${glowColor}, 0.2);
-            border-radius: 50%;
-            z-index: -1;
-          }
-          
-          .particle-container:hover {
-            box-shadow: 0 4px 20px rgba(46, 24, 78, 0.2), 0 0 30px rgba(${glowColor}, 0.2);
-          }
-          
-          .text-clamp-1 {
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-            line-clamp: 1;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-          
-          .text-clamp-2 {
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
-            line-clamp: 2;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-          
-          @media (max-width: 599px) {
-            .card-responsive {
-              grid-template-columns: 1fr;
-              width: 90%;
-              margin: 0 auto;
-              padding: 0.5rem;
-            }
-            
-            .card-responsive .card {
-              width: 100%;
-              min-height: 180px;
-            }
-          }
-        `}
-      </style>
-
-      {enableSpotlight && (
-        <GlobalSpotlight
-          gridRef={gridRef}
-          disableAnimations={shouldDisableAnimations}
-          enabled={enableSpotlight}
-          spotlightRadius={spotlightRadius}
-          glowColor={glowColor}
-        />
+    <div
+      className={cn(
+        "group/spotlight relative border border-white/10 bg-neutral-900/50 overflow-hidden rounded-3xl backdrop-blur-md",
+        className
       )}
-
-      <BentoCardGrid gridRef={gridRef}>
-        <div className="card-responsive grid gap-2 w-full">
-          {cardData.map((card, index) => {
-            const baseClassName = `cursor-target card flex flex-col justify-between relative aspect-[4/3] min-h-[200px] w-full max-w-full p-5 rounded-[20px] border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] ${enableBorderGlow ? 'card--border-glow' : ''
-              }`;
-
-            const cardStyle = {
-              backgroundColor: card.color || 'var(--background-dark)',
-              borderColor: 'var(--border-color)',
-              color: 'var(--white)',
-              '--glow-x': '50%',
-              '--glow-y': '50%',
-              '--glow-intensity': '0',
-              '--glow-radius': '200px'
-            } as React.CSSProperties;
-
-            if (enableStars) {
-              return (
-                <ParticleCard
-                  key={index}
-                  className={`${baseClassName} cursor-target`}
-                  style={cardStyle}
-                  disableAnimations={shouldDisableAnimations}
-                  particleCount={particleCount}
-                  glowColor={glowColor}
-                  enableTilt={enableTilt}
-                  clickEffect={clickEffect}
-                  enableMagnetism={enableMagnetism}
-                >
-                  <div className="card__header flex justify-between gap-3 relative text-white">
-                    <span className="card__label text-base">{card.label}</span>
-                  </div>
-                  <div className="card__content flex flex-col relative text-white">
-                    <h3 className={`card__title font-normal text-base m-0 mb-1 ${textAutoHide ? 'text-clamp-1' : ''}`}>
-                      {card.title}
-                    </h3>
-                    <p
-                      className={`card__description text-xs leading-5 opacity-90 ${textAutoHide ? 'text-clamp-2' : ''}`}
-                    >
-                      {card.description}
-                    </p>
-                  </div>
-                </ParticleCard>
-              );
-            }
-
-            return (
-              <div
-                key={index}
-                className={baseClassName}
-                style={cardStyle}
-                ref={el => {
-                  if (!el) return;
-
-                  const handleMouseMove = (e: MouseEvent) => {
-                    if (shouldDisableAnimations) return;
-
-                    const rect = el.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-
-                    if (enableTilt) {
-                      const rotateX = ((y - centerY) / centerY) * -10;
-                      const rotateY = ((x - centerX) / centerX) * 10;
-
-                      gsap.to(el, {
-                        rotateX,
-                        rotateY,
-                        duration: 0.1,
-                        ease: 'power2.out',
-                        transformPerspective: 1000
-                      });
-                    }
-
-                    if (enableMagnetism) {
-                      const magnetX = (x - centerX) * 0.05;
-                      const magnetY = (y - centerY) * 0.05;
-
-                      gsap.to(el, {
-                        x: magnetX,
-                        y: magnetY,
-                        duration: 0.3,
-                        ease: 'power2.out'
-                      });
-                    }
-                  };
-
-                  const handleMouseLeave = () => {
-                    if (shouldDisableAnimations) return;
-
-                    if (enableTilt) {
-                      gsap.to(el, {
-                        rotateX: 0,
-                        rotateY: 0,
-                        duration: 0.3,
-                        ease: 'power2.out'
-                      });
-                    }
-
-                    if (enableMagnetism) {
-                      gsap.to(el, {
-                        x: 0,
-                        y: 0,
-                        duration: 0.3,
-                        ease: 'power2.out'
-                      });
-                    }
-                  };
-
-                  const handleClick = (e: MouseEvent) => {
-                    if (!clickEffect || shouldDisableAnimations) return;
-
-                    const rect = el.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-
-                    const maxDistance = Math.max(
-                      Math.hypot(x, y),
-                      Math.hypot(x - rect.width, y),
-                      Math.hypot(x, y - rect.height),
-                      Math.hypot(x - rect.width, y - rect.height)
-                    );
-
-                    const ripple = document.createElement('div');
-                    ripple.style.cssText = `
-                      position: absolute;
-                      width: ${maxDistance * 2}px;
-                      height: ${maxDistance * 2}px;
-                      border-radius: 50%;
-                      background: radial-gradient(circle, rgba(${glowColor}, 0.4) 0%, rgba(${glowColor}, 0.2) 30%, transparent 70%);
-                      left: ${x - maxDistance}px;
-                      top: ${y - maxDistance}px;
-                      pointer-events: none;
-                      z-index: 1000;
-                    `;
-
-                    el.appendChild(ripple);
-
-                    gsap.fromTo(
-                      ripple,
-                      {
-                        scale: 0,
-                        opacity: 1
-                      },
-                      {
-                        scale: 1,
-                        opacity: 0,
-                        duration: 0.8,
-                        ease: 'power2.out',
-                        onComplete: () => ripple.remove()
-                      }
-                    );
-                  };
-
-                  el.addEventListener('mousemove', handleMouseMove);
-                  el.addEventListener('mouseleave', handleMouseLeave);
-                  el.addEventListener('click', handleClick);
-                }}
-              >
-                <div className="card__header flex justify-between gap-3 relative text-white">
-                  <span className="card__label text-base">{card.label}</span>
-                </div>
-                <div className="card__content flex flex-wrap items-center justify-around gap-1 relative text-white">
-                  {card.data && card.data.map((carddata, idx) => (
-                    <div key={idx} className=''>
-                      <div
-                        className={`flex px-5 py-2 gap-2 items-center justify-center text-xs group rounded-full border text-white transition-all ease-in hover:cursor-pointer border-white/5 bg-neutral-900 hover:bg-neutral-800`}
-                      >
-                        <img key={idx} src={carddata.url} alt={`Card data ${idx}`} width={"20px"} className='' />
-                        <ShinyButton className="inline-flex items-center justify-center transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400" shimmerWidth={100}>
-                          <span>{carddata.description}</span>
-                        </ShinyButton>
-                      </div>
-                      {/* <ShinyButton className='text-xs rounded-full border text-white transition-all ease-in hover:cursor-pointer border-white/5 bg-neutral-900 hover:bg-neutral-800'>{carddata.description}</ShinyButton> */}
-                      {/* <p className='inline text-xs'>{carddata.description}</p> */}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </BentoCardGrid>
-    </>
+      onMouseMove={handleMouseMove}
+    >
+      <motion.div
+        className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300 group-hover/spotlight:opacity-100 z-10"
+        style={{
+          background: useMotionTemplate`
+            radial-gradient(
+              650px circle at ${mouseX}px ${mouseY}px,
+              rgba(120, 50, 255, 0.10),
+              transparent 80%
+            )
+          `,
+        }}
+      />
+      <div className="relative h-full z-20">{children}</div>
+    </div>
   );
 };
 
-export default MagicBento;
+const TiltCard = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const mouseX = useSpring(x, { stiffness: 500, damping: 100 });
+  const mouseY = useSpring(y, { stiffness: 500, damping: 100 });
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    if (window.innerWidth < 768) return;
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const mouseXFromCenter = e.clientX - rect.left - rect.width / 2;
+    const mouseYFromCenter = e.clientY - rect.top - rect.height / 2;
+    x.set(mouseXFromCenter / 20);
+    y.set(mouseYFromCenter / 20);
+  }
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => { x.set(0); y.set(0); }}
+      style={{
+        rotateY: mouseX,
+        rotateX: useMotionTemplate`calc(${mouseY} * -1deg)`,
+        transformStyle: "preserve-3d",
+      }}
+      className={cn("relative h-full w-full rounded-3xl transition-all duration-200 ease-out will-change-transform", className)}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+const InfiniteScroll = ({ items }: { items: typeof SKILL_MARQUEE }) => {
+  return (
+    <div className="relative flex overflow-x-hidden mask-gradient-x py-2">
+      <div className="animate-marquee whitespace-nowrap flex gap-4">
+        {[...items, ...items, ...items].map((item, i) => (
+          <div key={i} className="flex items-center gap-2 rounded-full border border-white/5 bg-white/5 px-4 py-2 text-sm text-neutral-400 backdrop-blur-sm">
+            <item.icon className="h-4 w-4" />
+            <span>{item.name}</span>
+          </div>
+        ))}
+      </div>
+      {/* CSS for Marquee is added at bottom of component */}
+    </div>
+  );
+};
+
+const SkillBadge = ({ name, icon: Icon, color }: { name: string; icon: any; color: string }) => (
+  <div className="group flex flex-col items-center justify-center gap-2 rounded-xl border border-white/5 bg-white/[0.02] p-4 transition-all duration-300 hover:-translate-y-1 hover:border-white/10 hover:bg-white/[0.05] hover:shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+    <Icon className={cn("h-8 w-8 transition-all duration-300 group-hover:scale-110", color)} />
+    <span className="text-[10px] font-medium text-neutral-500 uppercase tracking-wider group-hover:text-white transition-colors">{name}</span>
+  </div>
+);
+
+// --- MAIN LAYOUT ---
+
+export default function MagicBento() {
+  return (
+    <div className="min-h-screen w-full bg-[#030014] p-4 md:p-8 text-white selection:bg-indigo-500/30 overflow-x-hidden font-sans">
+      
+      {/* Global CSS for Animations */}
+      <style>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          animation: marquee 20s linear infinite;
+        }
+        .mask-gradient-x {
+          mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+      `}</style>
+
+      {/* Background Ambience */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] h-[500px] w-[500px] rounded-full bg-purple-900/20 blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] h-[500px] w-[500px] rounded-full bg-indigo-900/20 blur-[120px]" />
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-auto md:auto-rows-[180px]">
+
+        {/* 1. HERO CARD (Spans 2x2) */}
+        <div className="col-span-1 md:col-span-2 row-span-1 md:row-span-2 h-[400px] md:h-auto">
+          <TiltCard>
+            <CardSpotlight className="h-full flex flex-col justify-between p-8 bg-gradient-to-br from-indigo-950/50 to-purple-950/20 border-indigo-500/20">
+              <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-indigo-600/10 blur-3xl pointer-events-none" />
+              <div className="relative z-20">
+                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300 mb-4">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  Ready to deploy
+                </div>
+                <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+                  Full Stack<br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-300">Arsenal</span>
+                </h2>
+                <p className="mt-4 text-neutral-400 max-w-md text-sm md:text-base leading-relaxed">
+                  I don't just write code; I architect solutions. Below is the specialized weaponry I use to build the future.
+                </p>
+              </div>
+              <div className="relative z-20 flex gap-4 mt-8">
+                 <button className="group relative overflow-hidden rounded-full bg-white px-6 py-2 text-sm font-semibold text-black transition-transform active:scale-95 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                    <span className="relative z-10">Download CV</span>
+                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-indigo-300 to-purple-300 transition-transform duration-300"></div>
+                 </button>
+              </div>
+            </CardSpotlight>
+          </TiltCard>
+        </div>
+
+        {/* 2. THE HOLOGRAPHIC CORE STACK (Replaces old Services) */}
+        {/* Spans 2 columns to show a grid of icons */}
+        <div className="col-span-1 md:col-span-2 row-span-1 md:row-span-2 h-auto">
+          <CardSpotlight className="h-full flex flex-col p-6 bg-neutral-900/50">
+            <div className="flex items-center justify-between mb-6">
+               <div className="flex items-center gap-3">
+                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
+                    <FiCpu className="h-5 w-5" />
+                 </div>
+                 <h3 className="text-lg font-semibold text-white">Core Technologies</h3>
+               </div>
+            </div>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 flex-1">
+              {TECH_STACK.map((tech) => (
+                <SkillBadge key={tech.name} {...tech} />
+              ))}
+            </div>
+          </CardSpotlight>
+        </div>
+
+        {/* 3. INFINITE SKILL STREAM (Wide) */}
+        <div className="col-span-1 md:col-span-2 row-span-1 h-[140px] md:h-auto">
+          <CardSpotlight className="h-full p-6 flex flex-col justify-center bg-neutral-900/30 group">
+             <div className="flex items-center gap-2 mb-3 text-neutral-400 text-xs font-mono uppercase tracking-widest">
+                <FiCode className="text-pink-500" />
+                <span>Extended Toolkit</span>
+             </div>
+             {/* The Marquee Component */}
+             <InfiniteScroll items={SKILL_MARQUEE} />
+          </CardSpotlight>
+        </div>
+
+        {/* 4. DATABASE STATS (Small) */}
+        <CardSpotlight className="col-span-1 row-span-1 p-6 flex flex-col justify-center gap-4 bg-black/40 h-[180px]">
+           <div className="flex items-center justify-between">
+              <div className="p-2 bg-pink-500/10 rounded-lg border border-pink-500/20">
+                <FiDatabase className="h-5 w-5 text-pink-500" />
+              </div>
+              <span className="text-[10px] font-mono text-neutral-500 border border-white/5 px-1 rounded">Postgres</span>
+           </div>
+           <div>
+              <div className="text-2xl font-bold text-white tracking-tight">100k+</div>
+              <div className="text-xs text-neutral-400 font-medium">Records Handled</div>
+           </div>
+           <div className="h-1.5 w-full bg-neutral-800 rounded-full overflow-hidden">
+              <div className="h-full w-[85%] bg-gradient-to-r from-pink-500 to-rose-500 rounded-full animate-pulse"></div>
+           </div>
+        </CardSpotlight>
+
+        {/* 5. DEVOPS MONITOR (Small) */}
+        <CardSpotlight className="col-span-1 row-span-1 p-6 bg-gradient-to-b from-neutral-900 to-black h-[180px]">
+           <div className="absolute top-4 right-4 opacity-50">
+              <FiServer className="h-10 w-10 text-neutral-800" />
+           </div>
+           <div className="relative z-10 h-full flex flex-col justify-end">
+              <h4 className="text-xl font-bold text-white">Infrastructure</h4>
+              <p className="text-xs text-neutral-400 mt-1">Docker • K8s • AWS</p>
+              
+              <div className="flex gap-1 mt-3 h-8 items-end">
+                 {[1,2,3,4,5].map(i => (
+                    <div key={i} className="flex-1 bg-neutral-800/50 rounded-sm overflow-hidden h-full flex items-end">
+                       <motion.div 
+                          className="w-full bg-cyan-500"
+                          initial={{ height: "20%" }}
+                          animate={{ height: ["20%", "60%", "40%", "80%", "30%"] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: i * 0.15 }}
+                       />
+                    </div>
+                 ))}
+              </div>
+           </div>
+        </CardSpotlight>
+
+      </div>
+      
+      {/* Footer */}
+      <div className="max-w-7xl mx-auto mt-8 flex justify-between items-center text-[10px] text-neutral-600 font-mono uppercase tracking-widest px-2">
+         <span className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            All Systems Operational
+         </span>
+         <div className="flex gap-4">
+            <span>Built with React</span>
+            <span>2024</span>
+         </div>
+      </div>
+    </div>
+  );
+}
