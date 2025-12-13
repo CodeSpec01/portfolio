@@ -80,7 +80,7 @@ const ProjectsPage = () => {
         {/* Project Scroll Component */}
         <section className="project-section relative w-full">
            {/* Decorative Top Line */}
-           <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-12"></div>
+           <div className="w-full h-px bg-linear-to-r from-transparent via-white/10 to-transparent mb-12"></div>
            
            <ProjectScroll />
         </section>
