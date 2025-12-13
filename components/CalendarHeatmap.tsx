@@ -146,102 +146,105 @@ export default function CalendarHeatmap() {
 
   return (
     // relative container is CRITICAL for absolute positioning the overlays
-    <div className={`relative w-full max-w-5xl mx-auto p-8 rounded-xl border bg-black/30 shadow-sm ${THEME.bg} overflow-hidden`}>
+    <div className='w-[95%] mx-auto bg-linear-to-r from-[#ff7a18] via-[#ffb199] to-[#ffd59a] p-px rounded-xl'>
 
-      {/* --- OVERLAYS --- */}
+      <div className={`relative w-full mx-auto p-8 rounded-xl bg-linear-to-t from-black/90 via-40% via-black/20 to-[#350066] shadow-sm ${THEME.bg} overflow-hidden`}>
 
-      {/* Loading Overlay */}
-      {loading && (
-        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#1a1a1a]/50 backdrop-blur-sm rounded-xl transition-all">
-          <Loader />
-        </div>
-      )}
+        {/* --- OVERLAYS --- */}
 
-      {/* Error State */}
-      {error && !loading && (
-        <div className="absolute inset-0 z-30 bg-zinc-900/90 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center">
-          <SiLeetcode className="text-gray-600 text-4xl mb-4" />
-          <p className="text-gray-400 text-sm mb-4">Could not load Leetcode Calendar data.</p>
-        </div>
-      )}
+        {/* Loading Overlay */}
+        {loading && (
+          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#1a1a1a]/50 backdrop-blur-sm rounded-xl transition-all">
+            <Loader />
+          </div>
+        )}
+
+        {/* Error State */}
+        {error && !loading && (
+          <div className="absolute inset-0 z-30 bg-zinc-900/90 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center">
+            <SiLeetcode className="text-gray-600 text-4xl mb-4" />
+            <p className="text-gray-400 text-sm mb-4">Could not load Leetcode Calendar data.</p>
+          </div>
+        )}
 
 
-      {/* Header Stats */}
-      <div className={`flex flex-col sm:flex-row sm:items-end justify-between mb-8 ${(loading || error) ? 'opacity-50' : ''}`}>
-        <div>
-          <h1 className='mb-5 text-gray-200'>Leetcode Heatmap</h1>
-          <h2 className="text-xl font-bold text-gray-100">
-            {loading ? "..." : totalActiveDays} submissions in {year}
-          </h2>
-          <div className={`flex gap-4 text-sm mt-1 ${THEME.text}`}>
-            <span>Total active days: <strong className="text-gray-200">{loading ? '-' : totalActiveDays}</strong></span>
-            <span>Max streak: <strong className="text-gray-200">{loading ? '-' : streak}</strong></span>
+        {/* Header Stats */}
+        <div className={`w-full flex flex-col sm:flex-row sm:items-end justify-start mb-8 ${(loading || error) ? 'opacity-50' : ''}`}>
+          <div>
+            <h1 className='mb-5 md:text-[2vw] text-gray-200'>Leetcode Heatmap</h1>
+            <h2 className="text-xl md:text-[1vw] font-bold text-gray-100">
+              {loading ? "..." : totalActiveDays} submissions in {year}
+            </h2>
+            <div className={`flex gap-4 text-sm mt-1 ${THEME.text}`}>
+              <span>Total active days: <strong className="text-gray-200">{loading ? '-' : totalActiveDays}</strong></span>
+              <span>Max streak: <strong className="text-gray-200">{loading ? '-' : streak}</strong></span>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* HEATMAP SCROLL CONTAINER */}
-      <div className={`w-full pb-4 scrollbar-hide ${(loading || error) ? 'opacity-50' : ''}`}>
-        <div className="flex min-w-max gap-[3px]">
-          {/* Y-Axis Labels */}
-          <div className={`flex flex-col gap-[3px] text-[10px] ${THEME.text} mt-5 mr-2 leading-2.5`}>
-            <div className="h-2.5" />
-            <div className="h-2.5 flex items-center">Mon</div>
-            <div className="h-2.5" />
-            <div className="h-2.5 flex items-center">Wed</div>
-            <div className="h-2.5" />
-            <div className="h-2.5 flex items-center">Fri</div>
-            <div className="h-2.5" />
-          </div>
+        {/* HEATMAP SCROLL CONTAINER */}
+        <div className={`w-full pb-4 overflow-x-auto md:overflow-x-visible scrollbar-hide ${(loading || error) ? 'opacity-50' : ''}`}>
+          <div className="flex justify-center min-w-max gap-[3px]">
+            {/* Y-Axis Labels */}
+            <div className={`flex flex-col gap-[3px] text-[10px] md:text-[1.2vw] md:mt-[0.6vw] ${THEME.text} mt-5 mr-2 leading-2.5 md:leading-[1.2vw]`}>
+              <div className="h-2.5 md:h-[1.2vw]" />
+              <div className="h-2.5 md:h-[1.2vw] flex items-center">Mon</div>
+              <div className="h-2.5 md:h-[1.2vw]" />
+              <div className="h-2.5 md:h-[1.2vw] flex items-center">Wed</div>
+              <div className="h-2.5 md:h-[1.2vw]" />
+              <div className="h-2.5 md:h-[1.2vw] flex items-center">Fri</div>
+              <div className="h-2.5 md:h-[1.2vw]" />
+            </div>
 
-          {/* Weeks Columns */}
-          {weeks.map((week, weekIndex) => {
-            const firstDay = week.find(d => !d.isPlaceholder);
-            const dateObj = firstDay ? new Date(firstDay.date) : null;
-            const currentMonthIndex = dateObj ? dateObj.getMonth() : null;
-            const prevWeek = weeks[weekIndex - 1];
-            const prevDay = prevWeek ? prevWeek.find(d => !d.isPlaceholder) : null;
-            const prevDateObj = prevDay ? new Date(prevDay.date) : null;
-            const prevMonthIndex = prevDateObj ? prevDateObj.getMonth() : null;
-            const isNewMonth = currentMonthIndex !== null && currentMonthIndex !== prevMonthIndex;
+            {/* Weeks Columns */}
+            {weeks.map((week, weekIndex) => {
+              const firstDay = week.find(d => !d.isPlaceholder);
+              const dateObj = firstDay ? new Date(firstDay.date) : null;
+              const currentMonthIndex = dateObj ? dateObj.getMonth() : null;
+              const prevWeek = weeks[weekIndex - 1];
+              const prevDay = prevWeek ? prevWeek.find(d => !d.isPlaceholder) : null;
+              const prevDateObj = prevDay ? new Date(prevDay.date) : null;
+              const prevMonthIndex = prevDateObj ? prevDateObj.getMonth() : null;
+              const isNewMonth = currentMonthIndex !== null && currentMonthIndex !== prevMonthIndex;
 
-            return (
-              <div
-                key={weekIndex}
-                className={`flex flex-col gap-[3px] ${isNewMonth && weekIndex !== 0 ? 'ml-4' : ''}`}
-              >
-                <div className={`h-[15px] text-[10px] mb-1 ${THEME.text} relative`}>
-                  {(weekIndex === 0 || isNewMonth) && (
-                    <span className="absolute top-0 left-0 whitespace-nowrap">
-                      {currentMonthIndex !== null ? MONTH_LABELS[currentMonthIndex] : ""}
-                    </span>
-                  )}
+              return (
+                <div
+                  key={weekIndex}
+                  className={`flex flex-col gap-[3px] ${isNewMonth && weekIndex !== 0 ? 'ml-4' : ''}`}
+                >
+                  <div className={`h-[15px] text-[10px] md:text-[1.2vw] mb-2 md:mb-[1.1vw] ${THEME.text} relative`}>
+                    {(weekIndex === 0 || isNewMonth) && (
+                      <span className="absolute top-0 left-0 whitespace-nowrap">
+                        {currentMonthIndex !== null ? MONTH_LABELS[currentMonthIndex] : ""}
+                      </span>
+                    )}
+                  </div>
+
+                  {week.map((day, dayIndex) => (
+                    day.isPlaceholder ? (
+                      <div key={`placeholder-${dayIndex}`} className="w-2.5 h-2.5 md:w-[1.2vw] md:h-[1.2vw]" />
+                    ) : (
+                      <HeatmapCell key={day.date} day={day} />
+                    )
+                  ))}
                 </div>
-
-                {week.map((day, dayIndex) => (
-                  day.isPlaceholder ? (
-                    <div key={`placeholder-${dayIndex}`} className="w-2.5 h-2.5" />
-                  ) : (
-                    <HeatmapCell key={day.date} day={day} />
-                  )
-                ))}
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
 
-      {/* Legend */}
-      <div className={`flex justify-end items-center gap-2 text-xs ${THEME.text} mt-4 ${(loading || error) ? 'opacity-50' : ''}`}>
-        <span>Less</span>
-        <div className="flex gap-[3px]">
-          {[0, 1, 2, 3, 4].map(level => (
-            <div key={level} className={`w-2.5 h-2.5 rounded-xs ${THEME.levels[level]}`} />
-          ))}
+        {/* Legend */}
+        <div className={`flex justify-end items-center gap-2 text-xs md:text-xl ${THEME.text} mt-4 ${(loading || error) ? 'opacity-50' : ''}`}>
+          <span>Less</span>
+          <div className="flex gap-[3px]">
+            {[0, 1, 2, 3, 4].map(level => (
+              <div key={level} className={`w-2.5 h-2.5 md:w-[1.2vw] md:h-[1.2vw] rounded-xs md:rounded-[0.3vw] ${THEME.levels[level]}`} />
+            ))}
+          </div>
+          <span>More</span>
         </div>
-        <span>More</span>
-      </div>
 
+      </div>
     </div>
   );
 }
@@ -251,7 +254,7 @@ function HeatmapCell({ day }: { day: DayData }) {
   return (
     <div className="relative group">
       <div
-        className={`w-2.5 h-2.5 rounded-xs ${THEME.levels[day.level]} border border-transparent hover:border-gray-400`}
+        className={`w-2.5 h-2.5 md:w-[1.2vw] md:h-[1.2vw] rounded-xs md:rounded-[0.3vw] ${THEME.levels[day.level]} border border-transparent hover:border-gray-400`}
       />
       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-center z-40 pointer-events-none">
         <div className={`${THEME.tooltipBg} p-2 rounded text-xs shadow-xl border border-gray-600 whitespace-nowrap z-50`}>

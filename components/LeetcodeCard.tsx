@@ -181,10 +181,9 @@ export default function ContestRatingChart() {
 
   return (
     // Relative container for overlays
-    <div className="relative w-full h-full max-w-4xl mx-auto p-px rounded-3xl bg-linear-to-r from-[#ff7a18] via-[#ffb199] to-[#ffd59a] shadow-2xl overflow-hidden">
+    <div className="relative w-full h-full max-w-[95%] mx-auto p-px rounded-3xl bg-linear-to-r from-[#ff7a18] via-[#ffb199] to-[#ffd59a] overflow-hidden">
 
       {/* === OVERLAYS === */}
-
       {/* Loading Overlay */}
       {loading && (
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/60 backdrop-blur-sm rounded-3xl transition-all">
@@ -201,12 +200,12 @@ export default function ContestRatingChart() {
       )}
 
       {/* === CONTENT === */}
-      <div className={`w-full h-full p-6 bg-black rounded-3xl border border-white/5 ${(loading || error) ? 'opacity-40' : ''}`}>
+      <div className={`w-full h-full p-6 bg-linear-to-t from-black/90 via-40% via-black/20 to-[#350066] bg-[#1a1a1a] rounded-3xl border border-white/5 ${(loading || error) ? 'opacity-40' : ''}`}>
 
         {/* Header Stats */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
           <div>
-            <h2 className="text-sm font-bold tracking-widest text-neutral-500 uppercase">
+            <h2 className="text-sm font-bold tracking-widest uppercase">
               Contest Rating
             </h2>
             <div className="flex items-center gap-2 mt-1">
@@ -238,7 +237,7 @@ export default function ContestRatingChart() {
         </div>
 
         {/* The Chart */}
-        <div className="h-[300px] w-full">
+        <div className="max-h-[40vh] h-[80%] w-full">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
               data={chartData}

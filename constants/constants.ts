@@ -1,5 +1,8 @@
+import { BsGithub } from "react-icons/bs";
 import { FaCameraRetro, FaCode, FaMicrochip } from "react-icons/fa";
 import { GiCheckeredFlag, GiCrown, GiCube, GiKatana, GiSnitchQuidditchBall, GiSoccerBall, GiSteeringWheel } from "react-icons/gi";
+import { IoLogoLinkedin } from "react-icons/io5";
+import { SiGmail, SiLeetcode } from "react-icons/si";
 
 // Search Items List is in SearchModal.tsx and cannot be exported from here due to React component issues.
 export const LeetCodeLink = "https://leetcode.com/codespec";
@@ -45,6 +48,29 @@ export const notFoundMetadata = {
     "The page you are looking for does not exist. Explore other sections of portfolio.",
 };
 
+export const FooterSocials = [
+  {
+    label: "Email",
+    href: GmailLink,
+    Icon: SiGmail,
+  },
+  {
+    label: "Github",
+    href: GithubLink,
+    Icon: BsGithub,
+  },
+  {
+    label: "Leetcode",
+    href: LeetCodeLink,
+    Icon: SiLeetcode,
+  },
+  {
+    label: "LinkedIn",
+    href: LinkedInLink,
+    Icon: IoLogoLinkedin,
+  },
+]
+
 export const navbarItems = [
   {
     label: "About",
@@ -72,8 +98,7 @@ export const navbarItems = [
         ariaLabel: "Journey to the Website",
       },
     ],
-  },
-  {
+  }, {
     label: "Socials",
     bgColor: "hsl(271,100%,35%)",
     textColor: "#FFE380",
@@ -99,7 +124,7 @@ export const navbarItems = [
         ariaLabel: "LinkedIn",
       },
     ],
-  },
+  }
 ];
 
 export const heroImageTooltipContent =

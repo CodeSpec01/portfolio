@@ -1,18 +1,21 @@
 import { emblemaOne } from "@/app/layout";
 import { TooltipAbout } from "./TooltipCardForAbout";
 import CardSwap, { Card } from "./CardSwapper";
+import { FooterSocials } from "@/constants/constants";
+import { AuroraText } from "./AuroraText";
 
 function Aboutstart() {
   return (
     <div className="w-screen flex  p-[5%]">
-      <div className="w-1/2 text-[2vw]">
-        <h1 className="text-[1vw] text-gray-400 font-bold pt-[10%]">More About me</h1>
-        <h1 className={`bg-linear-to-b from-white via-slate-200 to-slate-600 bg-clip-text text-transparent leading-10 text-[3vw]  ${emblemaOne.className}`}>
+      <div className="w-full lg:w-1/2 text-[2vw]">
+        <h1 className="text-[3vw] md:text-[1vw] text-gray-400 font-bold pt-[10%]">More About me</h1>
+        <h1 className={`bg-linear-to-b from-white via-slate-200 to-slate-600 bg-clip-text text-transparent leading-10 text-[8vw] md:text-[3vw]  ${emblemaOne.className}`}>
           I am Aviral
         </h1>
-        <p className="leading-10 text-[2vw]">
+        <p className="leading-10 text-[4vw] md:text-[2vw]">
           A creative{" "}
-          <span className="text-[#8400FF] font-extrabold">Engineer</span>
+          <AuroraText colors={["#FFD700", "#A855F7", "#FBBF24"]}>
+            Engineer</AuroraText>
         </p>
         <div className="text-xl w-[95%] py-[5%]">
           Manav Jaiswal is a driven ECE student passionate about
@@ -46,8 +49,19 @@ function Aboutstart() {
           </TooltipAbout>
           .
         </div>
+        <div className="flex gap-4">
+          {FooterSocials.map((social, i) => {
+            const IconComponent = social.Icon;
+            return (
+              <a key={i} href="#" className="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-white/5 hover:bg-white hover:text-[#8400FF] hover:border-transparent transition-all duration-300">
+                <IconComponent size={18} />
+              </a>
+            )
+          })}
+
+        </div>
       </div>
-      <div className="w-1/2 overflow-y-hidden  ">
+      <div className="w-1/2 overflow-y-hidden hidden lg:block ">
         <div style={{ height: "600px", position: "relative" }}>
           <CardSwap
             cardDistance={60}
