@@ -97,7 +97,7 @@ export const navbarItems = [
     links: [
       {
         label: "Other Projects",
-        href: "/otherprojects",
+        href: "/other",
         ariaLabel: "Other Projects",
       },
       {
