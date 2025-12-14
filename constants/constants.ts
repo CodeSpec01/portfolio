@@ -96,8 +96,8 @@ export const navbarItems = [
     textColor: "#FFE380",
     links: [
       {
-        label: "Other Projects",
-        href: "/other",
+        label: "More ",
+        href: "/others",
         ariaLabel: "Other Projects",
       },
       {
@@ -636,3 +636,75 @@ export const SERVICES = [
     label: "Netlify",
   },
 ]
+
+export const OtherProjectData = [
+  {
+    title: "FinTrack AI",
+    description: "An intelligent personal finance tracker that predicts spending habits using machine learning models.",
+    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+    tags: ["Next.js", "Python", "TensorFlow"],
+    features: ["Real-time Dashboard", "Expense Prediction", "Bank API Sync"],
+    website: "#",
+    github: "#"
+  },
+  {
+    title: "Nebula OS",
+    description: "A web-based operating system simulation focusing on minimalist UI and cloud integration.",
+    imageUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
+    tags: ["React", "TypeScript", "Vite"],
+    features: ["Window Management", "File System", "Theme Engine"],
+    website: "#",
+    github: "#"
+  },
+  {
+    title: "Echo Chat",
+    description: "End-to-end encrypted messaging platform designed for team collaboration and privacy.",
+    imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop",
+    tags: ["Socket.io", "Node.js", "Redis"],
+    features: ["E2E Encryption", "File Sharing", "Voice Notes"],
+    website: "#",
+    github: "#"
+  }
+];
+
+export const OtherGallery = [
+  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?q=80&w=1000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=1000&auto=format&fit=crop",
+];
+
+export const GamesData = [
+  {
+    id: "valorant",
+    title: "VALORANT",
+    category: "Tactical Shooter",
+    stats: { rank: "Ascendant 2", hours: "1,200+", main: "Jett / Reyna" },
+    image: "https://images.unsplash.com/photo-1624138784181-dc7f5b75e52e?q=80&w=2070&auto=format&fit=crop",
+    color: "#ff4655" 
+  },
+  {
+    id: "fifa",
+    title: "EA FC 25",
+    category: "Sports Simulation",
+    stats: { rank: "Div 1", club: "FC Barcelona", style: "Tiki Taka" },
+    image: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=1930&auto=format&fit=crop",
+    color: "#38c6f4"
+  },
+  {
+    id: "elden",
+    title: "ELDEN RING",
+    category: "Action RPG",
+    stats: { level: "713 Max", build: "Bleed Dex", ng: "NG+7" },
+    image: "https://images.unsplash.com/photo-1599326002078-436f561937ce?q=80&w=2001&auto=format&fit=crop",
+    color: "#e2c468"
+  },
+  {
+    id: "cyberpunk",
+    title: "CYBERPUNK 2077",
+    category: "Open World RPG",
+    stats: { path: "Street Kid", status: "100% Completion", build: "Netrunner" },
+    image: "https://images.unsplash.com/photo-1535378437327-10ce69e5d448?q=80&w=2012&auto=format&fit=crop",
+    color: "#fcee0a" 
+  }
+];
