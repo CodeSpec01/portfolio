@@ -96,15 +96,16 @@ export const navbarItems = [
     textColor: "#FFE380",
     links: [
       {
-        label: "More ",
-        href: "/others",
-        ariaLabel: "Other Projects",
-      },
-      {
         label: "Journey to the Website",
         href: "/journey",
         ariaLabel: "Journey to the Website",
       },
+      {
+        label: "More ",
+        href: "/others",
+        ariaLabel: "Other Projects",
+      },
+      
     ],
   }, {
     label: "Socials",
@@ -674,37 +675,31 @@ export const OtherGallery = [
   "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=1000&auto=format&fit=crop",
 ];
 
-export const GamesData = [
-  {
-    id: "valorant",
-    title: "VALORANT",
-    category: "Tactical Shooter",
-    stats: { rank: "Ascendant 2", hours: "1,200+", main: "Jett / Reyna" },
-    image: "https://images.unsplash.com/photo-1624138784181-dc7f5b75e52e?q=80&w=2070&auto=format&fit=crop",
-    color: "#ff4655" 
+export const GamesData = [ {
+    id: "spiderman",
+    title: "SPIDERMAN : REMASTERED",
+    image: "/games/spiderman.png",
+  },
+   {
+    id: "got",
+    title: "GHOST OF TSUSHIMA",
+    image: "/games/got.png",
   },
   {
-    id: "fifa",
-    title: "EA FC 25",
-    category: "Sports Simulation",
-    stats: { rank: "Div 1", club: "FC Barcelona", style: "Tiki Taka" },
-    image: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=1930&auto=format&fit=crop",
-    color: "#38c6f4"
+    id: "sekiro",
+    title: " SEKIRO: SHADOWS DIE Twice",
+    image: "/games/sekiro.png",
   },
   {
-    id: "elden",
-    title: "ELDEN RING",
-    category: "Action RPG",
-    stats: { level: "713 Max", build: "Bleed Dex", ng: "NG+7" },
-    image: "https://images.unsplash.com/photo-1599326002078-436f561937ce?q=80&w=2001&auto=format&fit=crop",
-    color: "#e2c468"
+    id: "rdr2",
+  title: "RED DEAD REDEMPTION 2",
+    image: "/games/rdr.pnnavbar",
   },
   {
-    id: "cyberpunk",
-    title: "CYBERPUNK 2077",
-    category: "Open World RPG",
-    stats: { path: "Street Kid", status: "100% Completion", build: "Netrunner" },
-    image: "https://images.unsplash.com/photo-1535378437327-10ce69e5d448?q=80&w=2012&auto=format&fit=crop",
-    color: "#fcee0a" 
-  }
+    id: "hogwarts",
+    title: "HOGWARTS LEGACY",
+    image: "/games/hogwartslegacy.png",
+  },
+
+  
 ];
