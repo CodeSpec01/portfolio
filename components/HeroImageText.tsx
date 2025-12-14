@@ -183,6 +183,7 @@ const HeroImageText = () => {
         ref={containerRef}
         className="fixed w-full h-dvh overflow-hidden flex flex-col items-center justify-end perspective-1000 transition-colors duration-1000"
       >
+        <div className={`absolute top-0 left-0 w-full h-screen z-0 bg-linear-to-b ${currentTheme.name == "DEFAULT" ? 'transparent' : currentTheme.primary} transition-all duration-1000 opacity-[0.2]`}></div>
 
         {/* Magic Wand Trigger */}
         <div ref={wandRef} className="w-fit absolute top-1/3 left-12 md:top-[12%] md:left-[30%] z-30 cursor-pointer will-change-transform" onClick={() => setIsSorting(true)}>
