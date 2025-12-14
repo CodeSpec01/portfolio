@@ -48,11 +48,6 @@ const PortfolioPage = () => {
 
       {/* CINEMATIC GAMING SECTION */}
       <GamingSection />
-
-      {/* FOOTER */}
-      <footer className="py-20 text-center text-slate-600 text-sm border-t border-white/5">
-        <p>© 2024 Design & Code. All rights reserved.</p>
-      </footer>
     </main>
   );
 };
@@ -234,98 +229,71 @@ const GallerySection = () => {
 };
 
 // --- C. GAMING SECTION (Cinematic Hover Reveal) ---
-// --- C. GAMING SECTION (Infinite Poster Marquee) ---
 const GamingSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // We duplicate the data to create a seamless infinite loop effect
-  const duplicatedGames = [...gamesData, ...gamesData];
-
-  useGSAP(() => {
-    const rows = gsap.utils.toArray(".marquee-row");
-    
-    rows.forEach((row: any, i) => {
-      // Alternating directions: Even rows move left, Odd rows move right
-      const direction = i % 2 === 0 ? -1 : 1;
-      
-      // Calculate duration based on number of items (slower for more items)
-      const duration = gamesData.length * 2.5; 
-
-      gsap.to(row, {
-        xPercent: direction * -50, // Move half the width (because we doubled data)
-        ease: "none",
-        duration: duration,
-        repeat: -1,
-        // Optional: Pause on hover logic can be added here
-      });
-    });
-  }, { scope: containerRef });
-
-  return (
-    <section ref={containerRef} className="py-24 bg-[#080808] overflow-hidden border-t border-white/5 relative z-10">
-      
-      {/* Section Header */}
-      <div className="px-6 md:px-12 mb-12 flex flex-col md:flex-row justify-between items-end max-w-7xl mx-auto">
-        <div>
-           <h2 className="text-xs font-mono text-orange-500 mb-4 tracking-[0.3em] uppercase">
-            // The Library
-          </h2>
-          <h3 className="text-4xl md:text-6xl font-serif font-bold text-white">
-            Played & <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">Conquered</span>
-          </h3>
+    const [activeGame, setActiveGame] = useState(0);
+  
+    return (
+      <section className="relative w-full h-screen bg-black overflow-hidden flex items-center z-10 border-t border-white/5">
+        
+        {/* DYNAMIC BACKGROUND */}
+        {gamesData.map((game, index) => (
+          <div
+            key={game.id}
+            className="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out"
+            style={{ opacity: activeGame === index ? 0.5 : 0 }}
+          >
+            <img src={game.image} alt={game.title} className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+          </div>
+        ))}
+  
+        {/* CONTENT LAYER */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          
+          {/* LEFT: TITLE LIST */}
+          <div className="space-y-6">
+            <h2 className="text-xs font-mono text-orange-500 mb-12 tracking-[0.3em] uppercase">
+              // My Gaming Library
+            </h2>
+            
+            <div className="flex flex-col items-start gap-4">
+              {gamesData.map((game, index) => (
+                <button
+                  key={game.id}
+                  onMouseEnter={() => setActiveGame(index)}
+                  className={`text-left text-4xl md:text-5xl font-bold uppercase transition-all duration-500 ease-out ${
+                    activeGame === index 
+                      ? "text-white translate-x-8" 
+                      : "text-transparent stroke-text hover:text-white/20"
+                  }`}
+                  style={{
+                    // Fallback for stroke text if not using standard tailwind plugin
+                    WebkitTextStroke: activeGame === index ? "0px" : "1px #333",
+                  }}
+                >
+                  {game.title}
+                </button>
+              ))}
+            </div>
+          </div>
+  
+          {/* RIGHT: STATS CARD */}
+          <div className="relative h-[300px] md:h-[400px] flex items-center justify-center md:justify-start">
+              {gamesData.map((game, index) => (
+                  <div 
+                      key={game.id}
+                      className={`absolute md:inset-[10vh] w-[50%] h-full border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl flex flex-col justify-center transition-all duration-500 transform ${
+                          activeGame === index 
+                          ? "opacity-100 translate-y-0 blur-0" 
+                          : "opacity-0 translate-y-12 blur-sm pointer-events-none"
+                      }`}
+                  >
+                      <img src={game.image} className="object-cover h-full rounded-xl" alt="img" />
+                  </div>
+              ))}
+          </div>
         </div>
-        <p className="text-slate-500 text-sm mt-4 md:mt-0 max-w-xs text-right">
-          A collection of worlds I've explored.
-        </p>
-      </div>
-
-      {/* MARQUEE ROW 1 (Moves Left) */}
-      <div className="flex w-full overflow-hidden mb-6 md:mb-8 mask-gradient">
-        <div className="marquee-row flex gap-4 md:gap-6 w-max pl-4 md:pl-6">
-          {duplicatedGames.map((game, index) => (
-            <GamePoster key={`${game.id}-row1-${index}`} game={game} />
-          ))}
-        </div>
-      </div>
-
-      {/* MARQUEE ROW 2 (Moves Right) */}
-      <div className="flex w-full overflow-hidden mask-gradient">
-        {/* We start this row at -50% translation via CSS usually, but GSAP handles the fromTo logic if we wanted. 
-            For simple looping, we just let GSAP handle the xPercent logic defined above. 
-            To reverse direction visually, we set the initial position in CSS or use fromTo. 
-            Here, the GSAP logic handles direction via the multiplier. */}
-        <div className="marquee-row flex gap-4 md:gap-6 w-max pl-4 md:pl-6">
-          {duplicatedGames.map((game, index) => (
-            <GamePoster key={`${game.id}-row2-${index}`} game={game} />
-          ))}
-        </div>
-      </div>
-
-      {/* Gradient Vignettes for smooth fade edges */}
-      <div className="absolute top-0 left-0 h-full w-12 md:w-32 bg-gradient-to-r from-[#080808] to-transparent z-20 pointer-events-none" />
-      <div className="absolute top-0 right-0 h-full w-12 md:w-32 bg-gradient-to-l from-[#080808] to-transparent z-20 pointer-events-none" />
-    </section>
-  );
-};
-
-// Helper Component for individual posters
-const GamePoster = ({ game }: { game: any }) => (
-  <div className="relative group w-[140px] md:w-[220px] aspect-[2/3] flex-shrink-0 rounded-xl overflow-hidden border border-white/10 bg-white/5 cursor-pointer">
-    <img 
-      src={game.image} 
-      alt={game.title} 
-      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0" 
-      loading="lazy"
-    />
-    
-    {/* Hover Overlay */}
-    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center">
-      <h4 className="text-white font-bold text-sm md:text-lg leading-tight mb-2">
-        {game.title}
-      </h4>
-      <span className="text-[10px] uppercase tracking-widest text-orange-400">
-        {game.category || "RPG"}
-      </span>
-    </div>
-  </div>
-);
+      </section>
+    );
+  };
