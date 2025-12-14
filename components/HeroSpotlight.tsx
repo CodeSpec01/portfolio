@@ -126,7 +126,7 @@ const HeroSpotlight = () => {
       </div>
 
       {/* 3. CYBER GRID OVERLAY */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] z-10" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[40px_40px] mask-[radial-gradient(ellipse_at_center,transparent_20%,black)] z-10" />
 
       {/* 4. SNOW CANVAS */}
       <canvas ref={canvasRef} className="absolute inset-0 z-20 pointer-events-none" />
