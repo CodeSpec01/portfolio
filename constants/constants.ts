@@ -105,7 +105,7 @@ export const navbarItems = [
         href: "/others",
         ariaLabel: "Other Projects",
       },
-      
+
     ],
   }, {
     label: "Socials",
@@ -192,71 +192,71 @@ export const bentoElement = [
 
 export const projectData = [
   {
-    title: "AWPS",
+    title: "SpaceCon'25",
     description:
-      "loremipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com",
-    tags: ["next.js", "TypeScript", "MongoDB"],
-    imageUrl: "/Projects/awps.png",
+      "Developed and deployed the official SpaceCon website, serving as the central hub for event showcases, registrations, schedules, and contact information. This real-world product handles live traffic, ensuring smooth user experience, reliability, and accessibility. Key focus areas included performance optimization, traffic management, custom animations, and seamless UI/UX.",
+    tags: ["ReactJs", "React Router DOM", "TypeScript", "MagicUI", "Framer Motion", "TailwindCSS"],
+    imageUrl: "/projects/spacecon.png",
     color: "bg-indigo-900",
-    website: "#",
-    github: "#",
+    website: "https://spacecon.tech/",
+    github: "https://github.com/CodeSpec01/space-con/",
     // NEW FIELDS
     highlightColor: "#818cf8", // Indigo-400
     features: [
-      "Real-time data synchronization with MongoDB.",
-      "Secure user authentication and role-based access.",
-      "Responsive dashboard design for mobile and desktop."
+      "Clean, modern and minimal User Interface and User Experience",
+      "Engineered the digital hub for the entire event, integrating event showcases into a unified interface.",
+      "Implemented aggressive performance optimizations and traffic management."
     ],
   },
   {
-    title: "AWPS",
+    title: "Culinary Corner",
     description:
-      "loremipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com",
-    tags: ["next.js", "TypeScript", "MongoDB"],
-    imageUrl: "/Projects/PioneersSheets.png",
+      "Culinary Corner is a full-stack web platform designed for effortless dining experiences. It features a custom authentication system, Cloudinary-based profile uploads, online table reservations, and a food ordering system. Security is enhanced with two-factor authentication, JWT, and bcrypt. Built with TypeScript and MongoDB, it ensures a smooth user experience with ShadCN-powered light/dark themes. This project strengthened my skills in advanced concepts like MongoDB aggregation pipelines and full-stack development.",
+    tags: ["NextJs", "TypeScript", "MongoDB", "Cloudinary", "JWT", "Bcrypt", "ShadCN"],
+    imageUrl: "/projects/culinary-corner.png",
     color: "bg-red-900",
-    website: "#",
-    github: "#",
+    website: "https://culinarycorner.vercel.app/",
+    github: "https://github.com/CodeSpec01/culinarycorner/",
     // NEW FIELDS
     highlightColor: "#f87171", // Red-400
     features: [
-      "Automated spreadsheet parsing and data extraction.",
-      "High-performance rendering for large datasets.",
-      "Custom formula support with TypeScript logic."
+      "Engineered a comprehensive full-stack platform that seamlessly integrates online table reservations and food ordering workflows into a single cohesive system.",
+      "Built a robust custom authentication layer featuring Two-Factor Authentication (2FA), JWT session management, and bcrypt hashing to ensure data integrity and user protection.",
+      "Leveraged advanced MongoDB aggregation pipelines to handle intricate data queries, optimizing the performance of the ordering and reservation subsystems."
     ],
   },
   {
-    title: "AWPS",
+    title: "Streak Flow",
     description:
-      "loremipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com",
-    tags: ["next.js", "TypeScript", "MongoDB"],
-    imageUrl: "/Projects/spotify.png",
+      "A daily habit tracking and visualization platform built with Next.js. While automated tools provided the initial scaffolding, the project's core value came from the rigorous engineering required to stabilize it. I took a generated prototype and refactored the entire data layer to fix critical inefficiencies—proving that while tools can build code, only a human architect can build a system that scales.",
+    tags: ["Next.js", "TypeScript", "MongoDB", "Nodemailer", "JWT", "Bcrypt", "TailwindCSS"],
+    imageUrl: "/projects/streak-flow.png",
     color: "bg-green-900",
-    website: "#",
-    github: "#",
+    website: "https://streakflow-beta.vercel.app/",
+    github: "https://github.com/CodeSpec01/streakflow/",
     // NEW FIELDS
     highlightColor: "#4ade80", // Green-400
     features: [
-      "Seamless audio streaming integration.",
-      "Smart playlist generation using algorithmic recommendations.",
-      "Background playback support with persistent state."
+      "Leveraged accelerated development tools to generate an initial full-stack prototype, significantly reducing the boilerplate phase to focus on core logic implementation.",
+      "Identified and resolved fundamental scalability flaws in the initial generated codebase, transforming a fragile \"house of cards\" data structure into a robust, normalized schema.",
+      "Conducted deep-dive debugging sessions to eliminate inefficient data handling patterns, optimizing database queries to ensure the system serves the heatmap visualization without latency."
     ],
   },
   {
-    title: "AWPS",
+    title: "Portfolio",
     description:
-      "loremipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea com",
-    tags: ["next.js", "TypeScript", "MongoDB"],
-    imageUrl: "/Projects/spacecon.jpg",
+      "The second iteration of my digital home, re-engineered from the ground up to reflect the 'codespec' identity. Moving beyond a static résumé, v2.0 introduces a dual-timeline architecture that separates professional rigor from the personal builder's journey, serving as a live demonstration of my full-stack frontend capabilities.",
+    tags: ["Next.js", "TypeScript", "GSAP", "Framer Motion", "Nodemailer", "JWT", "TailwindCSS"],
+    imageUrl: "/projects/portfolio.png",
     color: "bg-yellow-900",
-    website: "#",
-    github: "#",
+    website: "https://aviralgaur.vercel.app/",
+    github: "https://github.com/CodeSpec01/portfolio/",
     // NEW FIELDS
     highlightColor: "#facc15", // Yellow-400
     features: [
-      "Immersive 3D space visualization using Three.js.",
-      "Interactive timeline of space exploration history.",
-      "Educational quizzes with instant feedback loops."
+      "Engineered a bespoke content strategy featuring parallel data streams—\"The Build Log\" for professional credibility and \"Behind the Code\" for personal storytelling—to cater to distinct audience segments (recruiters vs. developers).",
+      "Rebuilt the frontend using a modular Next.js architecture, prioritizing reusable components and type safety to ensure the site scales as new projects and timeline events are added.",
+      "Optimized the user experience for speed and accessibility, serving as a live production environment that demonstrates proficiency in modern React patterns and responsive design principles."
     ],
   },
 ];
@@ -675,31 +675,31 @@ export const OtherGallery = [
   "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=1000&auto=format&fit=crop",
 ];
 
-export const GamesData = [ {
-    id: "spiderman",
-    title: "SPIDERMAN : REMASTERED",
-    image: "/games/spiderman.png",
-  },
-   {
-    id: "got",
-    title: "GHOST OF TSUSHIMA",
-    image: "/games/got.png",
-  },
-  {
-    id: "sekiro",
-    title: " SEKIRO: SHADOWS DIE Twice",
-    image: "/games/sekiro.png",
-  },
-  {
-    id: "rdr2",
+export const GamesData = [{
+  id: "spiderman",
+  title: "SPIDERMAN : REMASTERED",
+  image: "/games/spiderman.png",
+},
+{
+  id: "got",
+  title: "GHOST OF TSUSHIMA",
+  image: "/games/got.png",
+},
+{
+  id: "sekiro",
+  title: " SEKIRO: SHADOWS DIE Twice",
+  image: "/games/sekiro.png",
+},
+{
+  id: "rdr2",
   title: "RED DEAD REDEMPTION 2",
-    image: "/games/rdr.pnnavbar",
-  },
-  {
-    id: "hogwarts",
-    title: "HOGWARTS LEGACY",
-    image: "/games/hogwartslegacy.png",
-  },
+  image: "/games/rdr.png",
+},
+{
+  id: "hogwarts",
+  title: "HOGWARTS LEGACY",
+  image: "/games/hogwartslegacy.png",
+},
 
-  
+
 ];

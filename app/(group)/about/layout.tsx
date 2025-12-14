@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = aboutMetadata;
 
-export default function Layout({
+export default function CLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
