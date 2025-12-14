@@ -147,7 +147,7 @@ export function TimelineWebsite() {
   ];
   return (
     <div className="relative w-full overflow-clip">
-      <TimelineUI data={data} />
+      <TimelineUI title="Behind the Code" description="Documenting the process. An inside look at the logic, the design choices, and the inevitable challenges encountered while architecting my own digital space." data={data} />
     </div>
   );
 }

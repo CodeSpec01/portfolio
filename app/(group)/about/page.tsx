@@ -68,7 +68,7 @@ const AboutPage = () => {
         <section className="reveal-section w-full flex flex-col items-center justify-center px-4">
           <div className="relative mb-12 text-center">
             {/* Decorative Label */}
-            <div className="inline-block px-3 py-1 mb-4 text-xs font-medium tracking-widest text-yellow-400 uppercase border border-yellow-400/20 rounded-full bg-yellow-400/5">
+            <div className={"inline-block px-3 py-1 mb-4 text-xs font-medium tracking-widest text-yellow-400 uppercase border border-yellow-400/20 rounded-full bg-yellow-400/5"}>
               Arsenal
             </div>
 

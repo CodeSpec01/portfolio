@@ -167,7 +167,7 @@ export const TooltipAbout = ({
               stiffness: 200,
               damping: 20,
             }}
-            className="pointer-events-none absolute z-50 min-w-60 overflow-hidden rounded-md border border-transparent bg-purple-600 shadow-sm ring-1 shadow-black/5 ring-black/5 dark:bg-purple-700 dark:shadow-white/10 dark:ring-white/5"
+            className="pointer-events-none absolute z-50 min-w-60 overflow-hidden rounded-md border border-transparent bg-black shadow-sm ring-1 shadow-white/10 ring-white/5"
             style={{
               top: position.y,
               left: position.x,
@@ -175,7 +175,7 @@ export const TooltipAbout = ({
           >
             <div
               ref={contentRef}
-              className="p-2 text-sm text-[#FFE820] md:p-4"
+              className="p-2 text-sm text-white md:p-4"
             >
               {content}
             </div>

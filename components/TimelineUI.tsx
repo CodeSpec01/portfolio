@@ -11,7 +11,7 @@ interface TimelineEntry {
   content: React.ReactNode;
 }
 
-export const TimelineUI = ({ data }: { data: TimelineEntry[] }) => {
+export const TimelineUI = ({ title, description, data }: { title: string, description: string, data: TimelineEntry[] }) => {
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
@@ -37,11 +37,11 @@ export const TimelineUI = ({ data }: { data: TimelineEntry[] }) => {
       ref={containerRef}
     >
       <div className="pt-20 px-4 md:px-8 lg:px-10">
-        <h1 className="text-5xl md:text-7xl font-bold pb-4 max-w-4xl bg-linear-to-b from-white via-slate-200 to-slate-600 bg-clip-text text-transparent">
-          Changelog from my journey
+        <h1 className={`text-5xl md:text-7xl font-bold pb-4 max-w-4xl bg-linear-to-b from-white via-slate-200 to-slate-600 bg-clip-text text-transparent font-serif`}>
+          {title}
         </h1>
-        <p className="text-[#FFE380] font-bold text-md md:text-lg max-w-sm">
-          Growing through challenges, building through curiosity, and moving forward with purpose.
+        <p className="text-[#FFE380] font-bold text-md md:text-lg max-w-xl">
+          {description}
         </p>
       </div>
 

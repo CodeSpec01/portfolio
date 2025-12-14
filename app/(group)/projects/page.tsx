@@ -49,7 +49,7 @@ const ProjectsPage = () => {
 
       {/* --- CONTENT --- */}
       <div className="relative z-10 w-full px-6 md:px-12 pt-24 pb-12">
-        
+
         {/* Header Section */}
         <header className="mb-20 pl-4 md:pl-10 border-l-2 border-white/10">
           <div className="">
@@ -57,19 +57,19 @@ const ProjectsPage = () => {
               // Selected Archives
             </h2>
           </div>
-          
+
           <div className="">
             <h1 className="hero-text-reveal text-6xl md:text-8xl lg:text-[7vw] font-bold leading-[0.9] tracking-tighter text-white">
               Curated <br className="md:hidden" />
               {/* Aurora Text Wrapper */}
               <span className="inline-block relative z-10">
-                 <AuroraText colors={["#FFD700", "#A855F7", "#FBBF24"]}>
-                   Work
-                 </AuroraText>
+                <AuroraText colors={["#FFD700", "#A855F7", "#FBBF24"]}>
+                  Work
+                </AuroraText>
               </span>
             </h1>
           </div>
-          
+
           <div className="mt-4">
             <p className="hero-text-reveal text-slate-500 max-w-xl text-lg md:text-xl leading-relaxed">
               A collection of technical experiments, full-stack applications, and design systems.
@@ -79,10 +79,10 @@ const ProjectsPage = () => {
 
         {/* Project Scroll Component */}
         <section className="project-section relative w-full">
-           {/* Decorative Top Line */}
-           <div className="w-full h-px bg-linear-to-r from-transparent via-white/10 to-transparent mb-12"></div>
-           
-           <ProjectScroll />
+          {/* Decorative Top Line */}
+          <div className="w-full h-px bg-linear-to-r from-transparent via-white/10 to-transparent mb-12"></div>
+
+          <ProjectScroll />
         </section>
       </div>
     </main>
