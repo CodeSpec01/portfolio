@@ -645,39 +645,36 @@ export const SERVICES = [
 
 export const OtherProjectData = [
   {
-    title: "FinTrack AI",
-    description: "An intelligent personal finance tracker that predicts spending habits using machine learning models.",
-    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
-    tags: ["Next.js", "Python", "TensorFlow"],
-    features: ["Real-time Dashboard", "Expense Prediction", "Bank API Sync"],
-    website: "#",
-    github: "#"
+    title: "Verilog Implementation of FIR Filter",
+    description: "An end-to-end signal processing demo. Python handles the math (signal generation, quantization, analysis), while Verilog handles the heavy lifting (16-tap FIR filtering).",
+    imageUrl: "/others/fir.png",
+    tags: ["Verilog", "Python", "Signal Processing", "Digital Filters"],
+    features: ["16-bit signed fixed-point coefficients (1 sign + 15 fractional bits)", "Inputs normalized to (-1,1) and stored similarly", "Final output as a 36-bit signed number (1 sign, 5 integer, 30 fractional bits)"],
+    github: "https://github.com/CodeSpec01/fir-filter-verilog"
   },
   {
-    title: "Nebula OS",
-    description: "A web-based operating system simulation focusing on minimalist UI and cloud integration.",
-    imageUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
-    tags: ["React", "TypeScript", "Vite"],
-    features: ["Window Management", "File System", "Theme Engine"],
-    website: "#",
-    github: "#"
+    title: "Texas Instruments BYTE Mentee",
+    description: "The BYTE program at Texas Instruments offers a structured 6-week workshop focusing on Linear Networks, including hands-on projects and engaging sessions with technical leaders.",
+    imageUrl: "/others/byte.png",
+    tags: ["Texas Instruments", "Analog Electronics", "Simulation", "Linear Networks"],
+    features: ["Developed a deep, intuitive understanding of analog system dynamics, moving beyond rote formulas to visualize how poles, zeros, and buffers dictate real-world circuit behavior.", "Utilized the QUCS simulator to model and analyze complex circuits, observing real-time responses to gain a practical grasp of transient and frequency domain characteristics.", "Mastered foundational concepts ranging from R-C networks and Fourier transforms to Diodes and Op-Amps, bridging the gap between mathematical theory and physical implementation."],
   },
   {
-    title: "Echo Chat",
-    description: "End-to-end encrypted messaging platform designed for team collaboration and privacy.",
-    imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop",
-    tags: ["Socket.io", "Node.js", "Redis"],
-    features: ["E2E Encryption", "File Sharing", "Voice Notes"],
-    website: "#",
-    github: "#"
+    title: "Info Matrix",
+    description: "InfoMatrix is a Wi-Fi-enabled LED matrix display built using the ESP8266. It allows you to display custom messages, colors, and temperatures through a web interface hosted directly on the microcontroller.",
+    imageUrl: "/others/infomatrix.png",
+    tags: ["ESP8266", "Arduino", "IoT", "Embedded Systems", "Microcontroller"],
+    features: ["Control text, scroll speed, color, and modes (scroll, static, loop) from a neat web interface", "Fetch and show the current temperature on demand from OpenWeatherMap", "Save your API key and city using SPIFFS, so you don’t need to re-enter every time", "Connect effortlessly with WiFiManager and access via infomatrix.local thanks to mDNS"],
+    github: "https://github.com/CodeSpec01/infomatrix"
   }
 ];
 
 export const OtherGallery = [
-  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=1000&auto=format&fit=crop",
+  "/others/gallery-1.png",
+  "/others/gallery-2.png",
+  "/others/gallery-3.png",
+  "/others/gallery-4.png",
+  "/others/gallery-5.png",
 ];
 
 export const GamesData = [{
