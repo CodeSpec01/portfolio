@@ -17,6 +17,7 @@ export const LeetCodeLink = "https://leetcode.com/codespec";
 export const GithubLink = "https://github.com/codespec01";
 export const LinkedInLink = "https://www.linkedin.com/in/aviral-gaur-423b9b1b7/";
 export const GmailLink = "mailto:online.codespec@gmail.com";
+export const GithubPortfolioLink = "https://github.com/codespec01/portfolio"
 
 
 // Metadata for dynamic titles and descriptions
@@ -468,6 +469,10 @@ export const BACKENDSKILLS = [
   {
     Icon: FaUserCheck,
     label: "Authentication",
+  },
+  {
+    Icon: SiGmail,
+    label: "Nodemailer",
   },
   {
     Icon: AiOutlineApi,

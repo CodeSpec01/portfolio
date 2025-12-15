@@ -3,9 +3,14 @@ import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaGithub, FaBug } from "react-icons/fa";
-import { SiTypescript, SiTailwindcss, SiNextdotjs } from "react-icons/si";
+import { SiTypescript, SiTailwindcss, SiNextdotjs, SiJsonwebtokens, SiGmail } from "react-icons/si";
 import { TimelineWebsite } from "./TimelineWebsite";
 import { AuroraText } from "./AuroraText";
+import { BsUiRadiosGrid } from "react-icons/bs";
+import { DiAtom } from "react-icons/di";
+import { CgFramer } from "react-icons/cg";
+import Link from "next/link";
+import { GithubPortfolioLink } from "@/constants/constants";
 
 // Register GSAP
 gsap.registerPlugin(ScrollTrigger);
@@ -42,14 +47,34 @@ const TECH_STACK: TechItem[] = [
   },
   {
     name: "GSAP",
-    icon: <FaBug />,
-    reason: " Cinematic, timeline-based choreography.",
+    icon: <BsUiRadiosGrid />,
+    reason: "Cinematic, timeline-based choreography.",
+  },
+  {
+    name: "Nodemailer",
+    icon: <SiGmail />,
+    reason: "Email sending made easy.",
+  },
+  {
+    name: "Framer Motion",
+    icon: <CgFramer />,
+    reason: "Declarative animations, fluid interactions.",
+  },
+  {
+    name: "JWT",
+    icon: <SiJsonwebtokens />,
+    reason: "JSON Web Tokens for secure authentication.",
+  },
+  {
+    name: "ReactBits UI",
+    icon: <DiAtom />,
+    reason: "Custom component library for consistent UI/UX.",
   },
 ];
 
 const TEAM: TeamMember[] = [
-  { name: "Alex Dev", role: "Full Stack Arch", image: "/home/aviral.png" },
-  { name: "Sam Design", role: "UI/UX Lead", image: "/home/aviral.png" },
+  { name: "Aviral Gaur", role: "Full Stack Arch", image: "/home/aviral.png" },
+  { name: "Manav Jaiswal", role: "Full Stack Arch", image: "/home/manav.png" },
 ];
 
 // --- Sub-Component: Spotlight Card (The "Cool" Hover Effect) ---
@@ -210,12 +235,12 @@ const JourneyPage: React.FC = () => {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-110 transition-all duration-500 ease-out"
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-focus:grayscale-0 group-active:grayscale-0 scale-100 group-hover:scale-110 transition-all duration-500 ease-out"
                   />
                 </div>
 
                 <div className="mt-6 space-y-1">
-                  <h3 className="text-xl font-bold text-white group-hover:text-yellow-300 transition-colors">{member.name}</h3>
+                  <h3 className="text-xl font-bold text-white group-hover:text-yellow-300 group-focus:text-yellow-300 group-active:text-yellow-300 transition-colors">{member.name}</h3>
                   <p className="text-purple-400 text-sm font-medium tracking-wide uppercase">{member.role}</p>
                 </div>
               </div>
@@ -225,17 +250,19 @@ const JourneyPage: React.FC = () => {
       </section>
 
       {/* --- FOOTER CTA --- */}
-      <footer className="relative z-10 py-16 text-center overflow-hidden">
+      <footer className="relative z-10 pb-16 text-center overflow-hidden">
         {/* Footer Glow */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-linear-to-b from-transparent to-bg-yellow-400/10 blur-[100px] rounded-full pointer-events-none" />
 
         <p className="text-slate-500 mb-8 font-mono text-sm relative z-20">Looking for the source?</p>
 
-        <button className="group relative z-20 px-8 py-3 rounded-full bg-slate-900 border border-slate-800 text-white font-bold hover:border-yellow-400/50 transition-all overflow-hidden flex items-center gap-3 mx-auto">
+        <div className="w-fit group relative z-20 rounded-full bg-slate-900 border border-slate-800 text-white font-bold hover:border-yellow-400/50 transition-all overflow-hidden mx-auto">
           <div className="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-yellow-400/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-          <FaGithub className="text-xl" />
-          <span className="group-hover:text-yellow-300 transition-colors">View Source on GitHub</span>
-        </button>
+          <a href={GithubPortfolioLink} className="w-full px-8 py-3 flex items-center gap-3 cursor-target">
+            <FaGithub className="text-xl" />
+            <span className="group-hover:text-yellow-300 transition-colors">View Source on GitHub</span>
+          </a>
+        </div>
       </footer>
     </div>
   );
