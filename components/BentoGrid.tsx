@@ -2,7 +2,6 @@
 
 import React, { useRef } from 'react';
 import { motion, useMotionTemplate, useMotionValue, useSpring } from 'framer-motion';
-import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 // --- Icons ---
@@ -21,11 +20,6 @@ import { HiServer } from 'react-icons/hi';
 import { FaDatabase, FaLaptopCode } from 'react-icons/fa';
 import { FaGears } from 'react-icons/fa6';
 import { IoIosCloudDone } from 'react-icons/io';
-
-// --- Utility ---
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
 
 // --- Data: Your Skill Arsenal ---
 const TECH_STACK = [
@@ -64,10 +58,7 @@ const CardSpotlight = ({ children, className = "" }: { children: React.ReactNode
 
   return (
     <div
-      className={cn(
-        "group/spotlight relative border border-white/10 bg-neutral-900/50 overflow-hidden rounded-3xl backdrop-blur-md",
-        className
-      )}
+      className={`group/spotlight relative border border-white/10 bg-neutral-900/50 overflow-hidden rounded-3xl backdrop-blur-md ${className}`}
       onMouseMove={handleMouseMove}
     >
       <motion.div
@@ -114,7 +105,7 @@ const TiltCard = ({ children, className }: { children: React.ReactNode; classNam
         rotateX: useMotionTemplate`calc(${mouseY} * -1deg)`,
         transformStyle: "preserve-3d",
       }}
-      className={cn("relative h-full w-full rounded-3xl transition-all duration-200 ease-out will-change-transform", className)}
+      className={`relative h-full w-full rounded-3xl transition-all duration-200 ease-out will-change-transform ${className}`}
     >
       {children}
     </motion.div>

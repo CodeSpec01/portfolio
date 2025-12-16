@@ -1,6 +1,7 @@
 {
   "name": "portfolio",
-  "version": "0.1.0",
+  "version": "2.0.1",
+  "description": "A portfolio website built with Next.js and Tailwind CSS.",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -11,7 +12,6 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@tabler/icons-react": "^3.35.0",
-    "clsx": "^2.1.1",
     "gsap": "^3.14.1",
     "jose": "^6.1.3",
     "motion": "^12.23.25",
