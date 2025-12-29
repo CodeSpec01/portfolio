@@ -4,46 +4,113 @@ import { useEffect, useRef, useState, useMemo, useCallback, memo } from "react";
 import gsap from "gsap";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { FaHatWizard } from "react-icons/fa";
+import { MdConnectWithoutContact } from "react-icons/md";
+import { BsArrowRight } from "react-icons/bs";
 import RotatingText from "./Rotatingtext";
 import { emblemaOne } from "@/app/layout";
 import { Modal, ModalBody, ModalTrigger } from "./AnimatedModal";
 import ContactModal from "./ContactModal";
-import { rotatingTexts, SORTING_SCENARIOS, THEMES, HouseTheme, ARTIFACTS_DATA } from "@/constants/constants";
+import {
+  rotatingTexts,
+  SORTING_SCENARIOS,
+  THEMES,
+  HouseTheme,
+  ARTIFACTS_DATA,
+} from "@/constants/constants";
 
-import { FaHatWizard } from "react-icons/fa";
-import { MdConnectWithoutContact } from "react-icons/md";
-import { BsArrowRight } from "react-icons/bs";
+// ============================================================================
+// Helper Components
+// ============================================================================
 
-// --- HELPERS ---
-const ArtifactPopover = memo(({ children, text, className }: { children: React.ReactNode, text: string, className?: string }) => {
-  return (
-    <div className={`group relative flex justify-center ${className}`}>
-      {children}
-      <div className="absolute bottom-full mb-3 md:hidden md:group-hover:block whitespace-nowrap z-50 pointer-events-none">
-        <div className="bg-black/90 text-white text-xs font-mono py-1.5 px-3 rounded-md border border-white/10 shadow-sm">
-          {text}
+interface ArtifactPopoverProps {
+  children: React.ReactNode;
+  text: string;
+  className?: string;
+}
+
+/**
+ * ArtifactPopover Component
+ * 
+ * Wrapper for artifact icons that shows a tooltip on hover.
+ */
+const ArtifactPopover = memo<ArtifactPopoverProps>(
+  ({ children, text, className }) => {
+    return (
+      <div className={`group relative flex justify-center ${className}`}>
+        {children}
+        <div className="absolute bottom-full mb-3 md:hidden md:group-hover:block whitespace-nowrap z-50 pointer-events-none">
+          <div className="bg-black/90 text-white text-xs font-mono py-1.5 px-3 rounded-md border border-white/10 shadow-sm">
+            {text}
+          </div>
         </div>
       </div>
-    </div>
-  );
-});
-ArtifactPopover.displayName = 'ArtifactPopover';
+    );
+  }
+);
+ArtifactPopover.displayName = "ArtifactPopover";
 
-const MagicWandSVG = memo(({ className }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <path d="M4.5 19.5L18 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="opacity-90" />
-    <path d="M3 21L6 18" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="opacity-100" />
-    <path d="M19 2L20 4L22 5L20 6L19 8L18 6L16 5L18 4L19 2Z" fill="currentColor" className="animate-pulse" />
+interface MagicWandSVGProps {
+  className?: string;
+}
+
+/**
+ * MagicWandSVG Component
+ * 
+ * Animated magic wand icon with pulsing star.
+ */
+const MagicWandSVG = memo<MagicWandSVGProps>(({ className }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <path
+      d="M4.5 19.5L18 6"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      className="opacity-90"
+    />
+    <path
+      d="M3 21L6 18"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+      className="opacity-100"
+    />
+    <path
+      d="M19 2L20 4L22 5L20 6L19 8L18 6L16 5L18 4L19 2Z"
+      fill="currentColor"
+      className="animate-pulse"
+    />
   </svg>
 ));
-MagicWandSVG.displayName = 'MagicWandSVG';
+MagicWandSVG.displayName = "MagicWandSVG";
 
-const SortingOverlay = memo(({ onClose }: { onClose: (house: string) => void }) => {
+interface SortingOverlayProps {
+  onClose: (house: string) => void;
+}
+
+/**
+ * SortingOverlay Component
+ * 
+ * Full-screen overlay that displays a sorting hat animation
+ * with themed text scenarios. Used for the house selection feature.
+ */
+const SortingOverlay = memo<SortingOverlayProps>(({ onClose }) => {
   const hatRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
   const [currentText, setCurrentText] = useState("");
 
-  const scenario = useMemo(() => SORTING_SCENARIOS[Math.floor(Math.random() * SORTING_SCENARIOS.length)], []);
+  const scenario = useMemo(
+    () =>
+      SORTING_SCENARIOS[
+        Math.floor(Math.random() * SORTING_SCENARIOS.length)
+      ],
+    []
+  );
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -90,10 +157,23 @@ const SortingOverlay = memo(({ onClose }: { onClose: (house: string) => void }) 
     </motion.div>
   );
 });
-SortingOverlay.displayName = 'SortingOverlay';
+SortingOverlay.displayName = "SortingOverlay";
 
+// ============================================================================
+// Main Component
+// ============================================================================
 
-const HeroImageText = () => {
+/**
+ * HeroImageText Component
+ * 
+ * Main hero section featuring:
+ * - Large animated name text
+ * - Floating artifact icons
+ * - Magic wand for house sorting
+ * - Hero image with gradient overlays
+ * - Contact button and status indicator
+ */
+const HeroImageText: React.FC = () => {
   const [currentTheme, setCurrentTheme] = useState<HouseTheme>(THEMES.DEFAULT);
   const [isSorting, setIsSorting] = useState(false);
 

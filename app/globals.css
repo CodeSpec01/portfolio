@@ -164,6 +164,22 @@ button, a{
   animation-delay: 0.2s;
 }
 
+/* Shimmer effect for loading skeleton */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-15deg);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s ease-in-out infinite;
+  width: 50%;
+  height: 100%;
+}
+
 /* globals.css */
 
 /* 1. The Noise Background Texture */

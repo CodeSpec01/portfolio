@@ -1,121 +1,149 @@
 "use client";
-import { AnimatePresence, motion } from "motion/react";
+
 import React, {
-    ReactNode,
-    createContext,
-    useContext,
-    useEffect,
-    useRef,
-    useState,
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
 } from "react";
+import { AnimatePresence, motion } from "motion/react";
+
+// ============================================================================
+// Types & Context
+// ============================================================================
 
 interface ModalContextType {
-    open: boolean;
-    setOpen: (open: boolean) => void;
+  open: boolean;
+  setOpen: (open: boolean) => void;
 }
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
-export const ModalProvider = ({ children }: { children: ReactNode }) => {
-    const [open, setOpen] = useState(false);
+// ============================================================================
+// Modal Provider & Hook
+// ============================================================================
 
-    return (
-        <ModalContext.Provider value={{ open, setOpen }}>
-            {children}
-        </ModalContext.Provider>
-    );
+const ModalProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <ModalContext.Provider value={{ open, setOpen }}>
+      {children}
+    </ModalContext.Provider>
+  );
 };
 
-export const useModal = () => {
-    const context = useContext(ModalContext);
-    if (!context) {
-        throw new Error("useModal must be used within a ModalProvider");
-    }
-    return context;
+export const useModal = (): ModalContextType => {
+  const context = useContext(ModalContext);
+  if (!context) {
+    throw new Error("useModal must be used within a ModalProvider");
+  }
+  return context;
 };
 
-export function Modal({ children }: { children: ReactNode }) {
-    return <ModalProvider>{children}</ModalProvider>;
+export const Modal: React.FC<{ children: ReactNode }> = ({ children }) => {
+  return <ModalProvider>{children}</ModalProvider>;
+};
+
+// ============================================================================
+// Modal Components
+// ============================================================================
+
+interface ModalTriggerProps {
+  children: ReactNode;
+  className?: string;
+  ariaLabel?: string;
+  style?: React.CSSProperties;
+  keyboardShortcut?: boolean;
 }
 
-export const ModalTrigger = ({
-    children,
-    className,
-    ariaLabel,
-    style,
-    keyboardShortcut,
-}: {
-    children: ReactNode;
-    className?: string;
-    ariaLabel?: string;
-    style?: React.CSSProperties;
-    keyboardShortcut?: boolean;
+/**
+ * ModalTrigger Component
+ * 
+ * Button that opens the modal. Supports keyboard shortcuts (Cmd/Ctrl + K).
+ */
+export const ModalTrigger: React.FC<ModalTriggerProps> = ({
+  children,
+  className,
+  ariaLabel,
+  style,
+  keyboardShortcut,
 }) => {
-    const { setOpen } = useModal();
+  const { setOpen } = useModal();
 
-    // Adding ctrl/cmd + K shortcut to open the modal
-    useEffect(() => {
-        const handleKeyDown = (event: KeyboardEvent) => {
-            if (keyboardShortcut && (event.metaKey || event.ctrlKey) && event.key === 'k') {
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Open modal with Cmd/Ctrl + K
+      if (
+        keyboardShortcut &&
+        (event.metaKey || event.ctrlKey) &&
+        event.key === "k"
+      ) {
+        event.preventDefault();
+        setOpen(true);
+      }
 
-                event.preventDefault();
-                setOpen(true);
-            }
+      // Close modal with Escape
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setOpen(false);
+      }
+    };
 
-            if (event.key == 'Escape') {
+    document.addEventListener("keydown", handleKeyDown);
 
-                event.preventDefault();
-                setOpen(false);
-            }
-        };
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [keyboardShortcut, setOpen]);
 
-        // Attach the listener
-        document.addEventListener('keydown', handleKeyDown);
-
-        // Cleanup the listener when component unmounts
-        return () => {
-            document.removeEventListener('keydown', handleKeyDown);
-        };
-    }, []);
-
-    return (
-        <button
-            onClick={() => setOpen(true)}
-            type="button"
-            className={className}
-            style={style}
-            aria-label={ariaLabel}
-        >
-            {children}
-        </button>
-    );
+  return (
+    <button
+      onClick={() => setOpen(true)}
+      type="button"
+      className={className}
+      style={style}
+      aria-label={ariaLabel}
+    >
+      {children}
+    </button>
+  );
 };
 
-export const ModalBody = ({
-    children,
-    className,
-    style,
-    customClassName,
-}: {
-    children: ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
-    customClassName?: string;
+interface ModalBodyProps {
+  children: ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+  customClassName?: string;
+}
+
+/**
+ * ModalBody Component
+ * 
+ * Container for modal content with animations and outside click detection.
+ */
+export const ModalBody: React.FC<ModalBodyProps> = ({
+  children,
+  className,
+  style,
+  customClassName,
 }) => {
-    const { open } = useModal();
+  const { open, setOpen } = useModal();
+  const modalRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        if (open) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "auto";
-        }
-    }, [open]);
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [open]);
 
-    const modalRef = useRef<HTMLDivElement>(null);
-    const { setOpen } = useModal();
-    // @ts-ignore
-    useOutsideClick(modalRef, () => setOpen(false));
+  // Close modal on outside click
+  useOutsideClick(modalRef, () => setOpen(false));
 
     return (
         <AnimatePresence>
@@ -168,101 +196,115 @@ export const ModalBody = ({
     );
 };
 
-export const ModalContent = ({
-    children,
-    className,
-}: {
-    children: ReactNode;
-    className?: string;
+interface ModalContentProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export const ModalContent: React.FC<ModalContentProps> = ({
+  children,
+  className,
 }) => {
-    return (
-        <div className={`flex flex-col flex-1 p-8 md:p-10 ${className}`}>
-            {children}
-        </div>
-    );
+  return (
+    <div className={`flex flex-col flex-1 p-8 md:p-10 ${className}`}>
+      {children}
+    </div>
+  );
 };
 
-export const ModalFooter = ({
-    children,
-    className,
-}: {
-    children: ReactNode;
-    className?: string;
+interface ModalFooterProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export const ModalFooter: React.FC<ModalFooterProps> = ({
+  children,
+  className,
 }) => {
-    return (
-        <div
-            className={`flex justify-end p-4 bg-gray-100 dark:bg-neutral-900 ${className}`}
-        >
-            {children}
-        </div>
-    );
+  return (
+    <div
+      className={`flex justify-end p-4 bg-gray-100 dark:bg-neutral-900 ${className}`}
+    >
+      {children}
+    </div>
+  );
 };
 
-const Overlay = ({ className }: { className?: string }) => {
-    return (
-        <motion.div
-            initial={{
-                opacity: 0,
-            }}
-            animate={{
-                opacity: 1,
-            }}
-            exit={{
-                opacity: 0,
-            }}
-            className={`fixed inset-0 h-full w-full bg-black/70 ${className}`}
-        ></motion.div>
-    );
+// ============================================================================
+// Internal Components
+// ============================================================================
+
+interface OverlayProps {
+  className?: string;
+}
+
+const Overlay: React.FC<OverlayProps> = ({ className }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className={`fixed inset-0 h-full w-full bg-black/70 ${className}`}
+    />
+  );
 };
 
-const CloseIcon = () => {
-    const { setOpen } = useModal();
-    return (
-        <button
-            onClick={() => setOpen(false)}
-            className="absolute top-4 right-4 group"
-        >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-black dark:text-white h-4 w-4 group-hover:scale-125 group-hover:rotate-3 transition duration-200"
-            >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M18 6l-12 12" />
-                <path d="M6 6l12 12" />
-            </svg>
-        </button>
-    );
+const CloseIcon: React.FC = () => {
+  const { setOpen } = useModal();
+  return (
+    <button
+      onClick={() => setOpen(false)}
+      className="absolute top-4 right-4 group"
+      aria-label="Close modal"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="text-black dark:text-white h-4 w-4 group-hover:scale-125 group-hover:rotate-3 transition duration-200"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M18 6l-12 12" />
+        <path d="M6 6l12 12" />
+      </svg>
+    </button>
+  );
 };
 
-// Hook to detect clicks outside of a component.
-// Add it in a separate file, I've added here for simplicity
+// ============================================================================
+// Hooks
+// ============================================================================
+
+/**
+ * useOutsideClick Hook
+ * 
+ * Detects clicks outside of a referenced element and calls a callback.
+ * Useful for closing modals, dropdowns, etc.
+ */
 export const useOutsideClick = (
-    ref: React.RefObject<HTMLDivElement>,
-    callback: Function
-) => {
-    useEffect(() => {
-        const listener = (event: any) => {
-            // DO NOTHING if the element being clicked is the target element or their children
-            if (!ref.current || ref.current.contains(event.target)) {
-                return;
-            }
-            callback(event);
-        };
+  ref: React.RefObject<HTMLDivElement>,
+  callback: (event: MouseEvent | TouchEvent) => void
+): void => {
+  useEffect(() => {
+    const listener = (event: MouseEvent | TouchEvent) => {
+      if (!ref.current || ref.current.contains(event.target as Node)) {
+        return;
+      }
+      callback(event);
+    };
 
-        document.addEventListener("mousedown", listener);
-        document.addEventListener("touchstart", listener);
+    document.addEventListener("mousedown", listener);
+    document.addEventListener("touchstart", listener);
 
-        return () => {
-            document.removeEventListener("mousedown", listener);
-            document.removeEventListener("touchstart", listener);
-        };
-    }, [ref, callback]);
+    return () => {
+      document.removeEventListener("mousedown", listener);
+      document.removeEventListener("touchstart", listener);
+    };
+  }, [ref, callback]);
 };
