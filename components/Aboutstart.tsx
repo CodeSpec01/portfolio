@@ -1,4 +1,4 @@
-import { emblemaOne } from "@/app/layout";
+import { emblemaOne } from "@/lib/fonts";
 import { TooltipAbout } from "./TooltipCardForAbout";
 import CardSwap, { Card } from "./CardSwapper";
 import { FooterSocials } from "@/constants/constants";

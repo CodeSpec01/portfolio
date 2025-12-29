@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { novaRound } from '@/app/layout'; // Assuming this is where you keep it
+import { novaRound } from '@/lib/fonts'; // Assuming this is where you keep it
 import { GoArrowUpRight } from 'react-icons/go';
 import { FaGithub, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { HiArrowLongUp } from 'react-icons/hi2';
