@@ -64,9 +64,9 @@ const CoderProfileCard = () => {
     };
 
     return (
-        <div className="max-w-2xl w-full mx-auto bg-linear-to-r from-[#000000a0] to-[#0a0d37] border-[#1b2c68a0] relative rounded-2xl border shadow-lg">
+        <div className="max-w-2xl w-full mx-auto bg-linear-to-r from-[#000000a0] to-[#0a0d37] border-[#1b2c68a0] relative rounded-2xl border shadow-lg" style={{ contain: 'layout style paint', transform: 'translateZ(0)' }}>
             <div className="flex flex-row">
-                <div className="h-0.5 w-full bg-linear-to-r from-transparent via-yellow-500 to-violet-600"></div>
+                <div className="h-0.5 w-full bg-linear-to-r from-transparent via-[#004D98] to-[#A50044]"></div>
                 <div className="h-0.5 w-full bg-linear-to-r from-violet-600 to-transparent"></div>
             </div>
 
@@ -96,8 +96,8 @@ const CoderProfileCard = () => {
                             </div>
                             <div className="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-2 overflow-hidden">
                                 <div
-                                    className="signin-progress bg-linear-to-l from-transparent via-yellow-500 to-violet-600 h-2 rounded-full transition-all duration-500 ease-out"
-                                    style={{ width: `${(step / 3) * 100}%` }}
+                                    className="signin-progress bg-linear-to-l from-transparent via-[#004D98] to-[#A50044] h-2 rounded-full transition-all duration-300 ease-out"
+                                    style={{ width: `${(step / 3) * 100}%`, transform: 'translateZ(0)', willChange: 'width' }}
                                 />
                             </div>
                         </div>
@@ -122,7 +122,7 @@ const CoderProfileCard = () => {
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
                                         placeholder="John Doe"
-                                        className="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-black text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent transition-all duration-200" />
+                                        className="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-black text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent transition-colors duration-150" />
                                 </div>
                             </div>
 
@@ -141,7 +141,7 @@ const CoderProfileCard = () => {
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         placeholder="you@example.com"
-                                        className="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-black text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent transition-all duration-200"
+                                        className="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-black text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent transition-colors duration-150"
                                     />
                                 </div>
                             </div>
@@ -161,7 +161,7 @@ const CoderProfileCard = () => {
                                         value={message}
                                         onChange={(e) => setMessage(e.target.value)}
                                         placeholder="Enter your message here..."
-                                        className="overflow-y-scroll resize-none block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-black text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent transition-all duration-200 overflow-hidden"
+                                        className="overflow-y-scroll resize-none block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-black text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent transition-colors duration-150 overflow-hidden"
                                         style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(100, 100, 100, 0.5) transparent', minHeight: '120px', maxHeight: '200px' }}
                                     />
                                 </div>
@@ -170,7 +170,7 @@ const CoderProfileCard = () => {
                             {/* Submit Button */}
                             <button
                                 type="submit"
-                                className="cursor-target w-full bg-linear-to-r from-indigo-600 to-purple-600 dark:from-indigo-500 dark:to-purple-500 text-white font-semibold py-3 px-4 rounded-lg hover:from-indigo-700 hover:to-purple-700 dark:hover:from-indigo-600 dark:hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 transform transition-all duration-200 hover:scale-[1.01] shadow-lg"
+                                className="cursor-target w-full bg-linear-to-r from-indigo-600 to-purple-600 dark:from-indigo-500 dark:to-purple-500 text-white font-semibold py-3 px-4 rounded-lg hover:from-indigo-700 hover:to-purple-700 dark:hover:from-indigo-600 dark:hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 transition-colors duration-150 shadow-lg"
                                 onClick={(event) => {
                                     event.preventDefault();
                                     requestVerification();
@@ -190,6 +190,9 @@ const CoderProfileCard = () => {
                                             src="/globals/lock.png"
                                             alt="Lock Logo"
                                             className="w-32 h-32 object-cover rounded-lg drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]"
+                                            loading="lazy"
+                                            decoding="async"
+                                            style={{ transform: 'translateZ(0)' }}
                                         />
                                     </div>
                                 </div>

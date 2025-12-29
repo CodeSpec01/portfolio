@@ -119,7 +119,7 @@ const CustomTooltip = ({ active, payload }: any) => {
         <div className="space-y-1">
           <p className="flex justify-between gap-4">
             <span className="text-neutral-400">Rating:</span>
-            <span className="text-yellow-500 font-mono font-bold">
+            <span className="text-[#004D98] font-mono font-bold">
               {Math.round(data.rating)}
             </span>
           </p>

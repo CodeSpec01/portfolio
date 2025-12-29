@@ -84,7 +84,7 @@ export const navbarItems = [
   {
     label: "About",
     bgColor: "hsl(271,100%,20%)",
-    textColor: "#FFE380",
+    textColor: "#ffffff",
     links: [
       { label: "Home", href: "/", ariaLabel: "Home" },
       { label: "About Me", href: "/about", ariaLabel: "About Me" },
@@ -94,7 +94,7 @@ export const navbarItems = [
   {
     label: "Others",
     bgColor: "hsl(271,100%,30%)",
-    textColor: "#FFE380",
+    textColor: "#ffffff",
     links: [
       {
         label: "Journey to the Website",
@@ -111,7 +111,7 @@ export const navbarItems = [
   }, {
     label: "Socials",
     bgColor: "hsl(271,100%,35%)",
-    textColor: "#FFE380",
+    textColor: "#ffffff",
     links: [
       {
         label: "Email",
@@ -249,11 +249,11 @@ export const projectData = [
       "The second iteration of my digital home, re-engineered from the ground up to reflect the 'codespec' identity. Moving beyond a static résumé, v2.0 introduces a dual-timeline architecture that separates professional rigor from the personal builder's journey, serving as a live demonstration of my full-stack frontend capabilities.",
     tags: ["Next.js", "TypeScript", "GSAP", "Framer Motion", "Nodemailer", "JWT", "TailwindCSS"],
     imageUrl: "/projects/portfolio.png",
-    color: "bg-yellow-900",
+    color: "bg-[#004D98]/20",
     website: "https://aviralgaur.vercel.app/",
     github: "https://github.com/CodeSpec01/portfolio/",
     // NEW FIELDS
-    highlightColor: "#facc15", // Yellow-400
+    highlightColor: "#004D98", // Barcelona Blue
     features: [
       "Engineered a bespoke content strategy featuring parallel data streams—\"The Build Log\" for professional credibility and \"Behind the Code\" for personal storytelling—to cater to distinct audience segments (recruiters vs. developers).",
       "Rebuilt the frontend using a modular Next.js architecture, prioritizing reusable components and type safety to ensure the site scales as new projects and timeline events are added.",
@@ -331,11 +331,11 @@ export const THEMES: Record<string, HouseTheme> = {
   DEFAULT: {
     name: "DEFAULT",
     hex: "#ffffff",
-    primary: "from-white/90 to-white/10",
-    secondary: "text-[#EAB308] border-white/10 bg-white/5",
-    particleColor: "255, 255, 255",
-    bgGradient: "from-purple-900/20 to-transparent",
-    stroke: "rgba(255, 255, 255, 0.15)",
+    primary: "from-[#004D98] via-[#A50044] to-white/90",
+    secondary: "text-white border-white/20 bg-black/40",
+    particleColor: "0, 77, 152",
+    bgGradient: "from-[#004D98]/30 via-[#A50044]/20 to-transparent",
+    stroke: "rgba(255, 255, 255, 0.4)",
   },
   GRYFFINDOR: {
     name: "GRYFFINDOR",
@@ -410,7 +410,7 @@ export const ARTIFACTS_DATA = [
     Icon: GiCrown,
     text: "TECHNOBLADE NEVER DIES",
     style: { top: '75%', left: '7%' },
-    color: "text-yellow-400"
+    color: "text-[#004D98]"
   },
 
   // --- RIGHT SIDE ---

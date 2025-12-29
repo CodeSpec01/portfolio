@@ -35,7 +35,7 @@ const ProjectsPage = () => {
   return (
     <main
       ref={containerRef}
-      className="relative min-h-screen w-full bg-[#030014] text-slate-200 selection:bg-yellow-400 selection:text-purple-900"
+      className="relative min-h-screen w-full bg-black text-white selection:bg-[#004D98] selection:text-white"
     >
       {/* --- DYNAMIC BACKGROUND --- */}
       {/* 1. Noise Texture */}
@@ -43,8 +43,8 @@ const ProjectsPage = () => {
 
       {/* 2. Gradient Orbs (Replaces the static bg.png) */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-purple-900/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[20%] left-[-10%] w-[500px] h-[500px] bg-indigo-900/20 rounded-full blur-[100px]" />
+        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-[#004D98]/20 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[20%] left-[-10%] w-[500px] h-[500px] bg-[#A50044]/20 rounded-full blur-[100px]" />
       </div>
 
       {/* --- CONTENT --- */}
@@ -53,7 +53,7 @@ const ProjectsPage = () => {
         {/* Header Section */}
         <header className="mb-20 pl-4 md:pl-10 border-l-2 border-white/10">
           <div className="">
-            <h2 className="hero-text-reveal text-sm md:text-base font-mono text-yellow-400 mb-2 tracking-widest uppercase">
+            <h2 className="hero-text-reveal text-sm md:text-base font-mono text-[#004D98] mb-2 tracking-widest uppercase">
               // Selected Archives
             </h2>
           </div>
@@ -63,7 +63,7 @@ const ProjectsPage = () => {
               Curated <br className="md:hidden" />
               {/* Aurora Text Wrapper */}
               <span className="inline-block relative z-10">
-                <AuroraText colors={["#FFD700", "#A855F7", "#FBBF24"]}>
+                <AuroraText colors={["#004D98", "#A50044", "#ffffff"]}>
                   Work
                 </AuroraText>
               </span>

@@ -39,7 +39,7 @@ const Navbar: React.FC<CardNavProps> = ({
           {/* THE NAV PILL (Search + Hamburger) */}
           <div className="
             relative z-20 flex items-center gap-3 p-2 pl-3
-            bg-[#0a0a0a]/90 backdrop-blur-xl border border-white/10
+            bg-[#0a0a0a]/95 border border-white/10
             shadow-lg rounded-full
             transition-all duration-300
           ">
@@ -75,7 +75,7 @@ const Navbar: React.FC<CardNavProps> = ({
           <div
             className={`
               absolute top-full mt-3 right-0 w-64
-              bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/10
+              bg-[#0a0a0a]/98 border border-white/10
               rounded-2xl shadow-2xl overflow-hidden
               transition-all duration-300 origin-top-right
               ${isOpen ? 'opacity-100 scale-100 translate-y-0 pointer-events-auto' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'}

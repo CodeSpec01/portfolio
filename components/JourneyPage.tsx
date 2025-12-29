@@ -143,28 +143,28 @@ const JourneyPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#030014] text-slate-200 font-sans selection:bg-yellow-400 selection:text-purple-900 overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white font-sans selection:bg-[#004D98] selection:text-white overflow-x-hidden">
 
       {/* --- BACKGROUND PATTERN --- */}
       {/* This creates the cool 'developer grid' look */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-purple-600/20 blur-[120px] rounded-full" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-[#004D98]/20 blur-[120px] rounded-full" />
       </div>
 
       {/* --- HERO SECTION --- */}
       <section ref={heroRef} className="relative z-10 h-screen flex flex-col justify-center items-center text-center px-4">
 
-        <div className="hero-element mb-6 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-yellow-300">
+        <div className="hero-element mb-6 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-white">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#004D98] opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#004D98]"></span>
           </span>
           v2.0 Portfolio Journey
         </div>
 
         <h1 className="hero-element text-5xl md:text-8xl font-extrabold tracking-tighter mb-6">
-          <AuroraText colors={["#FFD700", "#A855F7", "#FBBF24"]}>
+          <AuroraText colors={["#004D98", "#A50044", "#ffffff"]}>
             The Architecture
           </AuroraText>
           <span className="block text-slate-500 text-3xl md:text-5xl mt-2 font-bold tracking-tight">
@@ -174,7 +174,7 @@ const JourneyPage: React.FC = () => {
 
         <p className="hero-element text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed">
           From a messy whiteboard sketch to a high-performance Next.js application.
-          See how <span className="text-yellow-400 font-semibold">bugs became features</span>.
+          See how <span className="text-[#004D98] font-semibold">bugs became features</span>.
         </p>
 
         <div className="hero-element mt-12 animate-bounce text-slate-600">
@@ -194,7 +194,7 @@ const JourneyPage: React.FC = () => {
           <div className="mb-16 md:flex justify-between items-end">
             <div>
               <h2 className="text-4xl md:text-7xl mx-auto font-bold text-white tracking-tight mb-4">
-                The <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-yellow-400">Tech Stack</span>
+                The <span className="text-transparent bg-clip-text bg-linear-to-r from-[#004D98] to-[#A50044]">Tech Stack</span>
               </h2>
               <p className="text-slate-400 max-w-md">
                 Tools chosen not because they are trendy, but because they provide absolute control.
@@ -207,7 +207,7 @@ const JourneyPage: React.FC = () => {
             {TECH_STACK.map((tech) => (
               <div key={tech.name} className="tech-card-wrapper h-full">
                 <SpotlightCard className="h-full p-8 group">
-                  <div className="text-5xl text-slate-500 group-hover:text-yellow-400 group-hover:scale-110 transition-all duration-300 mb-6">
+                  <div className="text-5xl text-slate-500 group-hover:text-[#004D98] group-hover:scale-110 transition-all duration-300 mb-6">
                     {tech.icon}
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">{tech.name}</h3>
@@ -229,7 +229,7 @@ const JourneyPage: React.FC = () => {
             {TEAM.map((member) => (
               <div key={member.name} className="group relative">
                 {/* Glowing Orbit Ring */}
-                <div className="absolute -inset-1 w-36 h-36 rounded-full bg-linear-to-r from-purple-600 to-yellow-400 opacity-20 group-hover:opacity-100 blur transition duration-500"></div>
+                <div className="absolute -inset-1 w-36 h-36 rounded-full bg-linear-to-r from-[#004D98] to-[#A50044] opacity-20 group-hover:opacity-100 blur transition duration-500"></div>
 
                 <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-slate-800 group-hover:border-transparent bg-black transition-all duration-300 mx-auto">
                   <img
@@ -240,7 +240,7 @@ const JourneyPage: React.FC = () => {
                 </div>
 
                 <div className="mt-6 space-y-1">
-                  <h3 className="text-xl font-bold text-white group-hover:text-yellow-300 group-focus:text-yellow-300 group-active:text-yellow-300 transition-colors">{member.name}</h3>
+                  <h3 className="text-xl font-bold text-white group-hover:text-[#004D98] group-focus:text-[#004D98] group-active:text-[#004D98] transition-colors">{member.name}</h3>
                   <p className="text-purple-400 text-sm font-medium tracking-wide uppercase">{member.role}</p>
                 </div>
               </div>
@@ -252,15 +252,15 @@ const JourneyPage: React.FC = () => {
       {/* --- FOOTER CTA --- */}
       <footer className="relative z-10 pb-16 text-center overflow-hidden">
         {/* Footer Glow */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-linear-to-b from-transparent to-bg-yellow-400/10 blur-[100px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-linear-to-b from-transparent to-[#004D98]/10 blur-[100px] rounded-full pointer-events-none" />
 
         <p className="text-slate-500 mb-8 font-mono text-sm relative z-20">Looking for the source?</p>
 
-        <div className="w-fit group relative z-20 rounded-full bg-slate-900 border border-slate-800 text-white font-bold hover:border-yellow-400/50 transition-all overflow-hidden mx-auto">
-          <div className="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-yellow-400/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+        <div className="w-fit group relative z-20 rounded-full bg-slate-900 border border-slate-800 text-white font-bold hover:border-[#004D98]/50 transition-all overflow-hidden mx-auto">
+          <div className="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-[#004D98]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
           <a href={GithubPortfolioLink} className="w-full px-8 py-3 flex items-center gap-3 cursor-target">
             <FaGithub className="text-xl" />
-            <span className="group-hover:text-yellow-300 transition-colors">View Source on GitHub</span>
+            <span className="group-hover:text-[#004D98] transition-colors">View Source on GitHub</span>
           </a>
         </div>
       </footer>

@@ -7,12 +7,12 @@ const ContactUsButton = ({ className }: { className?: string }) => {
             className={`
                 group relative flex items-center justify-center gap-3 
                 px-8 py-4 
-                bg-[#FACC15] hover:bg-[#EAB308] 
-                text-black 
+                bg-linear-to-r from-[#004D98] to-[#A50044] hover:from-[#004D98]/90 hover:to-[#A50044]/90
+                text-white 
                 rounded-full 
                 transition-all duration-300 ease-out 
                 hover:scale-105 active:scale-95 
-                shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:shadow-[0_0_30px_rgba(250,204,21,0.5)]
+                shadow-[0_0_20px_rgba(0,77,152,0.4)] hover:shadow-[0_0_30px_rgba(165,0,68,0.5)]
                 ${className}
             `}
         >

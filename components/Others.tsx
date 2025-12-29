@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GamesData, OtherGallery, OtherProjectData } from "@/constants/constants";
+import { AuroraText } from "./AuroraText";
 
 // ---------------------------------------------------------
 // 1. DATA CONFIGURATION
@@ -25,16 +26,18 @@ if (typeof window !== "undefined") {
 
 const PortfolioPage = () => {
   return (
-    <main className="bg-[#030004] min-h-screen text-slate-200 selection:bg-orange-500/30 font-sans">
+    <main className="bg-black min-h-screen text-white selection:bg-[#004D98]/30 font-sans">
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-purple-600/20 blur-[120px] rounded-full" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-[#004D98]/20 blur-[120px] rounded-full" />
       </div>
 
       {/* HEADER SECTION */}
       <section className="h-[70vh] flex flex-col items-center justify-center text-center px-4">
-        <h1 className="text-5xl md:text-8xl font-serif font-bold bg-linear-to-b from-white to-slate-600 bg-clip-text text-transparent mb-6">
-          Selected Works
+        <h1 className="text-5xl md:text-8xl font-serif font-bold mb-6">
+          <AuroraText colors={["#004D98", "#A50044", "#ffffff"]}>
+            Selected Works
+          </AuroraText>
         </h1>
         <p className="max-w-xl text-slate-400 text-lg">
           A collection of digital experiences, mainstream projects, and personal explorations.

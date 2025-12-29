@@ -14,7 +14,7 @@ function Aboutstart() {
         </h1>
         <p className="leading-10 text-[4vw] md:text-[2vw] border-l-2 border-white/10 px-5">
           A creative{" "}
-          <AuroraText colors={["#FFD700", "#A855F7", "#FBBF24"]}>
+          <AuroraText colors={["#004D98", "#A50044", "#ffffff"]}>
             Engineer</AuroraText>
         </p>
         <div className="text-xl w-[95%] py-[5%]">

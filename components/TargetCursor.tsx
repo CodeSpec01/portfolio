@@ -1,7 +1,22 @@
 'use client';
 
-import React, { useEffect, useRef, useCallback, useMemo } from 'react';
+import React, { useEffect, useRef, useCallback, useMemo, memo } from 'react';
 import { gsap } from 'gsap';
+
+// Throttle function for performance optimization
+const throttle = <T extends (...args: any[]) => void>(
+  func: T,
+  limit: number
+): ((...args: Parameters<T>) => void) => {
+  let inThrottle: boolean;
+  return function (this: any, ...args: Parameters<T>) {
+    if (!inThrottle) {
+      func.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
+};
 
 export interface TargetCursorProps {
   targetSelector?: string;
@@ -40,10 +55,13 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
 
   const constants = useMemo(() => ({ borderWidth: 3, cornerSize: 12 }), []);
 
-  const moveCursor = useCallback((x: number, y: number) => {
-    if (!cursorRef.current) return;
-    gsap.to(cursorRef.current, { x, y, duration: 0.1, ease: 'power3.out' });
-  }, []);
+  const moveCursor = useCallback(
+    throttle((x: number, y: number) => {
+      if (!cursorRef.current) return;
+      gsap.to(cursorRef.current, { x, y, duration: 0.15, ease: 'power2.out' });
+    }, 32), // ~30fps (reduced from 16ms)
+    []
+  );
 
   useEffect(() => {
     if (isMobile || !cursorRef.current) return;
@@ -115,7 +133,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
     tickerFnRef.current = tickerFn;
 
     const moveHandler = (e: MouseEvent) => moveCursor(e.clientX, e.clientY);
-    window.addEventListener('mousemove', moveHandler);
+    window.addEventListener('mousemove', moveHandler, { passive: true });
 
     const scrollHandler = () => {
       if (!activeTarget || !cursorRef.current) return;
@@ -313,4 +331,4 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
   );
 };
 
-export default TargetCursor;
+export default memo(TargetCursor);

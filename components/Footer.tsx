@@ -51,7 +51,7 @@ const Footer = () => {
                 <ul className="flex flex-col gap-3">
                   {section.items.map((item, sidx) => (
                     <li key={sidx}>
-                      <a href={item.link} className="cursor-target hover:text-[#FFE380] group flex items-center gap-2 text-white/70 transition-colors">
+                      <a href={item.link} className="cursor-target hover:text-[#004D98] group flex items-center gap-2 text-white/70 transition-colors">
                         <span className="w-0 overflow-hidden group-hover:w-2 transition-all duration-300 h-px bg-white" />
                         {item.title}
                       </a>

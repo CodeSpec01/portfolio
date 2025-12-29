@@ -1,14 +1,12 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo, memo } from 'react';
 import { useModal } from "./AnimatedModal";
-import { FaSearch, FaSlack, FaUser } from 'react-icons/fa';
-import { SiBinance, SiGmail, SiLeetcode } from 'react-icons/si';
-import { BsDribbble, BsFileCodeFill, BsGithub } from 'react-icons/bs';
-import { FiFigma } from 'react-icons/fi';
+import { FaSearch, FaUser } from 'react-icons/fa';
+import {SiGmail, SiLeetcode } from 'react-icons/si';
+import {BsFileCodeFill, BsGithub } from 'react-icons/bs';
 import { MdKeyboardCommandKey, MdTravelExplore } from 'react-icons/md';
-import { LiaLinkedin } from 'react-icons/lia';
-import { IoHardwareChip, IoLogoLinkedin } from 'react-icons/io5';
+import { IoLogoLinkedin } from 'react-icons/io5';
 import { GiMailbox } from 'react-icons/gi';
 import { RiHome6Fill } from 'react-icons/ri';
 import { GithubLink, GmailLink, LeetCodeLink, LinkedInLink } from '@/constants/constants';
@@ -47,14 +45,15 @@ interface SearchItemProps {
 }
 
 // --- Search Item Component ---
-const SearchItem: React.FC<SearchItemProps> = ({ item }) => (
-    <li className="cursor-target flex items-center justify-between p-3 transition-all duration-300 ease-in-out bg-black/5 dark:bg-gray-500/10 hover:bg-black/10 dark:hover:bg-gray-500/20 rounded-xl hover:scale-[1.02] cursor-pointer">
+const SearchItem: React.FC<SearchItemProps> = memo(({ item }) => (
+    <li className="cursor-target flex items-center justify-between p-3 transition-colors duration-150 bg-black/5 dark:bg-gray-500/10 hover:bg-black/10 dark:hover:bg-gray-500/20 rounded-xl cursor-pointer" style={{ transform: 'translateZ(0)' }}>
         <a href={item.link} className="w-full flex items-center gap-4">
             {item.icon}
             <span className="text-gray-700 dark:text-gray-200">{item.name}</span>
         </a>
     </li>
-);
+));
+SearchItem.displayName = 'SearchItem';
 
 const CoderProfileCard = () => {
     const { setOpen } = useModal();
@@ -73,14 +72,17 @@ const CoderProfileCard = () => {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, []);
 
-    const filteredItems = items.filter(item =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredItems = useMemo(() => 
+        items.filter(item =>
+            item.name.toLowerCase().includes(searchTerm.toLowerCase())
+        ),
+        [items, searchTerm]
     );
 
     return (
-        <div className="max-w-2xl w-full mx-auto bg-linear-to-r from-[#000000a0] to-[#0a0d37] border-[#1b2c68a0] relative rounded-2xl border shadow-lg">
+        <div className="max-w-2xl w-full mx-auto bg-linear-to-r from-[#000000a0] to-[#0a0d37] border-[#1b2c68a0] relative rounded-2xl border shadow-lg" style={{ contain: 'layout style paint', transform: 'translateZ(0)' }}>
             <div className="flex flex-row">
-                <div className="h-0.5 w-full bg-linear-to-r from-transparent via-yellow-500 to-violet-600"></div>
+                <div className="h-0.5 w-full bg-linear-to-r from-transparent via-[#004D98] to-[#A50044]"></div>
                 <div className="h-0.5 w-full bg-linear-to-r from-violet-600 to-transparent"></div>
             </div>
 
@@ -101,9 +103,9 @@ const CoderProfileCard = () => {
                     {/* Search Modal */}
                     <div className="w-full max-w-2xl mx-auto p-4 space-y-6">
 
-                        {/* Search Input with Enhanced Gradient Border and Glow */}
-                        <div className="cursor-target relative p-px rounded-2xl bg-linear-to-r from-orange-500 via-purple-600 to-yellow-600 shadow-lg shadow-purple-500/20 dark:shadow-purple-600/30 transition-shadow duration-300 hover:shadow-purple-500/40 dark:hover:shadow-purple-600/50 focus-within:shadow-purple-500/40 dark:focus-within:shadow-purple-600/50">
-                            <div className="flex items-center w-full px-4 py-2 bg-white/80 dark:bg-gray-900/90 rounded-[15px]">
+                        {/* Search Input with Enhanced Gradient Border and Glow - Optimized */}
+                        <div className="cursor-target relative p-px rounded-2xl bg-linear-to-r from-[#004D98] via-[#A50044] to-[#004D98] shadow-md transition-shadow duration-200 focus-within:shadow-lg">
+                            <div className="flex items-center w-full px-4 py-2 bg-white dark:bg-gray-900 rounded-[15px]" style={{ transform: 'translateZ(0)' }}>
                                 <FaSearch className="w-5 h-5 text-gray-500 dark:text-gray-400 shrink-0" />
                                 <input
                                     ref={inputRef}

@@ -44,7 +44,7 @@ const AboutPage = () => {
   return (
     <main
       ref={mainRef}
-      className="relative min-h-screen w-full overflow-x-hidden bg-[#030014] text-slate-200 selection:bg-yellow-400 selection:text-purple-900"
+      className="relative min-h-screen w-full overflow-x-hidden bg-black text-white selection:bg-[#004D98] selection:text-white"
     >
       {/* --- BACKGROUND LAYERS --- */}
       {/* 1. Grainy Texture for "Film/Retro" feel */}
@@ -52,8 +52,8 @@ const AboutPage = () => {
 
       {/* 2. Deep Purple Gradient Mesh */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-800/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-900/20 rounded-full blur-[120px]" />
+        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#004D98]/20 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-[#A50044]/20 rounded-full blur-[120px]" />
       </div>
 
       {/* --- CONTENT --- */}
@@ -68,7 +68,7 @@ const AboutPage = () => {
         <section className="reveal-section w-full flex flex-col items-center justify-center px-4">
           <div className="relative mb-12 text-center">
             {/* Decorative Label */}
-            <div className={"inline-block px-3 py-1 mb-4 text-xs font-medium tracking-widest text-yellow-400 uppercase border border-yellow-400/20 rounded-full bg-yellow-400/5"}>
+            <div className={"inline-block px-3 py-1 mb-4 text-xs font-medium tracking-widest text-white uppercase border border-white/20 rounded-full bg-black/40"}>
               Arsenal
             </div>
 
@@ -78,7 +78,7 @@ const AboutPage = () => {
                 Skills &
               </h1>
               <h1>
-                <AuroraText colors={["#FFD700", "#A855F7", "#FBBF24"]}>
+                <AuroraText colors={["#004D98", "#A50044", "#ffffff"]}>
                   &nbsp;Stacks
                 </AuroraText>
               </h1>

@@ -31,7 +31,6 @@ export default function RootLayout({
         />
         <Navbar
           items={navbarItems}
-          className="backdrop-blur-md"
         />
         {children}
       </body>

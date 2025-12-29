@@ -40,7 +40,7 @@ export const TimelineUI = ({ title, description, data }: { title: string, descri
         <h1 className={`text-5xl md:text-7xl font-bold pb-4 max-w-4xl bg-linear-to-b from-white via-slate-200 to-slate-600 bg-clip-text text-transparent font-serif`}>
           {title}
         </h1>
-        <p className="text-[#FFE380] font-bold text-md md:text-lg max-w-xl">
+        <p className="text-white font-bold text-md md:text-lg max-w-xl">
           {description}
         </p>
       </div>

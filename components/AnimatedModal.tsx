@@ -126,11 +126,9 @@ export const ModalBody = ({
                     }}
                     animate={{
                         opacity: 1,
-                        backdropFilter: "blur(10px)",
                     }}
                     exit={{
                         opacity: 0,
-                        backdropFilter: "blur(0px)",
                     }}
                     className={`z-99 ${customClassName} fixed perspective-midrange transform-3d inset-0 h-full w-full flex items-center justify-center`}
                     style={style}
@@ -142,26 +140,25 @@ export const ModalBody = ({
                         className={`min-h-[50%] max-h-[90%] md:max-w-[40%] md:rounded-2xl relative z-99 flex flex-col flex-1 overflow-hidden ${className}`}
                         initial={{
                             opacity: 0,
-                            scale: 0.5,
-                            rotateX: 40,
-                            y: 40,
+                            scale: 0.95,
+                            y: 20,
                         }}
                         animate={{
                             opacity: 1,
                             scale: 1,
-                            rotateX: 0,
                             y: 0,
                         }}
                         exit={{
                             opacity: 0,
-                            scale: 0.8,
-                            rotateX: 10,
+                            scale: 0.95,
+                            y: 20,
                         }}
                         transition={{
                             type: "spring",
-                            stiffness: 260,
-                            damping: 15,
+                            stiffness: 300,
+                            damping: 25,
                         }}
+                        style={{ transform: 'translateZ(0)', willChange: 'auto' }}
                     >
                         {children}
                     </motion.div>
@@ -209,13 +206,11 @@ const Overlay = ({ className }: { className?: string }) => {
             }}
             animate={{
                 opacity: 1,
-                backdropFilter: "blur(10px)",
             }}
             exit={{
                 opacity: 0,
-                backdropFilter: "blur(0px)",
             }}
-            className={`fixed inset-0 h-full w-full bg-black/50 ${className}`}
+            className={`fixed inset-0 h-full w-full bg-black/70 ${className}`}
         ></motion.div>
     );
 };

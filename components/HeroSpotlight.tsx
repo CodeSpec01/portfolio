@@ -1,120 +1,20 @@
 'use client';
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, memo } from 'react';
 
 const HeroSpotlight = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const carRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    // --- 1. MOUSE SPOTLIGHT LOGIC ---
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      const { clientX, clientY } = e;
-      const x = clientX - containerRef.current.offsetLeft;
-      const y = clientY - containerRef.current.offsetTop;
-      
-      containerRef.current.style.setProperty('--mouse-x', `${x}px`);
-      containerRef.current.style.setProperty('--mouse-y', `${y}px`);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-
-    // --- 2. SNOW ANIMATION LOGIC ---
-    const canvas = canvasRef.current;
-    let animationFrameId: number;
-
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        if (ctx) {
-            const snowflakes: { x: number; y: number; radius: number; speed: number; opacity: number }[] = [];
-            
-            const resizeCanvas = () => {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            };
-            
-            // Initial resize
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-
-            // Create snowflakes
-            const createSnowflakes = () => {
-                const count = window.innerWidth < 768 ? 50 : 100; // Fewer flakes on mobile
-                for (let i = 0; i < count; i++) {
-                    snowflakes.push({
-                        x: Math.random() * canvas.width,
-                        y: Math.random() * canvas.height,
-                        radius: Math.random() * 2 + 0.5, // Size between 0.5 and 2.5
-                        speed: Math.random() * 1 + 0.5, // Speed between 0.5 and 1.5
-                        opacity: Math.random() * 0.5 + 0.3 // Opacity between 0.3 and 0.8
-                    });
-                }
-            };
-            createSnowflakes();
-
-            const drawSnow = () => {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                snowflakes.forEach((flake) => {
-                    ctx.beginPath();
-                    ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 255, 255, ${flake.opacity})`;
-                    ctx.fill();
-
-                    // Update position
-                    flake.y += flake.speed;
-                    flake.x += Math.sin(flake.y * 0.01) * 0.5; // Slight drift
-
-                    // Reset if out of view
-                    if (flake.y > canvas.height) {
-                        flake.y = -5;
-                        flake.x = Math.random() * canvas.width;
-                    }
-                });
-
-                animationFrameId = requestAnimationFrame(drawSnow);
-            };
-
-            drawSnow();
-        }
-    }
-
-
-    // --- 3. CAR ANIMATION LOOP (Preserved) ---
-    if (carRef.current) {
-        const car = carRef.current;
-        let pos = -300;
-        const animateCar = () => {
-            pos += 4; 
-            if (pos > window.innerWidth + 300) {
-                pos = -300;
-            }
-            car.style.transform = `translateX(${pos}px)`;
-            requestAnimationFrame(animateCar);
-        };
-        animateCar();
-    }
-
-    return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-        // Clean up snow listeners
-        if (canvas) window.removeEventListener('resize', () => {});
-        cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
 
   return (
-    <div ref={containerRef} className="fixed inset-0 h-full w-full bg-[#03000a] -z-50 overflow-hidden">
+    <div ref={containerRef} className="fixed inset-0 h-full w-full bg-[#03000a] -z-50 overflow-hidden" style={{ contain: 'layout style paint', transform: 'translateZ(0)' }}>
       
-      {/* 1. Ambient Lights */}
-      <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-purple-900/30 rounded-full blur-[120px] animate-pulse" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-blue-900/20 rounded-full blur-[120px] animate-pulse" style={{animationDelay: '2s'}} />
+      {/* 1. Ambient Lights - Barcelona colors - Reduced blur for performance */}
+      <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-[#004D98]/25 rounded-full blur-[20px]" style={{ transform: 'translateZ(0)' }} />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-[#A50044]/20 rounded-full blur-[20px]" style={{ transform: 'translateZ(0)' }} />
 
-      {/* 2. MOUNTAINS (Subtle Layered SVG) */}
-      <div className="absolute bottom-0 left-0 w-full z-0 pointer-events-none opacity-40 mix-blend-screen">
+      {/* 2. MOUNTAINS (Subtle Layered SVG) - Removed mix-blend for performance */}
+      <div className="absolute bottom-0 left-0 w-full z-0 pointer-events-none opacity-40">
          {/* Back Layer - Lighter/Further */}
-         <svg className="absolute bottom-0 w-full h-[25vh] md:h-[40vh] text-purple-900/20 fill-current" preserveAspectRatio="none" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
+         <svg className="absolute bottom-0 w-full h-[25vh] md:h-[40vh] text-[#004D98]/15 fill-current" preserveAspectRatio="none" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 0v46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5 73.84-4.36 147.54 16.88 218.2 35.26 69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 1200 52.47V0z" opacity=".25" />
             <path d="M0 0v15.81c13 21.11 27.64 41.05 47.69 56.24C99.41 111.27 165 111 224.58 91.58c31.15-10.15 60.09-26.07 89.67-39.8 40.92-19 84.73-46 130.83-49.67 36.26-2.85 70.9 9.42 98.6 31.56 31.77 25.39 62.32 62 103.63 73 40.44 10.79 81.35-6.69 119.13-24.28s75.16-39 113.71-52.75 77.42-23.63 120.22-38.64V0z" opacity=".5" />
          </svg>
@@ -125,24 +25,19 @@ const HeroSpotlight = () => {
          </svg>
       </div>
 
-      {/* 3. CYBER GRID OVERLAY */}
+      {/* 3. CYBER GRID OVERLAY - Simplified for performance */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[40px_40px] mask-[radial-gradient(ellipse_at_center,transparent_20%,black)] z-10" />
 
-      {/* 4. SNOW CANVAS */}
-      <canvas ref={canvasRef} className="absolute inset-0 z-20 pointer-events-none" />
+      {/* 4. SNOW CANVAS - Disabled for performance */}
+      {/* Canvas disabled completely for better performance */}
 
-      {/* 5. The Spotlight Beam */}
-      <div 
-        className="absolute inset-0 pointer-events-none transition-opacity duration-300 z-30"
-        style={{
-          background: `radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(120, 50, 255, 0.08), transparent 45%)`,
-        }}
-      />
+      {/* 5. The Spotlight Beam - Disabled for performance */}
+      {/* Spotlight disabled completely for better performance */}
       
-      {/* 6. Global Noise Texture */}
-      <div className="bg-noise opacity-30 z-40 pointer-events-none" />
+      {/* 6. Global Noise Texture - Disabled for performance */}
+      {/* <div className="bg-noise opacity-30 z-40 pointer-events-none" /> */}
     </div>
   );
 };
 
-export default HeroSpotlight;
+export default memo(HeroSpotlight);

@@ -114,7 +114,7 @@ const TiltCard = ({ children, className }: { children: React.ReactNode; classNam
 
 
 const SkillBadge = ({ label, Icon }: { label: string; Icon: any }) => (
-  <div className="group flex flex-col items-center justify-center gap-2 rounded-xl border border-white/5 bg-white/2 p-4 transition-all duration-300 hover:text-yellow-500 hover:-translate-y-1 hover:border-white/10 hover:bg-white/5 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+  <div className="group flex flex-col items-center justify-center gap-2 rounded-xl border border-white/5 bg-white/2 p-4 transition-all duration-300 hover:text-[#004D98] hover:-translate-y-1 hover:border-white/10 hover:bg-white/5 hover:shadow-[0_0_20px_rgba(0,77,152,0.15)]">
     <Icon className={"h-8 w-8 transition-all duration-300 group-hover:scale-110 "} />
     <span className="text-[10px] font-medium text-neutral-500 uppercase tracking-wider group-hover:text-white transition-colors">{label}</span>
   </div>

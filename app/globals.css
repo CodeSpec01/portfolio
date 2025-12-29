@@ -4,8 +4,9 @@
     background-color: #000;
 }
 :root{
-    color: #ffe380;
-    --foreground-yellow-dark: #fed333;
+    color: #ffffff;
+    --foreground-barcelona-blue: #004D98;
+    --foreground-barcelona-red: #A50044;
     font-family: serif;
 }
 
@@ -95,6 +96,72 @@ button, a{
   background-size: 100% 4px;
   z-index: 2;
   pointer-events: none;
+}
+
+/* Subtle floating animation for icons */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+  transform: translateZ(0); /* GPU acceleration */
+}
+
+/* Variants for different delays to create natural movement */
+.float-animation-delay-1 {
+  animation: float 3.5s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.float-animation-delay-2 {
+  animation: float 4s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.float-animation-delay-3 {
+  animation: float 3.2s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.float-animation-delay-4 {
+  animation: float 3.8s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+.float-animation-delay-5 {
+  animation: float 4.2s ease-in-out infinite;
+  animation-delay: 0.3s;
+}
+
+.float-animation-delay-6 {
+  animation: float 3.6s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+.float-animation-delay-7 {
+  animation: float 4.1s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
+
+.float-animation-delay-8 {
+  animation: float 3.4s ease-in-out infinite;
+  animation-delay: 0.6s;
+}
+
+.float-animation-delay-9 {
+  animation: float 3.9s ease-in-out infinite;
+  animation-delay: 1.4s;
+}
+
+.float-animation-delay-10 {
+  animation: float 4.3s ease-in-out infinite;
+  animation-delay: 0.2s;
 }
 
 /* globals.css */
