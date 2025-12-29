@@ -2,41 +2,10 @@
 import { AnimatePresence, motion } from "motion/react";
 import React, {
     ReactNode,
-    createContext,
-    useContext,
     useEffect,
     useRef,
-    useState,
 } from "react";
-
-interface ModalContextType {
-    open: boolean;
-    setOpen: (open: boolean) => void;
-}
-
-const ModalContext = createContext<ModalContextType | undefined>(undefined);
-
-export const ModalProvider = ({ children }: { children: ReactNode }) => {
-    const [open, setOpen] = useState(false);
-
-    return (
-        <ModalContext.Provider value={{ open, setOpen }}>
-            {children}
-        </ModalContext.Provider>
-    );
-};
-
-export const useModal = () => {
-    const context = useContext(ModalContext);
-    if (!context) {
-        throw new Error("useModal must be used within a ModalProvider");
-    }
-    return context;
-};
-
-export function Modal({ children }: { children: ReactNode }) {
-    return <ModalProvider>{children}</ModalProvider>;
-}
+import { useModal } from "@/contexts/ModalContext";
 
 export const ModalTrigger = ({
     children,
@@ -51,7 +20,7 @@ export const ModalTrigger = ({
     style?: React.CSSProperties;
     keyboardShortcut?: boolean;
 }) => {
-    const { setOpen } = useModal();
+    const { setIsModalOpen } = useModal();
 
     // Adding ctrl/cmd + K shortcut to open the modal
     useEffect(() => {
@@ -59,13 +28,13 @@ export const ModalTrigger = ({
             if (keyboardShortcut && (event.metaKey || event.ctrlKey) && event.key === 'k') {
 
                 event.preventDefault();
-                setOpen(true);
+                setIsModalOpen(true);
             }
 
             if (event.key == 'Escape') {
 
                 event.preventDefault();
-                setOpen(false);
+                setIsModalOpen(false);
             }
         };
 
@@ -76,11 +45,11 @@ export const ModalTrigger = ({
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
         };
-    }, []);
+    }, [keyboardShortcut, setIsModalOpen]);
 
     return (
         <button
-            onClick={() => setOpen(true)}
+            onClick={() => setIsModalOpen(true)}
             type="button"
             className={className}
             style={style}
@@ -102,24 +71,26 @@ export const ModalBody = ({
     style?: React.CSSProperties;
     customClassName?: string;
 }) => {
-    const { open } = useModal();
+    const { isModalOpen, setIsModalOpen } = useModal();
 
     useEffect(() => {
-        if (open) {
+        if (isModalOpen) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "auto";
         }
-    }, [open]);
+        // Cleanup function to restore overflow when component unmounts
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [isModalOpen]);
 
     const modalRef = useRef<HTMLDivElement>(null);
-    const { setOpen } = useModal();
-    // @ts-ignore
-    useOutsideClick(modalRef, () => setOpen(false));
+    useOutsideClick(modalRef, () => setIsModalOpen(false));
 
     return (
         <AnimatePresence>
-            {open && (
+            {isModalOpen && (
                 <motion.div
                     initial={{
                         opacity: 0,
@@ -163,6 +134,7 @@ export const ModalBody = ({
                             damping: 15,
                         }}
                     >
+                        <CloseIcon />
                         {children}
                     </motion.div>
                 </motion.div>
@@ -170,6 +142,7 @@ export const ModalBody = ({
         </AnimatePresence>
     );
 };
+// ... (rest of the file remains the same, just CloseIcon needs setIsModalOpen)
 
 export const ModalContent = ({
     children,
@@ -221,11 +194,11 @@ const Overlay = ({ className }: { className?: string }) => {
 };
 
 const CloseIcon = () => {
-    const { setOpen } = useModal();
+    const { setIsModalOpen } = useModal();
     return (
         <button
-            onClick={() => setOpen(false)}
-            className="absolute top-4 right-4 group"
+            onClick={() => setIsModalOpen(false)}
+            className="absolute top-4 right-4 group z-50"
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -248,14 +221,12 @@ const CloseIcon = () => {
 };
 
 // Hook to detect clicks outside of a component.
-// Add it in a separate file, I've added here for simplicity
 export const useOutsideClick = (
     ref: React.RefObject<HTMLDivElement>,
     callback: Function
 ) => {
     useEffect(() => {
         const listener = (event: any) => {
-            // DO NOTHING if the element being clicked is the target element or their children
             if (!ref.current || ref.current.contains(event.target)) {
                 return;
             }

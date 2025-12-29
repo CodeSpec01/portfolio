@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { useModal } from "./AnimatedModal";
+import { useModal } from "@/contexts/ModalContext";
 import { SiGmail, SiLeetcode } from 'react-icons/si';
 import { BsGithub } from 'react-icons/bs';
 import { FiAtSign } from 'react-icons/fi';
@@ -21,7 +21,7 @@ export default function ContactModal() {
 }
 
 const CoderProfileCard = () => {
-    const { setOpen } = useModal();
+    const { setIsModalOpen } = useModal();
     const [email, setEmail] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [message, setMessage] = useState<string>('');
@@ -72,7 +72,7 @@ const CoderProfileCard = () => {
 
             <div className="px-4 lg:px-8 py-5 flex justify-between items-center bg-linear-to-r from-[#000000a0] to-[#0a0d37] rounded-2xl">
                 <div className="flex flex-row space-x-2">
-                    <button type="button" className="h-3 w-3 rounded-full bg-red-500" onClick={() => setOpen(false)}></button>
+                    <button type="button" className="h-3 w-3 rounded-full bg-red-500" onClick={() => setIsModalOpen(false)}></button>
                     <div className="h-3 w-3 rounded-full bg-orange-400"></div>
                     <div className="h-3 w-3 rounded-full bg-green-400"></div>
                 </div>

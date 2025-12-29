@@ -13,6 +13,10 @@ button, a{
     cursor: pointer !important;
 }
 
+.paused {
+  animation-play-state: paused !important;
+}
+
 @theme inline {
   --animate-shiny-text: shiny-text 8s infinite;
 

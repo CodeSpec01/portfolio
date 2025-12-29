@@ -1,11 +1,10 @@
-"use client";
-
+import { useModal } from "@/contexts/ModalContext";
 import { useEffect, useRef, useState, useMemo } from "react";
 import gsap from "gsap";
 import { motion, AnimatePresence } from "framer-motion";
 import RotatingText from "./Rotatingtext";
-import { emblemaOne } from "@/app/layout";
-import { Modal, ModalBody, ModalTrigger } from "./AnimatedModal";
+import { emblemaOne } from "@/lib/fonts";
+import { ModalBody, ModalTrigger } from "./AnimatedModal";
 import ContactModal from "./ContactModal";
 import { rotatingTexts, SORTING_SCENARIOS, THEMES, HouseTheme, ARTIFACTS_DATA } from "@/constants/constants";
 
@@ -76,7 +75,7 @@ const SortingOverlay = ({ onClose }: { onClose: (house: string) => void }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-100 flex flex-col items-center justify-center bg-[#0a0502]/95 backdrop-blur-xl px-4"
+      className="fixed inset-0 z-100 flex flex-col items-center justify-center bg-[#0a0502] bg-opacity-95 px-4"
     >
       <div ref={hatRef} className="text-[#8B4513] drop-shadow-2xl filter brightness-110 mb-8 will-change-transform">
         <FaHatWizard className="text-[120px] md:text-[220px]" />
@@ -88,8 +87,8 @@ const SortingOverlay = ({ onClose }: { onClose: (house: string) => void }) => {
   );
 };
 
-
 const HeroImageText = () => {
+  const { isModalOpen } = useModal();
   const [currentTheme, setCurrentTheme] = useState<HouseTheme>(THEMES.DEFAULT);
   const [isSorting, setIsSorting] = useState(false);
 
@@ -101,6 +100,14 @@ const HeroImageText = () => {
   const circleRef = useRef<HTMLDivElement>(null);
   const wandRef = useRef<HTMLDivElement>(null);
   const artifactRefs = useRef<HTMLDivElement[]>([]);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      gsap.globalTimeline.pause();
+    } else {
+      gsap.globalTimeline.resume();
+    }
+  }, [isModalOpen]);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -174,7 +181,7 @@ const HeroImageText = () => {
   };
 
   return (
-    <Modal>
+    <>
       <AnimatePresence>
         {isSorting && <SortingOverlay onClose={handleSortingComplete} />}
       </AnimatePresence>
@@ -238,9 +245,6 @@ const HeroImageText = () => {
             alt="Aviral Gaur"
             loading="eager"
             className="h-full -inset-x-[10vw] md:inset-0 w-[150vw] object-contain z-10 relative drop-shadow-2xl will-change-transform"
-            style={{
-              WebkitBoxReflect: "below 2px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.15))"
-            }}
           />
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[150%] h-[50%] bg-linear-to-t from-[#050505] via-[#050505]/80 to-transparent z-20" />
           <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-[150%] h-[300px] md:h-[400px] bg-linear-to-t ${currentTheme.bgGradient} blur-[60px] md:blur-[100px] z-10 transition-all duration-1000 opacity-60`} />
@@ -269,7 +273,7 @@ const HeroImageText = () => {
 
         <ModalBody><ContactModal /></ModalBody>
       </div>
-    </Modal>
+    </>
   );
 };
 

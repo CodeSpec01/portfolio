@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from 'react';
 import { GoArrowUpRight } from 'react-icons/go';
-import { Modal, ModalBody, ModalTrigger } from './AnimatedModal';
+import { ModalBody, ModalTrigger } from './AnimatedModal';
 import { MdKeyboardCommandKey } from 'react-icons/md';
 import SearchModal from './SearchModal';
-import { novaRound } from '@/app/layout';
+import { novaRound } from '@/lib/fonts';
 import { FaSearch } from 'react-icons/fa';
 
 // --- Types ---
@@ -31,7 +31,7 @@ const Navbar: React.FC<CardNavProps> = ({
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Modal>
+    <>
       <div className={`fixed scale-[80%] top-4 right-4 z-50 md:top-6 md:right-8 ${novaRound.className}`}>
         {/* Container for alignment */}
         <div className={`relative flex flex-col items-end ${className}`}>
@@ -120,7 +120,7 @@ const Navbar: React.FC<CardNavProps> = ({
       <ModalBody>
         <SearchModal />
       </ModalBody>
-    </Modal>
+    </>
   );
 };
 

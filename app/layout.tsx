@@ -1,20 +1,7 @@
-import TargetCursor from "@/components/TargetCursor";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import { Emblema_One, Nova_Round } from "next/font/google";
 import { navbarItems } from "@/constants/constants";
-
-export const emblemaOne = Emblema_One({
-  // subsets: ['latin'],
-  weight: ['400'],
-  display: 'swap',
-});
-
-export const novaRound = Nova_Round({
-  // subsets: ['latin'],
-  weight: ['400'],
-  display: 'swap',
-});
+import { Providers } from "@/components/Providers";
 
 export default function RootLayout({
   children,
@@ -24,16 +11,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body >
-        <TargetCursor
-          spinDuration={2}
-          hideDefaultCursor={true}
-          parallaxOn={true}
-        />
-        <Navbar
-          items={navbarItems}
-          className="backdrop-blur-md"
-        />
-        {children}
+        <Providers>
+          <Navbar
+            items={navbarItems}
+            className="backdrop-blur-md"
+          />
+          {children}
+        </Providers>
       </body>
     </html>
   );
