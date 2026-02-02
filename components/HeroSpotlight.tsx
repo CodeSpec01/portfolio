@@ -3,7 +3,7 @@ import React, { useRef, useEffect } from 'react';
 import { useModal } from '@/contexts/ModalContext';
 
 const HeroSpotlight = () => {
-  const { isModalOpen } = useModal();
+  const { isContactModalOpen } = useModal();
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameId = useRef<number | null>(null);
@@ -16,7 +16,7 @@ const HeroSpotlight = () => {
     let isTicking = false;
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (isModalOpen) {
+      if (isContactModalOpen) {
         // Instantly hide the spotlight when modal is open for better performance
         if (containerRef.current) {
             containerRef.current.style.setProperty('--mouse-x', '-9999px');
@@ -73,7 +73,7 @@ const HeroSpotlight = () => {
             createSnowflakes();
 
             const drawSnow = () => {
-                if (!isTabActive || isModalOpen) {
+                if (!isTabActive || isContactModalOpen) {
                   animationFrameId.current = requestAnimationFrame(drawSnow);
                   return;
                 }
@@ -105,7 +105,7 @@ const HeroSpotlight = () => {
     
     // --- 3. PAUSE CSS ANIMATIONS ---
     if (light1Ref.current && light2Ref.current) {
-        if (isModalOpen) {
+        if (isContactModalOpen) {
             light1Ref.current.classList.add('paused');
             light2Ref.current.classList.add('paused');
         } else {
@@ -124,7 +124,7 @@ const HeroSpotlight = () => {
         document.removeEventListener("visibilitychange", () => {});
         if (canvas) window.removeEventListener('resize', () => {});
     };
-  }, [isModalOpen]); // Rerun effect when modal state changes
+  }, [isContactModalOpen]); // Rerun effect when modal state changes
 
   return (
     <div ref={containerRef} className="fixed inset-0 h-full w-full bg-[#03000a] -z-50 overflow-hidden">

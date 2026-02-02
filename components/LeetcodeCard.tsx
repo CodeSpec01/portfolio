@@ -66,7 +66,7 @@ function useContestHistory(username: string) {
         }
 
         // 2. Fetch from API (Using Alfa LeetCode API which supports contest data)
-        const response = await fetch(`https://alfa-leetcode-api.onrender.com/${username}/contest`);
+        const response = await fetch(`https://alfa-leetcode-api.onrender.com/${leetcodeUsername}/contest`);
 
         if (!response.ok) {
           // Handle specific 404 or other errors

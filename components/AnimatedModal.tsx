@@ -13,14 +13,18 @@ export const ModalTrigger = ({
     ariaLabel,
     style,
     keyboardShortcut,
+    modalType = 'search', // 'search' or 'contact'
 }: {
     children: ReactNode;
     className?: string;
     ariaLabel?: string;
     style?: React.CSSProperties;
     keyboardShortcut?: boolean;
+    modalType?: 'search' | 'contact';
 }) => {
-    const { setIsModalOpen } = useModal();
+    const { setIsSearchModalOpen, setIsContactModalOpen } = useModal();
+
+    const setModalOpen = modalType === 'search' ? setIsSearchModalOpen : setIsContactModalOpen;
 
     // Adding ctrl/cmd + K shortcut to open the modal
     useEffect(() => {
@@ -28,13 +32,14 @@ export const ModalTrigger = ({
             if (keyboardShortcut && (event.metaKey || event.ctrlKey) && event.key === 'k') {
 
                 event.preventDefault();
-                setIsModalOpen(true);
+                setModalOpen(true);
             }
 
             if (event.key == 'Escape') {
 
                 event.preventDefault();
-                setIsModalOpen(false);
+                setIsSearchModalOpen(false);
+                setIsContactModalOpen(false);
             }
         };
 
@@ -45,11 +50,11 @@ export const ModalTrigger = ({
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
         };
-    }, [keyboardShortcut, setIsModalOpen]);
+    }, [keyboardShortcut, setModalOpen, setIsSearchModalOpen, setIsContactModalOpen]);
 
     return (
         <button
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => setModalOpen(true)}
             type="button"
             className={className}
             style={style}
@@ -65,13 +70,18 @@ export const ModalBody = ({
     className,
     style,
     customClassName,
+    modalType = 'search', // 'search' or 'contact'
 }: {
     children: ReactNode;
     className?: string;
     style?: React.CSSProperties;
     customClassName?: string;
+    modalType?: 'search' | 'contact';
 }) => {
-    const { isModalOpen, setIsModalOpen } = useModal();
+    const { isSearchModalOpen, setIsSearchModalOpen, isContactModalOpen, setIsContactModalOpen } = useModal();
+
+    const isModalOpen = modalType === 'search' ? isSearchModalOpen : isContactModalOpen;
+    const setIsModalOpen = modalType === 'search' ? setIsSearchModalOpen : setIsContactModalOpen;
 
     useEffect(() => {
         if (isModalOpen) {
@@ -86,6 +96,7 @@ export const ModalBody = ({
     }, [isModalOpen]);
 
     const modalRef = useRef<HTMLDivElement>(null);
+    // @ts-ignore
     useOutsideClick(modalRef, () => setIsModalOpen(false));
 
     return (
@@ -134,7 +145,7 @@ export const ModalBody = ({
                             damping: 15,
                         }}
                     >
-                        <CloseIcon />
+                        <CloseIcon modalType={modalType} />
                         {children}
                     </motion.div>
                 </motion.div>
@@ -193,8 +204,9 @@ const Overlay = ({ className }: { className?: string }) => {
     );
 };
 
-const CloseIcon = () => {
-    const { setIsModalOpen } = useModal();
+const CloseIcon = ({ modalType }: { modalType: 'search' | 'contact' }) => {
+    const { setIsSearchModalOpen, setIsContactModalOpen } = useModal();
+    const setIsModalOpen = modalType === 'search' ? setIsSearchModalOpen : setIsContactModalOpen;
     return (
         <button
             onClick={() => setIsModalOpen(false)}

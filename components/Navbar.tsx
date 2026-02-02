@@ -52,6 +52,7 @@ const Navbar: React.FC<CardNavProps> = ({
               '
               ariaLabel='Search'
               keyboardShortcut={true}
+              modalType='search'
             >
               <span className='hidden md:flex items-center gap-2'><MdKeyboardCommandKey size={14} /> K</span>
               <FaSearch className='block md:hidden' size={14} />
@@ -117,7 +118,7 @@ const Navbar: React.FC<CardNavProps> = ({
         </div>
 
       </div>
-      <ModalBody>
+      <ModalBody modalType='search'>
         <SearchModal />
       </ModalBody>
     </>

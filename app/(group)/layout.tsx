@@ -8,11 +8,6 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <TargetCursor
-        spinDuration={2}
-        hideDefaultCursor={true}
-        parallaxOn={true}
-      />
       {children}
       <footer><Footer /></footer>
     </>

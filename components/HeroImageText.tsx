@@ -88,7 +88,7 @@ const SortingOverlay = ({ onClose }: { onClose: (house: string) => void }) => {
 };
 
 const HeroImageText = () => {
-  const { isModalOpen } = useModal();
+  const { isContactModalOpen } = useModal();
   const [currentTheme, setCurrentTheme] = useState<HouseTheme>(THEMES.DEFAULT);
   const [isSorting, setIsSorting] = useState(false);
 
@@ -102,12 +102,12 @@ const HeroImageText = () => {
   const artifactRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    if (isModalOpen) {
+    if (isContactModalOpen) {
       gsap.globalTimeline.pause();
     } else {
       gsap.globalTimeline.resume();
     }
-  }, [isModalOpen]);
+  }, [isContactModalOpen]);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -260,7 +260,9 @@ const HeroImageText = () => {
           </div>
           <ModalTrigger className="cursor-target group relative cursor-pointer scale-100 hover:scale-105 transition-all group flex items-center justify-center gap-3 px-8 py-4 bg-[#FACC15] hover:bg-[#EAB308] 
                             rounded-full ease-out shadow-[0_0_20px_rgba(250,204,21,0.2)] hover:shadow-[0_0_30px_rgba(250,204,21,0.4)] duration-300"
-            style={{ color: currentTheme.hex }}>
+            style={{ color: currentTheme.hex }}
+            modalType='contact'
+            >
 
             <MdConnectWithoutContact size={22} className="opacity-80 group-hover:opacity-100 transition-opacity " color="black" />
             <span className="font-sans font-semibold text-sm tracking-widest uppercase text-black">
@@ -271,7 +273,7 @@ const HeroImageText = () => {
           <div className="absolute bottom-[-50px] w-screen h-px bg-linear-to-r from-transparent via-white/10 to-transparent opacity-50" />
         </div>
 
-        <ModalBody><ContactModal /></ModalBody>
+        <ModalBody modalType='contact'><ContactModal /></ModalBody>
       </div>
     </>
   );

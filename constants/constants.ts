@@ -4,7 +4,7 @@ import { BsGithub, BsUiRadiosGrid } from "react-icons/bs";
 import { CgFramer } from "react-icons/cg";
 import { FaCameraRetro, FaCloudflare, FaCode, FaDocker, FaFigma, FaGitAlt, FaGithub, FaMarkdown, FaMicrochip, FaNodeJs, FaPython, FaReact, FaUserCheck } from "react-icons/fa";
 import { FaGolang } from "react-icons/fa6";
-import { GiCheckeredFlag, GiCrown, GiCube, GiKatana, GiSnitchQuidditchBall, GiSoccerBall, GiSteeringWheel } from "react-icons/gi";
+import { GiCheckeredFlag, GiCrown, GiCube, GiKatana, GiSnitchQuidditchBall, GiSoccerBall, GiSteeringWheel, GiThorHammer } from "react-icons/gi";
 import { GrMysql } from "react-icons/gr";
 import { IoLogoLinkedin } from "react-icons/io5";
 import { PiLetterCircleVFill } from "react-icons/pi";
@@ -400,10 +400,10 @@ export const ARTIFACTS_DATA = [
   },
   {
     id: "cube",
-    Icon: GiCube,
-    text: "CREATIVE MODE",
+    Icon: GiThorHammer,
+    text: "STILL WORTHY",
     style: { top: '60%', left: '10%' },
-    color: "text-emerald-500"
+    color: "text-gray-300"
   },
   {
     id: "crown",

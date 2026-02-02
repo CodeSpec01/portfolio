@@ -57,7 +57,7 @@ const SearchItem: React.FC<SearchItemProps> = ({ item }) => (
 );
 
 const CoderProfileCard = () => {
-    const { setIsModalOpen } = useModal();
+    const { setIsSearchModalOpen } = useModal();
     const [searchTerm, setSearchTerm] = useState('');
     const [items, setItems] = useState<SearchItemType[]>(recentSearches);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -86,7 +86,7 @@ const CoderProfileCard = () => {
 
             <div className="px-4 lg:px-8 py-5 flex justify-between items-center bg-linear-to-r from-[#000000a0] to-[#0a0d37] rounded-2xl">
                 <div className="flex flex-row space-x-2">
-                    <button type="button" className="h-3 w-3 rounded-full bg-red-500" onClick={() => setIsModalOpen(false)}></button>
+                    <button type="button" className="h-3 w-3 rounded-full bg-red-500" onClick={() => setIsSearchModalOpen(false)}></button>
                     <div className="h-3 w-3 rounded-full bg-orange-400"></div>
                     <div className="h-3 w-3 rounded-full bg-green-400"></div>
                 </div>
