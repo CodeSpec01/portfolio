@@ -258,23 +258,24 @@ const HeroImageText = () => {
               <RotatingText texts={rotatingTexts} mainClassName="text-white/90 text-xs md:text-sm font-bold font-mono tracking-wider uppercase whitespace-nowrap" staggerFrom={"last"} initial={{ y: "150%" }} animate={{ y: 0 }} exit={{ y: "-150%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }} splitBy="characters" rotationInterval={3500} />
             </div>
           </div>
-          <ModalTrigger className="cursor-target group relative cursor-pointer scale-100 hover:scale-105 transition-all group flex items-center justify-center gap-3 px-8 py-4 bg-[#FACC15] hover:bg-[#EAB308] 
-                            rounded-full ease-out shadow-[0_0_20px_rgba(250,204,21,0.2)] hover:shadow-[0_0_30px_rgba(250,204,21,0.4)] duration-300"
-            style={{ color: currentTheme.hex }}
-            modalType='contact'
+          <div className="cursor-target">
+            <ModalTrigger className="group relative cursor-pointer scale-100 hover:scale-105 transition-all group flex items-center justify-center gap-3 px-8 py-4 bg-[#FACC15] hover:bg-[#EAB308] rounded-full ease-out shadow-[0_0_20px_rgba(250,204,21,0.2)] hover:shadow-[0_0_30px_rgba(250,204,21,0.4)] duration-300"
+              style={{ color: currentTheme.hex }}
+              modalType='contact'
             >
 
-            <MdConnectWithoutContact size={22} className="opacity-80 group-hover:opacity-100 transition-opacity " color="black" />
-            <span className="font-sans font-semibold text-sm tracking-widest uppercase text-black">
-              Connect with me
-            </span>
-            <BsArrowRight size={18} className="w-0 overflow-hidden group-hover:w-5 transition-all duration-300 ease-out" color="black" />
-          </ModalTrigger>
+              <MdConnectWithoutContact size={22} className="opacity-80 group-hover:opacity-100 transition-opacity " color="black" />
+              <span className="font-sans font-semibold text-sm tracking-widest uppercase text-black">
+                Connect with me
+              </span>
+              <BsArrowRight size={18} className="w-0 overflow-hidden group-hover:w-5 transition-all duration-300 ease-out" color="black" />
+            </ModalTrigger>
+          </div>
           <div className="absolute bottom-[-50px] w-screen h-px bg-linear-to-r from-transparent via-white/10 to-transparent opacity-50" />
         </div>
 
-        <ModalBody modalType='contact'><ContactModal /></ModalBody>
       </div>
+      <ModalBody modalType='contact'><ContactModal /></ModalBody>
     </>
   );
 };

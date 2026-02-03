@@ -451,7 +451,7 @@ export const ARTIFACTS_DATA = [
   },
 ];
 
-export const resumeLink = "/home/aviral.png"
+export const resumeLink = "/about/resume.pdf"
 
 export const BACKENDSKILLS = [
   {
