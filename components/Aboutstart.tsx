@@ -70,16 +70,16 @@ function Aboutstart() {
             pauseOnHover={false}
           >
             <Card>
-              <img src="/projects/spacecon.png" alt="" className="h-full w-full object-cover rounded-lg" />
+              <img src="/projects/spacecon.png" alt="spacecon" className="h-full w-full object-cover rounded-lg" />
             </Card>
             <Card>
-              <img src="/projects/culinary-corner.png" alt="" className="h-full w-full object-cover rounded-lg" />
+              <img src="/projects/culinary-corner.png" alt="culinary corner" className="h-full w-full object-cover rounded-lg" />
             </Card>
             <Card>
-              <img src="/projects/streak-flow.png" alt="" className="h-full w-full object-cover rounded-lg" />
+              <img src="/projects/streak-flow.png" alt="streak flow" className="h-full w-full object-cover rounded-lg" />
             </Card>
             <Card>
-              <img src="/projects/portfolio.png" alt="" className="h-full w-full object-cover rounde rounded-lg" />
+              <img src="/projects/portfolio.png" alt="portfolio" className="h-full w-full object-cover rounde rounded-lg" />
             </Card>
 
           </CardSwap>

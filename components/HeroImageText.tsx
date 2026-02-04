@@ -244,7 +244,7 @@ const HeroImageText = () => {
             src="/home/aviral.png"
             alt="Aviral Gaur"
             loading="eager"
-            className="h-full -inset-x-[10vw] md:inset-0 w-[150vw] object-contain z-10 relative drop-shadow-2xl will-change-transform"
+            className="h-full w-screen md:w-[150vw] object-contain z-10 relative drop-shadow-2xl will-change-transform"
           />
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[150%] h-[50%] bg-linear-to-t from-[#050505] via-[#050505]/80 to-transparent z-20" />
           <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-[150%] h-[300px] md:h-[400px] bg-linear-to-t ${currentTheme.bgGradient} blur-[60px] md:blur-[100px] z-10 transition-all duration-1000 opacity-60`} />
@@ -258,23 +258,24 @@ const HeroImageText = () => {
               <RotatingText texts={rotatingTexts} mainClassName="text-white/90 text-xs md:text-sm font-bold font-mono tracking-wider uppercase whitespace-nowrap" staggerFrom={"last"} initial={{ y: "150%" }} animate={{ y: 0 }} exit={{ y: "-150%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }} splitBy="characters" rotationInterval={3500} />
             </div>
           </div>
-          <ModalTrigger className="cursor-target group relative cursor-pointer scale-100 hover:scale-105 transition-all group flex items-center justify-center gap-3 px-8 py-4 bg-[#FACC15] hover:bg-[#EAB308] 
-                            rounded-full ease-out shadow-[0_0_20px_rgba(250,204,21,0.2)] hover:shadow-[0_0_30px_rgba(250,204,21,0.4)] duration-300"
-            style={{ color: currentTheme.hex }}
-            modalType='contact'
+          <div className="cursor-target">
+            <ModalTrigger className="group relative cursor-pointer scale-100 hover:scale-105 transition-all group flex items-center justify-center gap-3 px-8 py-4 bg-[#FACC15] hover:bg-[#EAB308] rounded-full ease-out shadow-[0_0_20px_rgba(250,204,21,0.2)] hover:shadow-[0_0_30px_rgba(250,204,21,0.4)] duration-300"
+              style={{ color: currentTheme.hex }}
+              modalType='contact'
             >
 
-            <MdConnectWithoutContact size={22} className="opacity-80 group-hover:opacity-100 transition-opacity " color="black" />
-            <span className="font-sans font-semibold text-sm tracking-widest uppercase text-black">
-              Connect with me
-            </span>
-            <BsArrowRight size={18} className="w-0 overflow-hidden group-hover:w-5 transition-all duration-300 ease-out" color="black" />
-          </ModalTrigger>
+              <MdConnectWithoutContact size={22} className="opacity-80 group-hover:opacity-100 transition-opacity " color="black" />
+              <span className="font-sans font-semibold text-sm tracking-widest uppercase text-black">
+                Connect with me
+              </span>
+              <BsArrowRight size={18} className="w-0 overflow-hidden group-hover:w-5 transition-all duration-300 ease-out" color="black" />
+            </ModalTrigger>
+          </div>
           <div className="absolute bottom-[-50px] w-screen h-px bg-linear-to-r from-transparent via-white/10 to-transparent opacity-50" />
         </div>
 
-        <ModalBody modalType='contact'><ContactModal /></ModalBody>
       </div>
+      <ModalBody modalType='contact'><ContactModal /></ModalBody>
     </>
   );
 };

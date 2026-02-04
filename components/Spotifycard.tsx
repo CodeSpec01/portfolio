@@ -156,11 +156,7 @@ export default function SpotifyCard() {
 
           {/* --- The Vinyl Disc --- */}
           <div
-            className={`absolute scale-[200%] z-0 w-44 h-44 rounded-full bg-zinc-900/95 border-[3px] border-zinc-800 flex items-center justify-center shadow-xl
-                      left-1/2 bottom-8 -translate-x-1/2
-                      transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]
-                      inset-y-[40%]
-                      ${display ? "group-hover:-translate-y-30 group-hover:rotate-360" : ""}`}
+            className={`absolute scale-[150%] z-0 w-44 h-44 rounded-full bg-zinc-900/95 border-[3px] border-zinc-800 flex items-center justify-center shadow-xl left-1/2 bottom-8 -translate-x-1/2 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] inset-y-[40%] ${display ? "group-hover:-translate-y-45 group-hover:rotate-360" : ""}`}
           >
             <div className="w-14 h-14 rounded-full bg-zinc-950 border-2 border-zinc-800 relative z-10 overflow-hidden">
               {/* Tiny center image in vinyl */}
@@ -182,7 +178,7 @@ export default function SpotifyCard() {
           </div>
 
           {/* --- The Album Cover --- */}
-          <div className="scale-[190%] relative z-20 w-52 h-52 rounded-xl overflow-hidden shadow-[0_8px_24px_rgb(0,0,0,0.5)] transition-transform duration-500 group-hover:scale-[200%] bg-zinc-800">
+          <div className="scale-[150%] relative z-20 w-52 h-52 rounded-xl overflow-hidden shadow-[0_8px_24px_rgb(0,0,0,0.5)] transition-transform duration-500 group-hover:scale-[160%] bg-zinc-800">
             {display?.albumCoverUrl && (
               <img
                 src={display.albumCoverUrl}

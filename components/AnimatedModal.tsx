@@ -145,7 +145,6 @@ export const ModalBody = ({
                             damping: 15,
                         }}
                     >
-                        <CloseIcon modalType={modalType} />
                         {children}
                     </motion.div>
                 </motion.div>
@@ -201,34 +200,6 @@ const Overlay = ({ className }: { className?: string }) => {
             }}
             className={`fixed inset-0 h-full w-full bg-black/50 ${className}`}
         ></motion.div>
-    );
-};
-
-const CloseIcon = ({ modalType }: { modalType: 'search' | 'contact' }) => {
-    const { setIsSearchModalOpen, setIsContactModalOpen } = useModal();
-    const setIsModalOpen = modalType === 'search' ? setIsSearchModalOpen : setIsContactModalOpen;
-    return (
-        <button
-            onClick={() => setIsModalOpen(false)}
-            className="absolute top-4 right-4 group z-50"
-        >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-black dark:text-white h-4 w-4 group-hover:scale-125 group-hover:rotate-3 transition duration-200"
-            >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M18 6l-12 12" />
-                <path d="M6 6l12 12" />
-            </svg>
-        </button>
     );
 };
 

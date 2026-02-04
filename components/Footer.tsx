@@ -5,6 +5,8 @@ import { GoArrowUpRight } from 'react-icons/go';
 import { FaGithub, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { HiArrowLongUp } from 'react-icons/hi2';
 import { FooterSocials } from '@/constants/constants';
+import { ModalBody, ModalTrigger } from './AnimatedModal';
+import ContactModal from './ContactModal';
 // import { Socials } from '@/constants/constants';
 
 const Footer = () => {
@@ -36,10 +38,12 @@ const Footer = () => {
                 Let's build something <br />
                 <span className="text-white/40">extraordinary together.</span>
               </h2>
-              <button className="group flex items-center gap-3 px-6 py-3 bg-white text-black rounded-full font-bold hover:bg-white/90 transition-all">
-                Get in touch
-                <GoArrowUpRight className="group-hover:rotate-45 transition-transform duration-300" />
-              </button>
+              <ModalTrigger modalType='contact'>
+                <div className="cursor-target group flex items-center gap-3 px-6 py-3 bg-white text-black rounded-full font-bold hover:bg-white/90 transition-all">
+                  Get in touch
+                  <GoArrowUpRight className="group-hover:rotate-45 transition-transform duration-300" />
+                </div>
+              </ModalTrigger>
             </div>
           </div>
 
@@ -102,6 +106,8 @@ const Footer = () => {
         </div>
 
       </div>
+
+      <ModalBody modalType='contact'><ContactModal /></ModalBody>      
     </footer>
   );
 };

@@ -12,11 +12,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body >
-      <TargetCursor
-        spinDuration={2}
-        hideDefaultCursor={true}
-        parallaxOn={true}
-      />
+        <TargetCursor
+          spinDuration={2}
+          hideDefaultCursor={true}
+          parallaxOn={true}
+        />
         <Providers>
           <Navbar
             items={navbarItems}
