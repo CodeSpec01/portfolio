@@ -233,7 +233,7 @@ const GallerySection: React.FC<GallerySectionProps> = ({ galleryImages }) => {
 
         {/* Images */}
         {galleryImages.map((src, i) => (
-          <div key={i} className="shrink-0 w-[80vw] md:w-[40vw] h-full relative group overflow-hidden rounded-sm grayscale hover:grayscale-0 transition-all duration-700 cursor-pointer">
+          <div key={i} className="shrink-0 w-[80vw] md:w-[40vw] h-full relative group overflow-hidden rounded-sm md:grayscale hover:grayscale-0 transition-all duration-700 cursor-pointer">
             <img src={src} alt="Gallery" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000 ease-out" />
             <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
             <div className="absolute bottom-6 left-6 bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-mono text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -256,7 +256,7 @@ const GamingSection = () => {
   const [activeGame, setActiveGame] = useState(0);
 
   return (
-    <section className="relative w-full h-screen bg-black overflow-hidden flex items-center z-10 border-t border-white/5">
+    <section className="relative w-full min-h-screen py-4 bg-black overflow-hidden flex items-center z-10 border-t border-white/5">
 
       {/* DYNAMIC BACKGROUND */}
       {gamesData.map((game, index) => (
@@ -301,16 +301,16 @@ const GamingSection = () => {
         </div>
 
         {/* RIGHT: STATS CARD */}
-        <div className="relative h-[300px] md:h-[400px] flex items-center justify-center md:justify-start">
+        <div className="relative h-[300px] md:h-full flex items-center justify-center md:justify-start">
           {gamesData.map((game, index) => (
             <div
               key={game.id}
-              className={`absolute md:inset-[10vh] w-[50%] h-full border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl flex flex-col justify-center transition-all duration-500 transform ${activeGame === index
+              className={`absolute md:inset-[10vh] w-full h-full border border-white/10 bg-black/40 backdrop-blur-sm rounded-xl flex flex-col justify-center transition-all duration-500 transform ${activeGame === index
                 ? "opacity-100 translate-y-0 blur-0"
                 : "opacity-0 translate-y-12 blur-sm pointer-events-none"
                 }`}
             >
-              <img src={game.image} className="object-cover h-full rounded-xl" alt="img" />
+              <img src={game.image} className="object-cover object-top h-full rounded-xl" alt="img" />
             </div>
           ))}
         </div>

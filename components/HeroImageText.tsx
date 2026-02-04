@@ -244,7 +244,7 @@ const HeroImageText = () => {
             src="/home/aviral.png"
             alt="Aviral Gaur"
             loading="eager"
-            className="h-full -inset-x-[10vw] md:inset-0 w-[150vw] object-contain z-10 relative drop-shadow-2xl will-change-transform"
+            className="h-full w-screen md:w-[150vw] object-contain z-10 relative drop-shadow-2xl will-change-transform"
           />
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[150%] h-[50%] bg-linear-to-t from-[#050505] via-[#050505]/80 to-transparent z-20" />
           <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-[150%] h-[300px] md:h-[400px] bg-linear-to-t ${currentTheme.bgGradient} blur-[60px] md:blur-[100px] z-10 transition-all duration-1000 opacity-60`} />
