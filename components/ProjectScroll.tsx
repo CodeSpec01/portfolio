@@ -78,7 +78,7 @@ const ProjectScroll = () => {
                 }}
               >
                 {/* Gradient Border Wrapper */}
-                <div className="p-px rounded-2xl bg-gradient-to-br from-orange-400 via-rose-400 to-amber-200 shadow-2xl w-full mx-auto">
+                <div className="p-px rounded-2xl bg-linear-to-br from-orange-400 via-rose-400 to-amber-200 shadow-2xl w-full mx-auto">
                   <div className="rounded-2xl bg-[#0a0f18] border border-white/5 overflow-hidden relative group">
                     <div className="relative w-full aspect-video overflow-hidden">
                       <img
@@ -86,19 +86,19 @@ const ProjectScroll = () => {
                         alt={item.title}
                         className="w-full h-full object-cover object-top transform transition-transform duration-700 ease-out group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f18] via-transparent to-transparent opacity-60" />
+                      <div className="absolute inset-0 bg-linear-to-t from-[#0a0f18] via-transparent to-transparent opacity-60" />
                     </div>
 
                     <div className="px-6 py-3 flex gap-4 justify-center">
-                      <a
+                      {item.website && <a
                         href={item.website}
                         target="_blank"
                         rel="noreferrer"
                         className="relative overflow-hidden px-5 py-2 rounded-full border border-white/10 bg-white/5 text-white text-sm font-medium hover:border-orange-400/50 transition-colors group/btn"
                       >
                         <span className="relative z-10">Live Demo</span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-500" />
-                      </a>
+                        <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-500" />
+                      </a>}
 
                       <a
                         href={item.github}

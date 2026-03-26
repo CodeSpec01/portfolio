@@ -26,6 +26,7 @@ interface TeamMember {
   name: string;
   role: string;
   image: string;
+  link: string;
 }
 
 // --- Data ---
@@ -73,8 +74,8 @@ const TECH_STACK: TechItem[] = [
 ];
 
 const TEAM: TeamMember[] = [
-  { name: "Aviral Gaur", role: "Full Stack Arch", image: "/home/aviral.png" },
-  { name: "Manav Jaiswal", role: "Full Stack Arch", image: "/home/manav.png" },
+  { name: "Aviral Gaur", role: "Full Stack Arch", image: "/home/aviral.png", link: "https://aviralgaur.vercel.app/"},
+  { name: "Manav Jaiswal", role: "Full Stack Arch", image: "/home/manav.png", link: "https://manavjaiswal.vercel.app/"},
 ];
 
 // --- Sub-Component: Spotlight Card (The "Cool" Hover Effect) ---
@@ -232,11 +233,13 @@ const JourneyPage: React.FC = () => {
                 <div className="absolute -inset-1 w-36 h-36 rounded-full bg-linear-to-r from-purple-600 to-yellow-400 opacity-20 group-hover:opacity-100 blur transition duration-500"></div>
 
                 <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-slate-800 group-hover:border-transparent bg-black transition-all duration-300 mx-auto">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full mt-5 md:grayscale group-hover:grayscale-0 group-focus:grayscale-0 group-active:grayscale-0 scale-100 group-hover:scale-110 transition-all duration-500 ease-out"
-                  />
+                  <Link href={member.link} target="_blank">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full mt-5 md:grayscale group-hover:grayscale-0 group-focus:grayscale-0 group-active:grayscale-0 scale-100 group-hover:scale-110 transition-all duration-500 ease-out"
+                    />
+                  </Link>
                 </div>
 
                 <div className="mt-6 space-y-1">

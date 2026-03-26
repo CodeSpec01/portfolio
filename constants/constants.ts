@@ -193,6 +193,24 @@ export const bentoElement = [
 
 export const projectData = [
   {
+    title: "FileScape",
+    description:
+      "Co-architected and developed Filescape, a secure, cloud-native file storage and distribution platform engineered to handle massive data at scale. Serving as an enterprise-grade virtual vault, it provides users with seamless large-file uploads, infinite nested folder organization, and highly secure, time-sensitive file sharing. Key focus areas included bypassing serverless payload bottlenecks, complex NoSQL data modeling, and strict server-side access control.",
+    tags: ["Next.js 15", "AWS S3", "AWS DynamoDB", "Server Actions", "TypeScript", "Tailwind CSS", "Clerk Auth"],
+    imageUrl: "/projects/filescape.png",
+    color: "bg-indigo-900",
+    // website: "https://spacecon.tech/",
+    github: "https://github.com/CodeSpec01/filescape/",
+    // NEW FIELDS
+    highlightColor: "#723A8F", // Indigo-400
+    features: [
+      "Engineered a direct-to-cloud upload pipeline using AWS S3 Presigned URLs to completely bypass server bandwidth bottlenecks and timeout limits.",
+      "Modeled an infinitely nestable virtual file system in a flat NoSQL database by implementing an Adjacency List data structure in DynamoDB.",
+      'Built a Server-Side Authorization Proxy (The "Bouncer" Pattern) to securely handle expiring share links and email-based Access Control Lists (ACLs) without exposing raw S3 assets.',
+      "Implemented optimistic UI updates and real-time storage analytics for a highly responsive, premium User Experience."
+    ],
+  },
+  {
     title: "SpaceCon'25",
     description:
       "Developed and deployed the official SpaceCon website, serving as the central hub for event showcases, registrations, schedules, and contact information. This real-world product handles live traffic, ensuring smooth user experience, reliability, and accessibility. Key focus areas included performance optimization, traffic management, custom animations, and seamless UI/UX.",
