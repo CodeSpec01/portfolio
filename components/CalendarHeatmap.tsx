@@ -102,7 +102,7 @@ export default function CalendarHeatmap() {
     const normalizedMap = new Map<string, number>();
 
     // 2. Parse data ONLY if it exists
-    if (rawData) {
+    if (rawData && rawData.submissionCalendar && rawData.submissionCalendar !== "undefined") {
       const calendarMap: Record<string, number> = JSON.parse(rawData.submissionCalendar);
       Object.entries(calendarMap).forEach(([ts, count]) => {
         const date = new Date(parseInt(ts) * 1000);

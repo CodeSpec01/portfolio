@@ -66,7 +66,7 @@ function useContestHistory(username: string) {
         }
 
         // 2. Fetch from API (Using Alfa LeetCode API which supports contest data)
-        const response = await fetch(`https://alfa-leetcode-api.onrender.com/${leetcodeUsername}/contest`);
+      const response = await fetch(`https://alfa-leetcode-api.onrender.com/${leetcodeUsername}/contest`);
 
         if (!response.ok) {
           // Handle specific 404 or other errors
@@ -148,6 +148,7 @@ export default function ContestRatingChart() {
   // === Process Data with useMemo ===
   const { chartData, domain, currentRating, topPercentage, globalRank, attended } = useMemo(() => {
     // Default / Empty State
+    console.log(!rawData);
     if (!rawData || !rawData.contestParticipation) {
       return {
         chartData: [],
