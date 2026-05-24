@@ -39,6 +39,12 @@ interface DayData {
   isPlaceholder?: boolean;
 }
 
+interface MonthBlock {
+  month: number;
+  year: number;
+  columns: DayData[][];
+}
+
 interface LeetCodeData {
   totalActiveDays: number;
   activeYears: number[];
@@ -46,10 +52,10 @@ interface LeetCodeData {
   streak: number;
 }
 
-// --- Hook (Same as before) ---
+// --- Hook ---
 function useLeetCodeStats(username: string) {
   const [data, setData] = useState<LeetCodeData | null>(null);
-  const [loading, setLoading] = useState(true); // Start true
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
@@ -91,17 +97,10 @@ function useLeetCodeStats(username: string) {
 export default function CalendarHeatmap() {
   const { rawData, loading, error } = useLeetCodeStats('codespec');
 
-  // --- Process Data (Handle Nulls for Loading State) ---
-  const { weeks, year, totalActiveDays, streak } = useMemo(() => {
-    // 1. Determine the target year
-    // If data exists, use it. If loading/error, use current year as placeholder.
-    const targetYear = rawData?.activeYears?.length
-      ? rawData.activeYears[rawData.activeYears.length - 1]
-      : new Date().getFullYear();
-
+  // --- Process Data into distinct Month Blocks ---
+  const { monthsBlocks, totalActiveDays, streak } = useMemo(() => {
     const normalizedMap = new Map<string, number>();
 
-    // 2. Parse data ONLY if it exists
     if (rawData && rawData.submissionCalendar && rawData.submissionCalendar !== "undefined") {
       const calendarMap: Record<string, number> = JSON.parse(rawData.submissionCalendar);
       Object.entries(calendarMap).forEach(([ts, count]) => {
@@ -111,46 +110,72 @@ export default function CalendarHeatmap() {
       });
     }
 
-    // 3. Generate the Grid (Works for both Data and No Data)
-    const startDate = new Date(`${targetYear}-01-01`);
-    const endDate = new Date(`${targetYear}-12-31`);
-    const allDays: DayData[] = [];
+    const now = new Date();
+    // End Date is today
+    const endDateObj = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+    // Start Date is exactly one year ago from today
+    const startDateObj = new Date(Date.UTC(now.getFullYear() - 1, now.getMonth(), now.getDate()));
 
-    // Adjust start to Monday
-    let startDayOfWeek = startDate.getDay();
-    startDayOfWeek = startDayOfWeek === 0 ? 6 : startDayOfWeek - 1;
+    const generatedBlocks: MonthBlock[] = [];
 
-    for (let i = 0; i < startDayOfWeek; i++) {
-      allDays.push({ date: `prev-${i}`, count: 0, level: 0, isPlaceholder: true });
-    }
+    // Start iterating from the 1st of the month exactly one year ago
+    const currentMonthDate = new Date(Date.UTC(startDateObj.getUTCFullYear(), startDateObj.getUTCMonth(), 1));
+    const endMonthDate = new Date(Date.UTC(endDateObj.getUTCFullYear(), endDateObj.getUTCMonth(), 1));
 
-    // Fill days
-    for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
-      const key = d.toISOString().split('T')[0];
-      const count = normalizedMap.get(key) || 0; // Will be 0 if map is empty (loading state)
-      allDays.push({ date: key, count, level: getIntensity(count) });
-    }
+    while (currentMonthDate <= endMonthDate) {
+      const year = currentMonthDate.getUTCFullYear();
+      const month = currentMonthDate.getUTCMonth();
+      const daysInMonth = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
 
-    const weeksArr: DayData[][] = [];
-    for (let i = 0; i < allDays.length; i += 7) {
-      weeksArr.push(allDays.slice(i, i + 7));
+      const columns: DayData[][] = [];
+      let currentColumn: DayData[] = Array(7).fill({ isPlaceholder: true, date: '', count: 0, level: 0 });
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dateObj = new Date(Date.UTC(year, month, day));
+        const dayOfWeek = dateObj.getUTCDay(); // 0 (Sun) to 6 (Sat)
+        const dateStr = dateObj.toISOString().split('T')[0];
+
+        // If the date falls outside our strict 1-year window, it remains a placeholder
+        const isOutOfRange = dateObj < startDateObj || dateObj > endDateObj;
+        const count = isOutOfRange ? 0 : (normalizedMap.get(dateStr) || 0);
+
+        currentColumn[dayOfWeek] = {
+          date: dateStr,
+          count,
+          level: isOutOfRange ? 0 : getIntensity(count),
+          isPlaceholder: isOutOfRange
+        };
+
+        // If it's Saturday (end of week) or the last day of the month, finalize the column
+        if (dayOfWeek === 6 || day === daysInMonth) {
+          // Only push the column if it contains at least one day within our 1-year window.
+          // This prevents empty weeks from showing at the very beginning or end.
+          const hasVisibleDays = currentColumn.some(d => !d.isPlaceholder);
+          if (hasVisibleDays) {
+            columns.push([...currentColumn]);
+          }
+          currentColumn = Array(7).fill({ isPlaceholder: true, date: '', count: 0, level: 0 });
+        }
+      }
+
+      if (columns.length > 0) {
+        generatedBlocks.push({ year, month, columns });
+      }
+
+      // Move to next month
+      currentMonthDate.setUTCMonth(currentMonthDate.getUTCMonth() + 1);
     }
 
     return {
-      weeks: weeksArr,
-      year: targetYear,
+      monthsBlocks: generatedBlocks,
       totalActiveDays: rawData?.totalActiveDays || 0,
       streak: rawData?.streak || 0
     };
   }, [rawData]);
 
   return (
-    // relative container is CRITICAL for absolute positioning the overlays
     <div className='w-[95%] mx-auto bg-linear-to-r from-[#ff7a18] via-[#ffb199] to-[#ffd59a] p-px rounded-xl'>
-
       <div className={`relative w-full mx-auto p-8 rounded-xl bg-linear-to-t from-black/90 via-40% via-black/20 to-[#350066] shadow-sm ${THEME.bg} overflow-hidden`}>
-
-        {/* --- OVERLAYS --- */}
 
         {/* Loading Overlay */}
         {loading && (
@@ -167,78 +192,58 @@ export default function CalendarHeatmap() {
           </div>
         )}
 
-
         {/* Header Stats */}
-        <div className={`w-full flex flex-col sm:flex-row sm:items-end justify-start mb-8 ${(loading || error) ? 'opacity-50' : ''}`}>
+        <div className={`w-full flex flex-col sm:flex-row sm:items-end justify-start mb-6 ${(loading || error) ? 'opacity-50' : ''}`}>
           <div>
-            <h1 className='mb-5 md:text-[2vw] text-gray-200'>Leetcode Heatmap</h1>
-            <h2 className="text-xl md:text-[1vw] font-bold text-gray-100">
-              {loading ? "..." : totalActiveDays} submissions in {year}
+            <h1 className='mb-2 md:mb-5 text-xl md:text-2xl text-gray-200'>Leetcode Heatmap</h1>
+            <h2 className="text-sm md:text-base font-bold text-gray-100">
+              {loading ? "..." : totalActiveDays} submissions in the past year
             </h2>
-            <div className={`flex gap-4 text-sm mt-1 ${THEME.text}`}>
+            <div className={`flex gap-4 text-xs md:text-sm mt-1 ${THEME.text}`}>
               <span>Total active days: <strong className="text-gray-200">{loading ? '-' : totalActiveDays}</strong></span>
               <span>Max streak: <strong className="text-gray-200">{loading ? '-' : streak}</strong></span>
             </div>
           </div>
         </div>
 
-        {/* HEATMAP SCROLL CONTAINER */}
-        <div className={`w-full pb-4 overflow-x-auto md:overflow-x-visible scrollbar-hide ${(loading || error) ? 'opacity-50' : ''}`}>
-          <div className="flex justify-center min-w-max gap-[3px]">
-            {/* Y-Axis Labels */}
-            <div className={`flex flex-col gap-[3px] text-[10px] md:text-[1.2vw] md:mt-[0.6vw] ${THEME.text} mt-5 mr-2 leading-2.5 md:leading-[1.2vw]`}>
-              <div className="h-2.5 md:h-[1.2vw]" />
-              <div className="h-2.5 md:h-[1.2vw] flex items-center">Mon</div>
-              <div className="h-2.5 md:h-[1.2vw]" />
-              <div className="h-2.5 md:h-[1.2vw] flex items-center">Wed</div>
-              <div className="h-2.5 md:h-[1.2vw]" />
-              <div className="h-2.5 md:h-[1.2vw] flex items-center">Fri</div>
-              <div className="h-2.5 md:h-[1.2vw]" />
-            </div>
+        {/* HEATMAP SCROLL CONTAINER - Forced scroll on all devices to prevent clipping */}
+        <div className={`w-full pb-6 lg:overflow-x-visible overflow-x-scroll scrollbar-hide ${(loading || error) ? 'opacity-50' : ''}`}>
+          <div className="flex justify-start md:justify-center min-w-max gap-3 md:gap-4 px-2">
 
-            {/* Weeks Columns */}
-            {weeks.map((week, weekIndex) => {
-              const firstDay = week.find(d => !d.isPlaceholder);
-              const dateObj = firstDay ? new Date(firstDay.date) : null;
-              const currentMonthIndex = dateObj ? dateObj.getMonth() : null;
-              const prevWeek = weeks[weekIndex - 1];
-              const prevDay = prevWeek ? prevWeek.find(d => !d.isPlaceholder) : null;
-              const prevDateObj = prevDay ? new Date(prevDay.date) : null;
-              const prevMonthIndex = prevDateObj ? prevDateObj.getMonth() : null;
-              const isNewMonth = currentMonthIndex !== null && currentMonthIndex !== prevMonthIndex;
-
-              return (
-                <div
-                  key={weekIndex}
-                  className={`flex flex-col gap-[3px] ${isNewMonth && weekIndex !== 0 ? 'ml-4' : ''}`}
-                >
-                  <div className={`h-[15px] text-[10px] md:text-[1.2vw] mb-2 md:mb-[1.1vw] ${THEME.text} relative`}>
-                    {(weekIndex === 0 || isNewMonth) && (
-                      <span className="absolute top-0 left-0 whitespace-nowrap">
-                        {currentMonthIndex !== null ? MONTH_LABELS[currentMonthIndex] : ""}
-                      </span>
-                    )}
-                  </div>
-
-                  {week.map((day, dayIndex) => (
-                    day.isPlaceholder ? (
-                      <div key={`placeholder-${dayIndex}`} className="w-2.5 h-2.5 md:w-[1.2vw] md:h-[1.2vw]" />
-                    ) : (
-                      <HeatmapCell key={day.date} day={day} />
-                    )
+            {monthsBlocks.map((monthBlock, mIdx) => (
+              <div key={`month-${mIdx}`} className="flex flex-col items-start">
+                {/* Month Grid */}
+                <div className="flex gap-[3px] md:gap-1">
+                  {monthBlock.columns.map((col, cIdx) => (
+                    <div key={`col-${mIdx}-${cIdx}`} className="flex flex-col gap-[3px] md:gap-1">
+                      {col.map((day, dIdx) => (
+                        day.isPlaceholder ? (
+                          // Transparent placeholder maintains structural layout
+                          <div key={`placeholder-${mIdx}-${cIdx}-${dIdx}`} className="w-3 h-3 md:w-3.5 md:h-3.5" />
+                        ) : (
+                          <HeatmapCell key={day.date} day={day} />
+                        )
+                      ))}
+                    </div>
                   ))}
                 </div>
-              );
-            })}
+
+                {/* Month Label Base */}
+                <span className={`text-sm md:text-lg mt-2 ${THEME.text} w-full text-left`}>
+                  {MONTH_LABELS[monthBlock.month]}
+                </span>
+              </div>
+            ))}
+
           </div>
         </div>
 
         {/* Legend */}
-        <div className={`flex justify-end items-center gap-2 text-xs md:text-xl ${THEME.text} mt-4 ${(loading || error) ? 'opacity-50' : ''}`}>
+        <div className={`flex justify-end items-center gap-2 text-xs ${THEME.text} mt-2 ${(loading || error) ? 'opacity-50' : ''}`}>
           <span>Less</span>
-          <div className="flex gap-[3px]">
+          <div className="flex gap-1">
             {[0, 1, 2, 3, 4].map(level => (
-              <div key={level} className={`w-2.5 h-2.5 md:w-[1.2vw] md:h-[1.2vw] rounded-xs md:rounded-[0.3vw] ${THEME.levels[level]}`} />
+              <div key={level} className={`w-3 h-3 rounded-xs ${THEME.levels[level]}`} />
             ))}
           </div>
           <span>More</span>
@@ -249,20 +254,19 @@ export default function CalendarHeatmap() {
   );
 }
 
-// ... HeatmapCell component remains exactly the same ...
 function HeatmapCell({ day }: { day: DayData }) {
   return (
     <div className="relative group">
       <div
-        className={`w-2.5 h-2.5 md:w-[1.2vw] md:h-[1.2vw] rounded-xs md:rounded-[0.3vw] ${THEME.levels[day.level]} border border-transparent hover:border-gray-400`}
+        className={`w-3 h-3 md:w-[1vw] md:h-[1vw] rounded-sm ${THEME.levels[day.level]} border border-transparent hover:border-gray-400 transition-colors duration-150`}
       />
-      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-center z-40 pointer-events-none">
+      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-center z-50 pointer-events-none">
         <div className={`${THEME.tooltipBg} p-2 rounded text-xs shadow-xl border border-gray-600 whitespace-nowrap z-50`}>
           <div className="text-gray-300 font-bold mb-1 text-center">
             {day.count} submissions
           </div>
           <div className="text-gray-400 text-[10px] text-center">
-            {new Date(day.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+            {new Date(day.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}
           </div>
         </div>
         <div className={`w-2 h-2 ${THEME.tooltipBg} border-r border-b border-gray-600 rotate-45 -mt-1`}></div>
