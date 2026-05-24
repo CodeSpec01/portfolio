@@ -98,15 +98,17 @@ export default function CalendarHeatmap() {
   const { rawData, loading, error } = useLeetCodeStats('codespec');
 
   // --- Process Data into distinct Month Blocks ---
-  const { monthsBlocks, totalActiveDays, streak } = useMemo(() => {
+  const { monthsBlocks, totalActiveDays, streak, totalSubmissions } = useMemo(() => {
     const normalizedMap = new Map<string, number>();
-
+    let totalSubmissions = 0;
+    
     if (rawData && rawData.submissionCalendar && rawData.submissionCalendar !== "undefined") {
       const calendarMap: Record<string, number> = JSON.parse(rawData.submissionCalendar);
       Object.entries(calendarMap).forEach(([ts, count]) => {
         const date = new Date(parseInt(ts) * 1000);
         const key = date.toISOString().split('T')[0];
         normalizedMap.set(key, count);
+        totalSubmissions += count;
       });
     }
 
@@ -169,7 +171,8 @@ export default function CalendarHeatmap() {
     return {
       monthsBlocks: generatedBlocks,
       totalActiveDays: rawData?.totalActiveDays || 0,
-      streak: rawData?.streak || 0
+      streak: rawData?.streak || 0,
+      totalSubmissions,
     };
   }, [rawData]);
 
@@ -197,7 +200,7 @@ export default function CalendarHeatmap() {
           <div>
             <h1 className='mb-2 md:mb-5 text-xl md:text-2xl text-gray-200'>Leetcode Heatmap</h1>
             <h2 className="text-sm md:text-base font-bold text-gray-100">
-              {loading ? "..." : totalActiveDays} submissions in the past year
+              {loading ? "..." : totalSubmissions} submissions in the past year
             </h2>
             <div className={`flex gap-4 text-xs md:text-sm mt-1 ${THEME.text}`}>
               <span>Total active days: <strong className="text-gray-200">{loading ? '-' : totalActiveDays}</strong></span>
